@@ -6,56 +6,105 @@ import { ExternalLink, Github } from "lucide-react"
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "Deep Image Enhancement via Pixel Transformation",
-      subtitle: "Computer Vision & Deep Learning",
-      description: "Automatic grayscale-to-color enhancement with CNNs & GANs. Achieved realistic, vibrant results using OpenCV + deep learning.",
-      tech: ["CNNs", "GANs", "OpenCV", "Deep Learning", "Computer Vision"],
-      impact: "Advanced image processing with state-of-the-art enhancement techniques",
-      featured: true,
-      hasGithub: true
+      title: "AI Powered Content Summarizer",
+      subtitle: "NLP & Transformers",
+      description:
+        "Developed an AI-powered summarizer using NLP, Transformers, and Hugging Face API to condense lengthy texts into concise, informative summaries.",
+      tech: ["NLP", "Transformers", "React", "Hugging Face API"],
+      impact: "Streamlined content consumption by providing dynamic summaries.",
+      hasGithub: true,
+      hasDemo: true,
     },
     {
-      title: "Student Grade Predictor with ML",
-      subtitle: "Machine Learning Application",
-      description: "Flask web app predicting student performance with preprocessing + regression models. Achieved 12–15% accuracy improvement after feature engineering.",
-      tech: ["Python", "Flask", "Machine Learning", "Feature Engineering"],
-      impact: "Improved prediction accuracy by 12-15% through advanced feature engineering",
-      featured: true,
-      hasGithub: true
+      title: "Image Cartooniser Using ML",
+      subtitle: "Generative Adversarial Networks",
+      description:
+        "Built a deep learning-based cartoonizer that converts real photographs into stylized cartoon images using GANs.",
+      tech: ["Python", "GANs", "OpenCV"],
+      impact: "Bridges creativity and AI by learning artistic cartoon styles.",
+      hasGithub: true,
+      hasDemo: false,
     },
     {
-      title: "AI Powered Text Summarizer",
-      subtitle: "NLP Application",
-      description: "React-based summarization tool using NLP. Provides concise summaries of long texts with responsive UI.",
-      tech: ["React", "NLP", "JavaScript", "Text Processing"],
-      impact: "Streamlined content consumption with intelligent summarization",
-      featured: false,
-      hasGithub: true
+      title: "GitHub User Checker",
+      subtitle: "API Integration",
+      description:
+        "Web-based tool integrating GitHub’s API to fetch and display user profile information dynamically.",
+      tech: ["REST API", "JavaScript", "JSON"],
+      impact: "Practical demonstration of real-time API integration.",
+      hasGithub: true,
+      hasDemo: true,
+    },
+    {
+      title: "ML Image Colorizer",
+      subtitle: "Deep Learning & OpenCV",
+      description:
+        "Implemented grayscale-to-color image colorization using CNNs and a pre-trained Caffe model trained on millions of images.",
+      tech: ["CNNs", "OpenCV", "Deep Learning"],
+      impact: "Restores lifelike color to grayscale images with precision.",
+      hasGithub: true,
+      hasDemo: false,
+    },
+    {
+      title: "Car Price Prediction Using ML",
+      subtitle: "Regression & Feature Engineering",
+      description:
+        "Machine learning model predicting car prices using RandomForestRegressor, with one-hot encoding for categorical features.",
+      tech: ["scikit-learn", "RandomForest", "Python"],
+      impact: "Accurate car price predictions through advanced ML pipelines.",
+      hasGithub: true,
+      hasDemo: false,
+    },
+    {
+      title: "Loan Risk Data Preprocessing & Encoding Pipeline",
+      subtitle: "Data Engineering",
+      description:
+        "Preprocessing pipeline for loan risk analysis, handling missing values, applying one-hot encoding, and dataset preparation.",
+      tech: ["Python", "Pandas", "Data Preprocessing"],
+      impact: "Ensures robust and clean data pipelines for ML models.",
+      hasGithub: true,
+      hasDemo: false,
+    },
+    {
+      title: "Student Grade Predictor",
+      subtitle: "Educational Data Analytics",
+      description:
+        "Built an ML model analyzing demographics, academics, and background data to predict student grades. Achieved improved accuracy with preprocessing and regression.",
+      tech: ["Flask", "Python", "Linear Regression"],
+      impact: "Helps identify academic performance patterns for early intervention.",
+      hasGithub: true,
+      hasDemo: true,
+    },
+    {
+      title: "MovieLens Recommender System with LightFM",
+      subtitle: "Recommendation Systems",
+      description:
+        "Hybrid recommender system using LightFM to combine collaborative and content-based filtering on the MovieLens dataset.",
+      tech: ["Python", "LightFM", "Recommender Systems"],
+      impact: "Personalizes movie recommendations using hybrid approaches.",
+      hasGithub: true,
+      hasDemo: false,
     },
     {
       title: "Waste Classification App",
-      subtitle: "Transfer Learning Project",
-      description: "Transfer learning (VGG16) model categorizing waste into biodegradable, recyclable, trash. Flask interface for user-friendly predictions.",
-      tech: ["Transfer Learning", "VGG16", "Flask", "Computer Vision"],
-      impact: "Promotes environmental sustainability through intelligent waste categorization",
-      featured: false,
-      hasGithub: false
+      subtitle: "Transfer Learning (VGG16)",
+      description:
+        "VGG16-based transfer learning model categorizing waste into biodegradable, recyclable, or trash, deployed with Flask.",
+      tech: ["VGG16", "Flask", "Computer Vision"],
+      impact: "Promotes sustainability through AI-powered waste classification.",
+      hasGithub: true,
+      hasDemo: false,
     },
     {
       title: "Virtual Trial Room (Prototype)",
       subtitle: "AI & Fashion Tech",
-      description: "AI-powered virtual outfit try-on with style suggestions and accessory integration. Designed as a prototype exploring the intersection of AI & fashion tech.",
-      tech: ["AI/ML", "Computer Vision", "Fashion Tech", "Prototype"],
-      impact: "Innovative exploration of AI applications in fashion industry",
-      featured: false,
-      hasGithub: false
-    }
-  ]
-
-  const otherProjects = [
-    "MEAN stack experiments exploring full-stack architecture",
-    "Python automation tools for workflow optimization",
-    "Interactive utilities for creative problem solving"
+      description:
+        "AI-powered prototype for virtual outfit try-on with gender-based clothing segregation and accessories integration.",
+      tech: ["AI/ML", "Computer Vision", "Flask"],
+      impact: "Explores new retail experiences at the intersection of AI and fashion.",
+      hasGithub: false,
+      hasDemo: false,
+    },
   ]
 
   return (
@@ -67,7 +116,7 @@ const ProjectsSection = () => {
           </h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-4"></div>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Highlighting Real Impact
+            A showcase of impactful projects and prototypes
           </p>
         </div>
         
@@ -75,9 +124,7 @@ const ProjectsSection = () => {
           {projects.map((project, index) => (
             <Card 
               key={index} 
-              className={`card-hover border-0 shadow-lg ${
-                project.featured ? 'lg:col-span-2 xl:col-span-1' : ''
-              } slide-up`}
+              className={`card-hover border-0 shadow-lg slide-up`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader>
@@ -85,11 +132,6 @@ const ProjectsSection = () => {
                   <CardTitle className="font-poppins font-semibold text-xl text-foreground">
                     {project.title}
                   </CardTitle>
-                  {project.featured && (
-                    <Badge variant="secondary" className="bg-primary/10 text-primary">
-                      Featured
-                    </Badge>
-                  )}
                 </div>
                 <p className="text-primary font-medium">{project.subtitle}</p>
               </CardHeader>
@@ -120,33 +162,17 @@ const ProjectsSection = () => {
                       GitHub
                     </Button>
                   )}
-                  <Button size="sm" variant="outline" className={project.hasGithub ? "flex-1" : "w-full"}>
-                    <ExternalLink className="w-4 h-4" />
-                    Demo
-                  </Button>
+                  {project.hasDemo && (
+                    <Button size="sm" variant="outline" className="flex-1">
+                      <ExternalLink className="w-4 h-4" />
+                      Demo
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
-        
-        <Card className="card-hover border-0 shadow-lg slide-up">
-          <CardHeader>
-            <CardTitle className="font-poppins font-semibold text-xl text-foreground">
-              Other Projects & Mini Apps
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              {otherProjects.map((project, index) => (
-                <li key={index} className="flex items-center gap-3 text-muted-foreground">
-                  <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                  {project}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
       </div>
     </section>
   )
