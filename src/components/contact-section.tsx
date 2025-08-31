@@ -1,44 +1,8 @@
-import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Linkedin, Github, Mail, Send } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { Download, Linkedin, Github, Mail } from "lucide-react"
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
-  })
-  const { toast } = useToast()
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    
-    // Create mailto link
-    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`)
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)
-    window.open(`mailto:snigdhaisme@gmail.com?subject=${subject}&body=${body}`)
-    
-    // Reset form
-    setFormData({ name: "", email: "", message: "" })
-    
-    toast({
-      title: "Message prepared!",
-      description: "Your email client should open with the pre-filled message.",
-    })
-  }
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
-
   return (
     <section id="contact" className="py-20 px-6 bg-muted/30">
       <div className="container mx-auto max-w-6xl">
@@ -53,118 +17,81 @@ const ContactSection = () => {
         </div>
         
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Contact Form */}
-          <Card className="card-hover border-0 shadow-lg slide-up">
-            <CardHeader>
-              <CardTitle className="font-poppins font-semibold text-2xl text-foreground">
-                Send a Message
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    placeholder="Your full name"
-                    required
-                    className="border-border focus:border-primary"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    placeholder="your.email@example.com"
-                    required
-                    className="border-border focus:border-primary"
-                  />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="Tell me about your project or how we can collaborate..."
-                    rows={5}
-                    required
-                    className="border-border focus:border-primary resize-none"
-                  />
-                </div>
-                
-                <Button type="submit" variant="hero" size="lg" className="w-full">
-                  <Send className="w-5 h-5" />
-                  Send Message
+          {/* Resume Section */}
+          <Card className="card-hover border-0 shadow-lg">
+            <CardContent className="p-8 text-center">
+              <h3 className="font-poppins font-semibold text-xl mb-4 text-foreground">
+                Resume
+              </h3>
+              <p className="text-muted-foreground mb-6">
+                A detailed overview of my education, projects, skills, and experiences — 
+                available in one click.
+              </p>
+              <a 
+                href="/Snigdha-Gayathri-Resume.pdf" 
+                download 
+                className="w-full"
+              >
+                <Button variant="outline-hero" size="lg" className="w-full">
+                  <Download className="w-5 h-5" />
+                  Download My Resume
                 </Button>
-              </form>
+              </a>
             </CardContent>
           </Card>
           
           {/* Social Links */}
-          <div className="space-y-8 slide-up">
-            <Card className="card-hover border-0 shadow-lg">
-              <CardHeader>
-                <CardTitle className="font-poppins font-semibold text-xl text-foreground">
-                  Connect With Me
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <a 
-                  href="mailto:snigdhaisme@gmail.com"
-                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-accent transition-colors group"
-                >
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Mail className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">Email</p>
-                    <p className="text-sm text-muted-foreground">snigdhaisme@gmail.com</p>
-                  </div>
-                </a>
-                
-                <a 
-                  href="https://linkedin.com/in/snigdha-gayathri"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-accent transition-colors group"
-                >
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Linkedin className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">LinkedIn</p>
-                    <p className="text-sm text-muted-foreground">Professional Network</p>
-                  </div>
-                </a>
-                
-                <a 
-                  href="https://github.com/Snigdha-Gayathri"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-3 rounded-lg hover:bg-accent transition-colors group"
-                >
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Github className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">GitHub</p>
-                    <p className="text-sm text-muted-foreground">Code Repository</p>
-                  </div>
-                </a>
-              </CardContent>
-            </Card>
-          </div>
+          <Card className="card-hover border-0 shadow-lg">
+            <CardHeader>
+              <CardTitle className="font-poppins font-semibold text-xl text-foreground">
+                Connect With Me
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <a 
+                href="mailto:snigdhaisme@gmail.com"
+                className="flex items-center gap-4 p-3 rounded-lg hover:bg-accent transition-colors group"
+              >
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <Mail className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">Email</p>
+                  <p className="text-sm text-muted-foreground">snigdhaisme@gmail.com</p>
+                </div>
+              </a>
+              
+              <a 
+                href="https://linkedin.com/in/snigdha-gayathri"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-3 rounded-lg hover:bg-accent transition-colors group"
+              >
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <Linkedin className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">LinkedIn</p>
+                  <p className="text-sm text-muted-foreground">Professional Network</p>
+                </div>
+              </a>
+              
+              <a 
+                href="https://github.com/Snigdha-Gayathri"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-3 rounded-lg hover:bg-accent transition-colors group"
+              >
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <Github className="w-5 h-5 text-primary group-hover:text-primary-foreground" />
+                </div>
+                <div>
+                  <p className="font-medium text-foreground">GitHub</p>
+                  <p className="text-sm text-muted-foreground">Code Repository</p>
+                </div>
+              </a>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
