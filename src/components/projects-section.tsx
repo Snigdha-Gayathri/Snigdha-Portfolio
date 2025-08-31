@@ -12,8 +12,8 @@ const ProjectsSection = () => {
         "Developed an AI-powered summarizer using NLP, Transformers, and Hugging Face API to condense lengthy texts into concise, informative summaries.",
       tech: ["NLP", "Transformers", "React", "Hugging Face API"],
       impact: "Streamlined content consumption by providing dynamic summaries.",
-      hasGithub: true,
-      hasDemo: true,
+      githubUrl: "https://github.com/Snigdha-Gayathri/AI-Powered-Content-Summarizer",
+      demoUrl: ""
     },
     {
       title: "Image Cartooniser Using ML",
@@ -22,8 +22,8 @@ const ProjectsSection = () => {
         "Built a deep learning-based cartoonizer that converts real photographs into stylized cartoon images using GANs.",
       tech: ["Python", "GANs", "OpenCV"],
       impact: "Bridges creativity and AI by learning artistic cartoon styles.",
-      hasGithub: true,
-      hasDemo: false,
+      githubUrl: "https://github.com/Snigdha-Gayathri/Cartoonifier-ML-model",
+      demoUrl: ""
     },
     {
       title: "GitHub User Checker",
@@ -32,8 +32,8 @@ const ProjectsSection = () => {
         "Web-based tool integrating GitHub’s API to fetch and display user profile information dynamically.",
       tech: ["REST API", "JavaScript", "JSON"],
       impact: "Practical demonstration of real-time API integration.",
-      hasGithub: true,
-      hasDemo: true,
+      githubUrl: "https://github.com/Snigdha-Gayathri/SmartInternz-Internship",
+      demoUrl: ""
     },
     {
       title: "ML Image Colorizer",
@@ -42,8 +42,8 @@ const ProjectsSection = () => {
         "Implemented grayscale-to-color image colorization using CNNs and a pre-trained Caffe model trained on millions of images.",
       tech: ["CNNs", "OpenCV", "Deep Learning"],
       impact: "Restores lifelike color to grayscale images with precision.",
-      hasGithub: true,
-      hasDemo: false,
+      githubUrl: "https://github.com/Snigdha-Gayathri/Image-Colorizer-ML",
+      demoUrl: ""
     },
     {
       title: "Car Price Prediction Using ML",
@@ -52,8 +52,8 @@ const ProjectsSection = () => {
         "Machine learning model predicting car prices using RandomForestRegressor, with one-hot encoding for categorical features.",
       tech: ["scikit-learn", "RandomForest", "Python"],
       impact: "Accurate car price predictions through advanced ML pipelines.",
-      hasGithub: true,
-      hasDemo: false,
+      githubUrl: "https://github.com/Snigdha-Gayathri/Car-Price-Prediction-Using-ML",
+      demoUrl: ""
     },
     {
       title: "Loan Risk Data Preprocessing & Encoding Pipeline",
@@ -62,8 +62,8 @@ const ProjectsSection = () => {
         "Preprocessing pipeline for loan risk analysis, handling missing values, applying one-hot encoding, and dataset preparation.",
       tech: ["Python", "Pandas", "Data Preprocessing"],
       impact: "Ensures robust and clean data pipelines for ML models.",
-      hasGithub: true,
-      hasDemo: false,
+      githubUrl: "https://github.com/Snigdha-Gayathri/Loan-Risk-Data-Preprocessing-Encoding-Pipeline",
+      demoUrl: ""
     },
     {
       title: "Student Grade Predictor",
@@ -72,8 +72,8 @@ const ProjectsSection = () => {
         "Built an ML model analyzing demographics, academics, and background data to predict student grades. Achieved improved accuracy with preprocessing and regression.",
       tech: ["Flask", "Python", "Linear Regression"],
       impact: "Helps identify academic performance patterns for early intervention.",
-      hasGithub: true,
-      hasDemo: true,
+      githubUrl: "https://github.com/Snigdha-Gayathri/Student-Grade-Predictor",
+      demoUrl: ""
     },
     {
       title: "MovieLens Recommender System with LightFM",
@@ -82,8 +82,8 @@ const ProjectsSection = () => {
         "Hybrid recommender system using LightFM to combine collaborative and content-based filtering on the MovieLens dataset.",
       tech: ["Python", "LightFM", "Recommender Systems"],
       impact: "Personalizes movie recommendations using hybrid approaches.",
-      hasGithub: true,
-      hasDemo: false,
+      githubUrl: "https://github.com/Snigdha-Gayathri/MovieLens-Recommender-System-with-LightFM",
+      demoUrl: ""
     },
     {
       title: "Waste Classification App",
@@ -92,8 +92,8 @@ const ProjectsSection = () => {
         "VGG16-based transfer learning model categorizing waste into biodegradable, recyclable, or trash, deployed with Flask.",
       tech: ["VGG16", "Flask", "Computer Vision"],
       impact: "Promotes sustainability through AI-powered waste classification.",
-      hasGithub: true,
-      hasDemo: false,
+      githubUrl: "",
+      demoUrl: ""
     },
     {
       title: "Virtual Trial Room (Prototype)",
@@ -102,9 +102,9 @@ const ProjectsSection = () => {
         "AI-powered prototype for virtual outfit try-on with gender-based clothing segregation and accessories integration.",
       tech: ["AI/ML", "Computer Vision", "Flask"],
       impact: "Explores new retail experiences at the intersection of AI and fashion.",
-      hasGithub: false,
-      hasDemo: false,
-    },
+      githubUrl: "",
+      demoUrl: ""
+    }
   ]
 
   return (
@@ -124,7 +124,7 @@ const ProjectsSection = () => {
           {projects.map((project, index) => (
             <Card 
               key={index} 
-              className={`card-hover border-0 shadow-lg slide-up`}
+              className="card-hover border-0 shadow-lg slide-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader>
@@ -156,17 +156,31 @@ const ProjectsSection = () => {
                 </div>
                 
                 <div className="flex gap-2 pt-2">
-                  {project.hasGithub && (
-                    <Button size="sm" variant="outline" className="flex-1">
-                      <Github className="w-4 h-4" />
-                      GitHub
-                    </Button>
+                  {project.githubUrl && (
+                    <a 
+                      href={project.githubUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="flex-1"
+                    >
+                      <Button size="sm" variant="outline" className="w-full">
+                        <Github className="w-4 h-4" />
+                        GitHub
+                      </Button>
+                    </a>
                   )}
-                  {project.hasDemo && (
-                    <Button size="sm" variant="outline" className="flex-1">
-                      <ExternalLink className="w-4 h-4" />
-                      Demo
-                    </Button>
+                  {project.demoUrl && (
+                    <a 
+                      href={project.demoUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="flex-1"
+                    >
+                      <Button size="sm" variant="outline" className="w-full">
+                        <ExternalLink className="w-4 h-4" />
+                        Demo
+                      </Button>
+                    </a>
                   )}
                 </div>
               </CardContent>
