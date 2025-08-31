@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Download, Linkedin, Github, Mail, Send } from "lucide-react"
+import { Linkedin, Github, Mail, Send } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 const ContactSection = () => {
@@ -111,26 +111,8 @@ const ContactSection = () => {
             </CardContent>
           </Card>
           
-          {/* Contact Info & Links */}
+          {/* Social Links */}
           <div className="space-y-8 slide-up">
-            {/* Resume Section */}
-            <Card className="card-hover border-0 shadow-lg">
-              <CardContent className="p-8 text-center">
-                <h3 className="font-poppins font-semibold text-xl mb-4 text-foreground">
-                  Resume
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  A detailed overview of my education, projects, skills, and experiences — 
-                  available in one click.
-                </p>
-                <Button variant="outline-hero" size="lg" className="w-full">
-                  <Download className="w-5 h-5" />
-                  Download My Resume
-                </Button>
-              </CardContent>
-            </Card>
-            
-            {/* Social Links */}
             <Card className="card-hover border-0 shadow-lg">
               <CardHeader>
                 <CardTitle className="font-poppins font-semibold text-xl text-foreground">
