@@ -22,10 +22,7 @@ const HeroSection = () => {
           </h2>
           
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-            I turn ideas into impactful digital solutions by blending data engineering, 
-            artificial intelligence, and creative problem-solving. My work ranges from building 
-            intelligent pipelines and predictive models to designing full-stack applications 
-            that solve real-world challenges.
+            I design intelligent solutions by combining data engineering, machine learning, and creative problem-solving. From building predictive models to crafting full-stack applications, I transform raw ideas into impactful products that scale.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -33,7 +30,7 @@ const HeroSection = () => {
               variant="hero" 
               size="lg"
               className="min-w-[180px]"
-              onClick={() => window.open("#", "_blank")}
+              onClick={() => window.open("/mnt/data/Snigdha-Gayathri-Resume.pdf", "_blank")}
             >
               <Download className="w-5 h-5" />
               View Resume
@@ -45,7 +42,7 @@ const HeroSection = () => {
               className="min-w-[180px]"
               onClick={scrollToContact}
             >
-              Let's Connect
+              Contact Me
               <ArrowRight className="w-5 h-5" />
             </Button>
           </div>

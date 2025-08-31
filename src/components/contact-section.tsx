@@ -48,8 +48,7 @@ const ContactSection = () => {
           </h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-4"></div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Whether you're interested in collaborating, hiring, or simply exchanging ideas, 
-            I'd love to hear from you. Let's connect and build something meaningful.
+            Looking forward to collaborating, innovating, and building solutions that make an impact. Let's connect!
           </p>
         </div>
         

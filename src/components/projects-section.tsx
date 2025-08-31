@@ -6,35 +6,56 @@ import { ExternalLink, Github } from "lucide-react"
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "Virtual Trial Room",
-      subtitle: "Walmart Sparkathon 2025",
-      description: "An innovative AI-powered web app that lets users try on outfits virtually in real-time. Features gender-based outfit segregation, intelligent style suggestions, and accessory integration.",
-      tech: ["AI/ML", "Computer Vision", "Web Development", "Real-time Processing"],
-      impact: "Showcased at Walmart Sparkathon 2025, recognized for bridging fashion and technology",
-      featured: true
+      title: "Deep Image Enhancement via Pixel Transformation",
+      subtitle: "Computer Vision & Deep Learning",
+      description: "Automatic grayscale-to-color enhancement with CNNs & GANs. Achieved realistic, vibrant results using OpenCV + deep learning.",
+      tech: ["CNNs", "GANs", "OpenCV", "Deep Learning", "Computer Vision"],
+      impact: "Advanced image processing with state-of-the-art enhancement techniques",
+      featured: true,
+      hasGithub: true
     },
     {
-      title: "Student Grade Predictor",
+      title: "Student Grade Predictor with ML",
       subtitle: "Machine Learning Application",
-      description: "Flask-based machine learning app predicting student performance using dataset-driven models. Analyzes study time, attendance, and prior scores.",
-      tech: ["Python", "Flask", "Machine Learning", "Data Analysis"],
-      impact: "Helps educators and students understand key performance drivers and optimize academic planning",
-      featured: false
+      description: "Flask web app predicting student performance with preprocessing + regression models. Achieved 12–15% accuracy improvement after feature engineering.",
+      tech: ["Python", "Flask", "Machine Learning", "Feature Engineering"],
+      impact: "Improved prediction accuracy by 12-15% through advanced feature engineering",
+      featured: true,
+      hasGithub: true
+    },
+    {
+      title: "AI Powered Text Summarizer",
+      subtitle: "NLP Application",
+      description: "React-based summarization tool using NLP. Provides concise summaries of long texts with responsive UI.",
+      tech: ["React", "NLP", "JavaScript", "Text Processing"],
+      impact: "Streamlined content consumption with intelligent summarization",
+      featured: false,
+      hasGithub: true
     },
     {
       title: "Waste Classification App",
-      subtitle: "Sustainability-Focused AI",
-      description: "Transfer learning with VGG16 for classifying waste as biodegradable, recyclable, or trash. Flask-based frontend for user-friendly image uploads.",
-      tech: ["Deep Learning", "Transfer Learning", "VGG16", "Flask", "Computer Vision"],
-      impact: "Practical sustainability-focused project encouraging smarter waste management",
-      featured: false
+      subtitle: "Transfer Learning Project",
+      description: "Transfer learning (VGG16) model categorizing waste into biodegradable, recyclable, trash. Flask interface for user-friendly predictions.",
+      tech: ["Transfer Learning", "VGG16", "Flask", "Computer Vision"],
+      impact: "Promotes environmental sustainability through intelligent waste categorization",
+      featured: false,
+      hasGithub: false
+    },
+    {
+      title: "Virtual Trial Room (Prototype)",
+      subtitle: "AI & Fashion Tech",
+      description: "AI-powered virtual outfit try-on with style suggestions and accessory integration. Designed as a prototype exploring the intersection of AI & fashion tech.",
+      tech: ["AI/ML", "Computer Vision", "Fashion Tech", "Prototype"],
+      impact: "Innovative exploration of AI applications in fashion industry",
+      featured: false,
+      hasGithub: false
     }
   ]
 
   const otherProjects = [
-    "Python-based automation tools (time-saving scripts)",
-    "MEAN stack practice apps exploring full-stack integration",
-    "Interactive problem-solving applications for personal learning"
+    "MEAN stack experiments exploring full-stack architecture",
+    "Python automation tools for workflow optimization",
+    "Interactive utilities for creative problem solving"
   ]
 
   return (
@@ -93,11 +114,13 @@ const ProjectsSection = () => {
                 </div>
                 
                 <div className="flex gap-2 pt-2">
-                  <Button size="sm" variant="outline" className="flex-1">
-                    <Github className="w-4 h-4" />
-                    Code
-                  </Button>
-                  <Button size="sm" variant="outline" className="flex-1">
+                  {project.hasGithub && (
+                    <Button size="sm" variant="outline" className="flex-1">
+                      <Github className="w-4 h-4" />
+                      GitHub
+                    </Button>
+                  )}
+                  <Button size="sm" variant="outline" className={project.hasGithub ? "flex-1" : "w-full"}>
                     <ExternalLink className="w-4 h-4" />
                     Demo
                   </Button>

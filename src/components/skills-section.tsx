@@ -5,27 +5,37 @@ const SkillsSection = () => {
   const skillCategories = [
     {
       title: "Programming Languages",
-      skills: ["Python", "Java", "C++", "SQL"],
+      skills: ["Python", "C", "C++", "Java", "JavaScript", "TypeScript", "SQL"],
       icon: "💻"
     },
     {
-      title: "Data & AI",
-      skills: ["Machine Learning", "Deep Learning", "PySpark", "Data Pipelines", "Flask APIs"],
+      title: "AI/ML & Data Science",
+      skills: ["Machine Learning", "Deep Learning (CNNs, GANs)", "NLP", "Computer Vision", "Generative AI", "PySpark", "Data Pipelines"],
       icon: "🤖"
     },
     {
       title: "Web Development",
-      skills: ["HTML", "CSS", "JavaScript", "MEAN Stack"],
+      skills: ["HTML", "CSS", "JavaScript", "React", "MEAN Stack"],
       icon: "🌐"
     },
     {
+      title: "Libraries & Frameworks",
+      skills: ["TensorFlow", "PyTorch", "Pandas", "NumPy", "OpenCV", "Flask"],
+      icon: "📚"
+    },
+    {
       title: "Tools & Platforms",
-      skills: ["Git", "Docker", "Linux", "Jupyter", "VS Code"],
+      skills: ["Git", "Docker", "Linux", "Jupyter", "Google Colab", "VS Code", "CI/CD"],
       icon: "⚙️"
     },
     {
+      title: "Databases & Analytics",
+      skills: ["MySQL", "Data Visualization", "Matplotlib", "Seaborn", "R"],
+      icon: "💾"
+    },
+    {
       title: "Soft Skills",
-      skills: ["Analytical Problem-solving", "Teamwork", "Creative Innovation", "Adaptability"],
+      skills: ["Collaboration", "Communication", "Problem-solving", "Creativity", "Adaptability", "Attention to Detail"],
       icon: "🧠"
     }
   ]

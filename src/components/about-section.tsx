@@ -17,24 +17,11 @@ const AboutSection = () => {
             <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-6">
               <p>
                 Hello! I'm <span className="text-primary font-semibold">Jaya Snigdha Gayathri</span>, 
-                a passionate technologist from Rajahmundry, Andhra Pradesh, India. My journey into 
-                technology began with a curiosity about how data and algorithms could shape the way 
-                we live and interact. Over time, that curiosity grew into a focused drive to master 
-                fields like Data Engineering, Artificial Intelligence, and Full-Stack Development.
+                a Computer Science undergraduate specializing in AI & ML at Aditya University. My journey began with curiosity about algorithms and evolved into a passion for building real-world applications. Through internships, projects, and certifications, I've gained expertise across AI/ML, data pipelines, and web development.
               </p>
               
               <p>
-                I've had the opportunity to work across multiple internships, contribute to hackathons, 
-                and collaborate with talented peers, all of which sharpened my problem-solving mindset. 
-                I believe in crafting solutions that are not just technically sound but also intuitive, 
-                user-friendly, and scalable.
-              </p>
-              
-              <p>
-                When I'm not coding or analyzing data, you'll find me exploring new tech stacks, 
-                mentoring peers, and participating in collaborative projects that push me out of my 
-                comfort zone. My ultimate goal is to use technology as a bridge — connecting innovation 
-                with impact.
+                I thrive where creativity meets logic — from deploying deep learning models to designing user-focused applications. Beyond coding, I enjoy collaborating, mentoring, and exploring ways to apply AI for meaningful impact.
               </p>
             </div>
           </div>

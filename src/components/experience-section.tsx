@@ -7,46 +7,54 @@ const ExperienceSection = () => {
     {
       company: "Cognifyz Technologies",
       role: "AI/ML Intern",
-      description: "Contributed to applied AI/ML projects, gaining hands-on exposure in real-world data challenges.",
-      period: "2024",
+      description: "Built ML models for restaurant rating prediction (95% accuracy), optimized pipelines.",
+      period: "Jan 2025 – Mar 2025",
       type: "Applied AI/ML"
     },
     {
       company: "Technical Hub Pvt. Ltd.",
       role: "Software Development Intern",
-      description: "Focused on software development and problem-solving through structured coding practices.",
-      period: "2024",
+      description: "Built React-based visualization tools, modular UI development.",
+      period: "Jun 2024 – Aug 2024",
       type: "Software Development"
     },
     {
       company: "APSSDC Skills Build",
       role: "Data Analytics Intern",
-      description: "Completed a Data Analytics internship, working on data cleaning, visualization, and predictive insights.",
+      description: "Worked on data analytics: cleaning, visualization, predictive insights.",
       period: "Summer 2025",
       type: "Data Analytics"
     },
     {
       company: "APSCHE Smart Bridge",
       role: "AI/ML Intern",
-      description: "Engaged in applied AI/ML projects, strengthening model-building and deployment skills.",
+      description: "Applied AI/ML internship, model building + deployment.",
       period: "2024",
       type: "Applied AI/ML"
     }
   ]
 
   const certifications = [
-    "Artificial Intelligence Fundamentals",
-    "Python Programming Certified",
-    "Java Development Essentials",
-    "DevOps Foundations",
-    "Data Science Fundamentals",
-    "Cloud & Analytics modules"
+    "AI Engineer Certification",
+    "JavaScript Certification",
+    "Java Certification",
+    "Python Certification",
+    "Information Technology Specialist – Java",
+    "Data Visualization with Python",
+    "Data Analysis with Python",
+    "SQL and Relational Databases 101",
+    "Prompt Engineering for Everyone",
+    "Deep Learning Fundamentals",
+    "Java for Problem Solving",
+    "Machine Learning with Python",
+    "Microsoft Certified Azure AI Fundamentals"
   ]
 
   const achievements = [
-    "Participated in Walmart Sparkathon 2025, presenting the Virtual Trial Room project to industry mentors",
-    "Excelled in multiple coding competitions and hackathons, recognized for creativity and technical precision",
-    "Consistently active in technical clubs and peer mentorship roles, contributing to collective learning"
+    "Ranked 40 on GeeksForGeeks",
+    "Code360: Ninja Dominator",
+    "Gold Badges in C++, Java, Python (HackerRank)",
+    "Built & showcased multiple AI/ML + full-stack projects"
   ]
 
   return (
