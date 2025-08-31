@@ -5,7 +5,6 @@ import AboutSection from "@/components/about-section"
 import ProjectsSection from "@/components/projects-section"
 import SkillsSection from "@/components/skills-section"
 import ExperienceSection from "@/components/experience-section"
-import ResumeSection from "@/components/resume-section"
 import ContactSection from "@/components/contact-section"
 
 const Index = () => {
@@ -25,7 +24,9 @@ const Index = () => {
     }, observerOptions)
 
     // Observe all animated elements
-    const animatedElements = document.querySelectorAll(".slide-up, .fade-in, .scale-in")
+    const animatedElements = document.querySelectorAll(
+      ".slide-up, .fade-in, .scale-in"
+    )
     animatedElements.forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()
@@ -39,10 +40,10 @@ const Index = () => {
       <ProjectsSection />
       <SkillsSection />
       <ExperienceSection />
-      <ResumeSection />
+      {/* ✅ Removed <ResumeSection /> */}
       <ContactSection />
     </main>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index
