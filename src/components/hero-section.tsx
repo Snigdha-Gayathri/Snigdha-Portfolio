@@ -7,7 +7,7 @@ const HeroSection = () => {
       <div className="container mx-auto max-w-4xl slide-up">
         <h1 className="font-poppins font-bold text-4xl md:text-6xl mb-6">
           Hi, I’m{" "}
-          <span className="bg-gradient-to-r from-blue-300 via-dodgerblue to-blue-300 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-blue-900 via-dodgerblue to-blue-900 bg-clip-text text-transparent">
             Jaya Snigdha Gayathri
           </span>
         </h1>
