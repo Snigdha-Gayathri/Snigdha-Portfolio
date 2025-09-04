@@ -1,53 +1,55 @@
 import { Button } from "@/components/ui/button"
-import { ExternalLink } from "lucide-react"
+import { Download, Linkedin, Github } from "lucide-react"
 
 const HeroSection = () => {
   return (
-    <section
-      id="hero"
-      className="min-h-screen flex flex-col justify-center items-center text-center px-6"
-    >
-      {/* Headline */}
-      <h1 className="font-poppins font-bold text-4xl md:text-6xl text-foreground mb-4">
-        Hi, I’m{" "}
-        <span className="text-primary">Jaya Snigdha Gayathri</span>
-      </h1>
+    <section id="hero" className="py-32 px-6 text-center bg-background">
+      <div className="container mx-auto max-w-4xl slide-up">
+        <h1 className="font-poppins font-bold text-4xl md:text-6xl mb-6">
+          Hi, I’m{" "}
+          <span className="bg-gradient-to-r from-blue-300 via-dodgerblue to-blue-300 bg-clip-text text-transparent">
+            Jaya Snigdha Gayathri
+          </span>
+        </h1>
 
-      {/* Subheadline */}
-      <h2 className="text-xl md:text-2xl text-muted-foreground mb-6">
-        Data Engineer | AI & ML Enthusiast | Problem Solver
-      </h2>
+        <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
+          A passionate developer and problem-solver, crafting impactful solutions 
+          with AI, Machine Learning, and Full-Stack Development.
+        </p>
 
-      {/* Short intro */}
-      <p className="max-w-2xl text-lg text-muted-foreground leading-relaxed mb-8">
-        I design intelligent solutions by combining data engineering,
-        machine learning, and creative problem-solving. From building
-        predictive models to crafting full-stack applications, I
-        transform raw ideas into impactful products that scale.
-      </p>
-
-      {/* Action buttons */}
-      <div className="flex flex-col sm:flex-row gap-4">
-        {/* Resume Download Button */}
-        <a
-          href="/Snigdha-Gayathri-Resume.pdf"
-          download="Jaya-Snigdha-Gayathri-Resume.pdf"
-        >
-          <Button className="px-6 py-3 text-lg font-semibold">
-            Download My Resume
-          </Button>
-        </a>
-
-        {/* Contact button */}
-        <a href="#contact">
-          <Button
-            variant="outline"
-            className="px-6 py-3 text-lg font-semibold flex items-center gap-2"
+        <div className="flex flex-wrap justify-center gap-4">
+          <a
+            href="/Snigdha-Gayathri-Resume.pdf"
+            download="Snigdha-Gayathri-Resume.pdf"
           >
-            <ExternalLink className="w-5 h-5" />
-            Contact Me
-          </Button>
-        </a>
+            <Button size="lg" variant="hero">
+              <Download className="w-5 h-5" />
+              Download Resume
+            </Button>
+          </a>
+
+          <a
+            href="https://linkedin.com/in/snigdha-gayathri"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button size="lg" variant="outline-hero">
+              <Linkedin className="w-5 h-5" />
+              LinkedIn
+            </Button>
+          </a>
+
+          <a
+            href="https://github.com/Snigdha-Gayathri"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button size="lg" variant="outline-hero">
+              <Github className="w-5 h-5" />
+              GitHub
+            </Button>
+          </a>
+        </div>
       </div>
     </section>
   )

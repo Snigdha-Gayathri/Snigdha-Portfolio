@@ -6,6 +6,15 @@ import { ExternalLink, Github } from "lucide-react"
 const ProjectsSection = () => {
   const projects = [
     {
+      title: "GitHub User Checker",
+      subtitle: "API Integration",
+      description:
+        "Web-based tool integrating GitHub’s API to fetch and display user profile information dynamically.",
+      tech: ["REST API", "JavaScript", "JSON"],
+      impact: "Practical demonstration of real-time API integration.",
+      githubUrl: "https://github.com/Snigdha-Gayathri/GitHub-User-Name",
+    },
+    {
       title: "AI Powered Content Summarizer",
       subtitle: "NLP & Transformers",
       description:
@@ -13,7 +22,6 @@ const ProjectsSection = () => {
       tech: ["NLP", "Transformers", "React", "Hugging Face API"],
       impact: "Streamlined content consumption by providing dynamic summaries.",
       githubUrl: "https://github.com/Snigdha-Gayathri/AI-Powered-Content-Summarizer",
-      demoUrl: ""
     },
     {
       title: "Image Cartooniser Using ML",
@@ -23,17 +31,6 @@ const ProjectsSection = () => {
       tech: ["Python", "GANs", "OpenCV"],
       impact: "Bridges creativity and AI by learning artistic cartoon styles.",
       githubUrl: "https://github.com/Snigdha-Gayathri/Cartoonifier-ML-model",
-      demoUrl: ""
-    },
-    {
-      title: "GitHub User Checker",
-      subtitle: "API Integration",
-      description:
-        "Web-based tool integrating GitHub’s API to fetch and display user profile information dynamically.",
-      tech: ["REST API", "JavaScript", "JSON"],
-      impact: "Practical demonstration of real-time API integration.",
-      githubUrl: "https://github.com/Snigdha-Gayathri/SmartInternz-Internship",
-      demoUrl: ""
     },
     {
       title: "ML Image Colorizer",
@@ -43,7 +40,6 @@ const ProjectsSection = () => {
       tech: ["CNNs", "OpenCV", "Deep Learning"],
       impact: "Restores lifelike color to grayscale images with precision.",
       githubUrl: "https://github.com/Snigdha-Gayathri/Image-Colorizer-ML",
-      demoUrl: ""
     },
     {
       title: "Car Price Prediction Using ML",
@@ -53,7 +49,6 @@ const ProjectsSection = () => {
       tech: ["scikit-learn", "RandomForest", "Python"],
       impact: "Accurate car price predictions through advanced ML pipelines.",
       githubUrl: "https://github.com/Snigdha-Gayathri/Car-Price-Prediction-Using-ML",
-      demoUrl: ""
     },
     {
       title: "Loan Risk Data Preprocessing & Encoding Pipeline",
@@ -63,7 +58,6 @@ const ProjectsSection = () => {
       tech: ["Python", "Pandas", "Data Preprocessing"],
       impact: "Ensures robust and clean data pipelines for ML models.",
       githubUrl: "https://github.com/Snigdha-Gayathri/Loan-Risk-Data-Preprocessing-Encoding-Pipeline",
-      demoUrl: ""
     },
     {
       title: "Student Grade Predictor",
@@ -73,7 +67,6 @@ const ProjectsSection = () => {
       tech: ["Flask", "Python", "Linear Regression"],
       impact: "Helps identify academic performance patterns for early intervention.",
       githubUrl: "https://github.com/Snigdha-Gayathri/Student-Grade-Predictor",
-      demoUrl: ""
     },
     {
       title: "MovieLens Recommender System with LightFM",
@@ -83,17 +76,15 @@ const ProjectsSection = () => {
       tech: ["Python", "LightFM", "Recommender Systems"],
       impact: "Personalizes movie recommendations using hybrid approaches.",
       githubUrl: "https://github.com/Snigdha-Gayathri/MovieLens-Recommender-System-with-LightFM",
-      demoUrl: ""
     },
     {
-      title: "Waste Classification App",
+      title: "Waste Classifier Project",
       subtitle: "Transfer Learning (VGG16)",
       description:
         "VGG16-based transfer learning model categorizing waste into biodegradable, recyclable, or trash, deployed with Flask.",
       tech: ["VGG16", "Flask", "Computer Vision"],
       impact: "Promotes sustainability through AI-powered waste classification.",
-      githubUrl: "",
-      demoUrl: ""
+      githubUrl: "https://github.com/Snigdha-Gayathri/SmartInternz-Internship",
     },
     {
       title: "Virtual Trial Room (Prototype)",
@@ -102,9 +93,8 @@ const ProjectsSection = () => {
         "AI-powered prototype for virtual outfit try-on with gender-based clothing segregation and accessories integration.",
       tech: ["AI/ML", "Computer Vision", "Flask"],
       impact: "Explores new retail experiences at the intersection of AI and fashion.",
-      githubUrl: "",
-      demoUrl: ""
-    }
+      githubUrl: "", // no repo
+    },
   ]
 
   return (
@@ -119,11 +109,11 @@ const ProjectsSection = () => {
             A showcase of impactful projects and prototypes
           </p>
         </div>
-        
+
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
           {projects.map((project, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className="card-hover border-0 shadow-lg slide-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
@@ -135,12 +125,12 @@ const ProjectsSection = () => {
                 </div>
                 <p className="text-primary font-medium">{project.subtitle}</p>
               </CardHeader>
-              
+
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground leading-relaxed">
                   {project.description}
                 </p>
-                
+
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, techIndex) => (
                     <Badge key={techIndex} variant="outline" className="text-xs">
@@ -148,19 +138,20 @@ const ProjectsSection = () => {
                     </Badge>
                   ))}
                 </div>
-                
+
                 <div className="p-4 bg-accent/50 rounded-lg">
                   <p className="text-sm text-muted-foreground">
-                    <span className="font-medium text-primary">Impact:</span> {project.impact}
+                    <span className="font-medium text-primary">Impact:</span>{" "}
+                    {project.impact}
                   </p>
                 </div>
-                
+
                 <div className="flex gap-2 pt-2">
                   {project.githubUrl && (
-                    <a 
-                      href={project.githubUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex-1"
                     >
                       <Button size="sm" variant="outline" className="w-full">
@@ -169,18 +160,11 @@ const ProjectsSection = () => {
                       </Button>
                     </a>
                   )}
-                  {project.demoUrl && (
-                    <a 
-                      href={project.demoUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="flex-1"
-                    >
-                      <Button size="sm" variant="outline" className="w-full">
-                        <ExternalLink className="w-4 h-4" />
-                        Demo
-                      </Button>
-                    </a>
+                  {project.hasDemo && (
+                    <Button size="sm" variant="outline" className="flex-1">
+                      <ExternalLink className="w-4 h-4" />
+                      Demo
+                    </Button>
                   )}
                 </div>
               </CardContent>
