@@ -3,10 +3,7 @@ import { Download, Linkedin, Github } from "lucide-react"
 
 const HeroSection = () => {
   return (
-    <section
-      id="hero"
-      className="py-32 px-6 bg-background"
-    >
+    <section id="hero" className="py-32 px-6 bg-background">
       <div className="container mx-auto max-w-6xl slide-up flex flex-col md:flex-row items-center gap-12">
         
         {/* Left: Profile Photo with Aura */}
@@ -18,7 +15,7 @@ const HeroSection = () => {
 
           {/* Actual Photo */}
           <img
-            src="/B612_20230430_122501_878.jpg" // place image in public/ folder
+            src="/B612_20230430_122501_878.jpg"
             alt="Jaya Snigdha Gayathri"
             className="relative w-56 h-56 md:w-64 md:h-64 rounded-full object-cover shadow-2xl border-4 border-dodgerblue"
           />
