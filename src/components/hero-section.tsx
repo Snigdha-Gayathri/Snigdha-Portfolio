@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Download, Linkedin, Github } from "lucide-react";
-import Image from "next/image";
-import profilePic from "/public/profile.jpg"; // Make sure this file exists in public/
+import { Button } from "@/components/ui/button"
+import { Download, Linkedin, Github } from "lucide-react"
 
 const HeroSection = () => {
   return (
@@ -16,15 +14,11 @@ const HeroSection = () => {
           </div>
 
           {/* Actual Photo */}
-          <div className="relative w-56 h-56 md:w-64 md:h-64">
-            <Image
-              src={profilePic}
-              alt="Jaya Snigdha Gayathri"
-              className="rounded-full object-cover shadow-2xl border-4 border-dodgerblue"
-              fill
-              sizes="(max-width: 768px) 16rem, 20rem"
-            />
-          </div>
+          <img
+            src="/profile.jpg"
+            alt="Jaya Snigdha Gayathri"
+            className="relative w-56 h-56 md:w-64 md:h-64 rounded-full object-cover shadow-2xl border-4 border-dodgerblue"
+          />
         </div>
 
         {/* Right: Text + Buttons */}
@@ -77,7 +71,7 @@ const HeroSection = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection
