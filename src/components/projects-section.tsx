@@ -13,6 +13,7 @@ const ProjectsSection = () => {
       tech: ["REST API", "JavaScript", "JSON"],
       impact: "Practical demonstration of real-time API integration.",
       githubUrl: "https://github.com/Snigdha-Gayathri/GitHub-User-Name",
+      demoUrl: "https://summarize-ai-3e79c618.base44.app/",
     },
     {
       title: "AI Powered Content Summarizer",
