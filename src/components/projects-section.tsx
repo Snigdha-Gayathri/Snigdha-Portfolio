@@ -22,6 +22,7 @@ const ProjectsSection = () => {
       tech: ["NLP", "Transformers", "React", "Hugging Face API"],
       impact: "Streamlined content consumption by providing dynamic summaries.",
       githubUrl: "https://github.com/Snigdha-Gayathri/AI-Powered-Content-Summarizer",
+      demoUrl: "https://summarize-ai-3e79c618.base44.app/", // ✅ Added demo link
     },
     {
       title: "Image Cartooniser Using ML",
@@ -160,11 +161,18 @@ const ProjectsSection = () => {
                       </Button>
                     </a>
                   )}
-                  {project.hasDemo && (
-                    <Button size="sm" variant="outline" className="flex-1">
-                      <ExternalLink className="w-4 h-4" />
-                      Demo
-                    </Button>
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1"
+                    >
+                      <Button size="sm" variant="default" className="w-full">
+                        <ExternalLink className="w-4 h-4" />
+                        Demo
+                      </Button>
+                    </a>
                   )}
                 </div>
               </CardContent>
