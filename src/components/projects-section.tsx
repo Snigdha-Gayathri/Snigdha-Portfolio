@@ -13,7 +13,7 @@ const ProjectsSection = () => {
       tech: ["REST API", "JavaScript", "JSON"],
       impact: "Practical demonstration of real-time API integration.",
       githubUrl: "https://github.com/Snigdha-Gayathri/GitHub-User-Name",
-      demoUrl: "https://summarize-ai-3e79c618.base44.app/",
+      demoUrl: "https://githubuserchecker.netlify.app/",
     },
     {
       title: "AI Powered Content Summarizer",
@@ -69,6 +69,7 @@ const ProjectsSection = () => {
       tech: ["Flask", "Python", "Linear Regression"],
       impact: "Helps identify academic performance patterns for early intervention.",
       githubUrl: "https://github.com/Snigdha-Gayathri/Student-Grade-Predictor",
+      demoUrl: "https://grade-boost-ai-c1a3f675.base44.app/",
     },
     {
       title: "MovieLens Recommender System with LightFM",
