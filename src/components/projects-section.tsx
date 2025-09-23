@@ -5,16 +5,7 @@ import { ExternalLink, Github } from "lucide-react"
 
 const ProjectsSection = () => {
   const projects = [
-    {
-      title: "GitHub User Checker",
-      subtitle: "API Integration",
-      description:
-        "Web-based tool integrating GitHub’s API to fetch and display user profile information dynamically.",
-      tech: ["REST API", "JavaScript", "JSON"],
-      impact: "Practical demonstration of real-time API integration.",
-      githubUrl: "https://github.com/Snigdha-Gayathri/GitHub-User-Name",
-      demoUrl: "https://githubuserchecker.netlify.app/",
-    },
+    ,
     {
       title: "AI Powered Content Summarizer",
       subtitle: "NLP & Transformers",
@@ -24,6 +15,36 @@ const ProjectsSection = () => {
       impact: "Streamlined content consumption by providing dynamic summaries.",
       githubUrl: "https://github.com/Snigdha-Gayathri/AI-Powered-Content-Summarizer",
       demoUrl: "https://summarize-ai-3e79c618.base44.app/", // ✅ Added demo link
+    },
+    {
+      title: "Student Grade Predictor",
+      subtitle: "Educational Data Analytics",
+      description:
+        "Built an ML model analyzing demographics, academics, and background data to predict student grades. Achieved improved accuracy with preprocessing and regression.",
+      tech: ["Flask", "Python", "Linear Regression"],
+      impact: "Helps identify academic performance patterns for early intervention.",
+      githubUrl: "https://github.com/Snigdha-Gayathri/Student-Grade-Predictor",
+      demoUrl: "https://grade-boost-ai-c1a3f675.base44.app/",
+    },
+    {
+  title: "AI Sentiment Analyzer",
+  subtitle: "Natural Language Processing",
+  description:
+    "A smart web application that analyzes user-inputted text and classifies it as Positive, Negative, or Neutral. Powered by NLP techniques, it provides real-time sentiment insights from reviews, feedback, or social media content.",
+  tech: ["Flask", "Python", "Hugging Face Transformers", "React"],
+  impact: "Enables real-time understanding of user sentiment for better decision-making.",
+  demoUrl: "https://sentia-b586d409.base44.app/",
+    },
+
+    {
+      title: "GitHub User Checker",
+      subtitle: "API Integration",
+      description:
+        "Web-based tool integrating GitHub’s API to fetch and display user profile information dynamically.",
+      tech: ["REST API", "JavaScript", "JSON"],
+      impact: "Practical demonstration of real-time API integration.",
+      githubUrl: "https://github.com/Snigdha-Gayathri/GitHub-User-Name",
+      demoUrl: "https://githubuserchecker.netlify.app/",
     },
     {
       title: "Image Cartooniser Using ML",
@@ -61,16 +82,7 @@ const ProjectsSection = () => {
       impact: "Ensures robust and clean data pipelines for ML models.",
       githubUrl: "https://github.com/Snigdha-Gayathri/Loan-Risk-Data-Preprocessing-Encoding-Pipeline",
     },
-    {
-      title: "Student Grade Predictor",
-      subtitle: "Educational Data Analytics",
-      description:
-        "Built an ML model analyzing demographics, academics, and background data to predict student grades. Achieved improved accuracy with preprocessing and regression.",
-      tech: ["Flask", "Python", "Linear Regression"],
-      impact: "Helps identify academic performance patterns for early intervention.",
-      githubUrl: "https://github.com/Snigdha-Gayathri/Student-Grade-Predictor",
-      demoUrl: "https://grade-boost-ai-c1a3f675.base44.app/",
-    },
+    
     {
       title: "MovieLens Recommender System with LightFM",
       subtitle: "Recommendation Systems",
