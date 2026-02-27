@@ -5,7 +5,7 @@ import { ExternalLink, Github } from "lucide-react"
 
 const ProjectsSection = () => {
   const projects = [
-    ,
+    
     {
       title: "AI Powered Content Summarizer",
       subtitle: "NLP & Transformers",
