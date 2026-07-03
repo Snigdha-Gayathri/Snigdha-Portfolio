@@ -19,7 +19,7 @@ interface ProjectDetails {
 interface Project {
   title: string
   subtitle: string
-  category: "Agentic AI" | "Generative AI" | "Machine Learning" | "Deep Learning" | "Data Engineering"
+  categories: string[]
   description: string
   tech: string[]
   impactSummary: string
@@ -29,9 +29,14 @@ interface Project {
   details: ProjectDetails
 }
 
+
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [activeCategory, setActiveCategory] = useState<string>("All")
+
+  const categoriesForProjectLabel = (p: Project) =>
+    p.categories.length <= 2 ? p.categories.join(" • ") : `${p.categories.slice(0, 2).join(" • ")} • +${p.categories.length - 2}`
+
 
   useEffect(() => {
     const observerOptions = {
@@ -52,37 +57,58 @@ const ProjectsSection = () => {
     return () => observer.disconnect()
   }, [activeCategory])
 
-  const categories = ["All", "Agentic AI", "Generative AI", "Machine Learning", "Deep Learning", "Data Engineering"]
+  const categories = [
+    "All",
+    "Agentic AI",
+    "Quantum Computing",
+    "Generative AI",
+    "Machine Learning",
+    "Deep Learning",
+    "Data Engineering",
+  ]
 
   const projects: Project[] = [
+
     {
       title: "NeuroPlan AI",
-      subtitle: "Multi-Agent Cognitive Learning Ecosystem",
-      category: "Agentic AI",
-      description: "An orchestrator coordinating 6 autonomous AI agents to construct personalized academic study structures, adapting to student knowledge retention curves in real-time.",
+      subtitle: "Agentic Planning System",
+      categories: ["Agentic AI"],
+      demoUrl: "https://neuroplan-ai.onrender.com/",
+
+
+
+      description:
+        "NeuroPlan AI is an Agentic Planning System that transforms high-level goals into structured, executable action plans. Instead of acting like a conventional chatbot, it behaves as an autonomous planning agent that understands user intent, decomposes objectives into milestones and tasks, schedules execution, tracks progress analytics, and dynamically refines plans through an adaptive feedback loop.",
+
       tech: ["Gemini API", "Agentic Orchestration", "Python", "FastAPI", "Docker", "Azure ML"],
-      impactSummary: "Boosted curriculum recommendation relevance by 40% using cognitive-arbitration models.",
+      impactSummary:
+        "NeuroPlan AI demonstrates how agentic planning agents transform high-level goals into adaptive roadmaps through LLM-powered reasoning, goal decomposition, dynamic planning, API-first orchestration, and progress analytics.",
+
+
       githubUrl: "https://github.com/Snigdha-Gayathri",
       isFeatured: true,
       details: {
-        problem: "Traditional academic plans are static, neglecting students' specific cognitive loads, forgetting curves, and uneven knowledge retention profiles.",
-        importance: "Static scheduling results in either rapid forgetting or cognitive fatigue. Dynamically adapting curriculum paths ensures optimized retention and higher student engagement.",
-        howItWorks: "Designed a 6-agent framework: Planner (deconstructs curricula), Evaluator (grades submissions), Memory Manager (consolidates mistakes logs), Scheduler (manages spacing), Mastery Assessor (predicts skill scores), and Arbitration Agent (reconciles conflicts). Implemented memory retrieval based on the Ebbinghaus forgetting algorithm.",
-        challenges: "Managing state synchronization and agentic loops without infinite loops. Resolved this by introducing a strict DAG-based arbitration protocol and memory-state checkpointing.",
-        impact: "Improved recommendation alignment by 40%. Enabled autonomous, feedback-driven revision loops that decreased student grade predictive variance.",
+        problem: "Users often struggle to convert high-level objectives into concrete, scheduled execution plans—especially when constraints change over time. Traditional planners are static, lack adaptive reasoning, and do not support progressive task decomposition and progress-aware updates.",
+        importance: "An adaptive agentic planning assistant helps users stay aligned with real-world constraints by breaking goals into milestones and actionable tasks, scheduling execution, tracking progress analytics, and continuously refining future steps based on what has been completed.",
+        howItWorks: "NeuroPlan AI uses an Agentic Planning Agent to perform intent analysis, goal decomposition, dynamic task scheduling, and progress analytics. The system orchestrates LLM-based reasoning through an API-first architecture (REST APIs with a Flask backend), enabling modular integration of LLM providers. It supports dynamic planning where schedules are reorganized when tasks are delayed or priorities shift, and it generates personalized roadmaps based on user context.",
+        challenges: "Maintaining plan consistency while tasks change requires robust orchestration logic and schedule re-optimization without losing prior progress. The system resolves this by using structured task state, deterministic scheduling updates, and a feedback loop that recomputes future plan steps while preserving completed milestones.",
+        impact: "NeuroPlan AI demonstrates how agentic planning agents can transform goals into personalized, executable roadmaps—supporting adaptive scheduling, iterative refinement, and progress analytics to keep execution on track.",
+
         flowchart: [
-          { step: "User Goal", desc: "Student inputs learning targets and current experience level." },
-          { step: "Planner Agent", desc: "Breaks goals down into sub-concepts and schedules study path." },
-          { step: "Assessment Loop", desc: "Evaluator checks quiz submissions and calculates mastery score." },
-          { step: "Memory Consolidation", desc: "Memory Manager updates episodic logs and highlights error patterns." },
-          { step: "Arbiter Scheduler", desc: "Calculates Ebbinghaus forgetting rate and schedules revision intervals." }
+          { step: "User Goal", desc: "A user states an objective with constraints, priorities, and (optionally) deadlines." },
+          { step: "Intent Analysis", desc: "The system extracts requirements, dependencies, and execution context." },
+          { step: "Planning Agent", desc: "Plans milestones and decomposes goals into tasks and action items." },
+          { step: "Dynamic Scheduling", desc: "Schedules work and adapts when tasks slip or priorities change." },
+          { step: "Progress Analytics & Feedback", desc: "Tracks completion, updates future steps, and refines the plan." },
         ]
+
       }
     },
     {
       title: "Placement RAG Agent",
       subtitle: "Production-Grade Serverless Semantic Retrieval System",
-      category: "Generative AI",
+      categories: ["Generative AI", "Agentic AI"],
+      demoUrl: "https://placement-rag-agent.onrender.com/",
       description: "Enterprise RAG pipeline indexing 250+ highly specialized DSA and interview preparation resources, utilizing hybrid semantic search and serverless scaling.",
       tech: ["Gemini API", "Vector Database", "LangChain", "Python", "Azure Functions", "Serverless"],
       impactSummary: "Delivered context-aware responses in under 2 seconds with 45% improvement in semantic relevance.",
@@ -105,37 +131,58 @@ const ProjectsSection = () => {
     },
     {
       title: "Smart Shelf AI",
-      subtitle: "Quantum Book Recommendation Engine",
-      category: "Agentic AI",
-      description: "A hybrid recommendation engine utilizing matrix factorization, user-similarity clustering, and a natural language conversational feedback loop.",
-      tech: ["Python", "scikit-learn", "PyTorch", "Flask", "Pandas", "NLP"],
-      impactSummary: "Achieved a 32% precision enhancement and reduced prediction error (RMSE) to 0.82.",
+      subtitle: "Quantum-Enhanced Intelligent Retail Management System",
+      categories: ["Quantum Computing", "Agentic AI", "Machine Learning", "Data Engineering"],
+      description:
+        "Quantum-Enhanced Intelligent Retail Management System integrating PennyLane quantum machine learning, agentic AI, YOLO computer vision shelf monitoring, recommendation systems, and retail business analytics—showcasing hybrid quantum-classical recommendation workflows and scalable retail intelligence.",
+      tech: [
+
+
+        "PennyLane",
+        "Variational Quantum Circuits (VQCs)",
+        "Quantum Machine Learning",
+        "Agentic AI",
+        "YOLO",
+        "OpenCV",
+        "Recommendation Systems",
+        "PostgreSQL",
+        "Modern React + Flask",
+      ],
+      impactSummary:
+        "Developed a full-stack intelligent retail management platform integrating Quantum Machine Learning, Agentic AI, Computer Vision, Recommendation Systems, and Business Analytics into a unified architecture. Demonstrated hybrid quantum-classical recommendation workflows, autonomous multi-agent decision-making, real-time shelf monitoring, and interactive retail analytics, showcasing scalable next-generation AI-driven retail intelligence.",
+
       githubUrl: "https://github.com/Snigdha-Gayathri/Smart-Shelf-AI",
       isFeatured: true,
       details: {
-        problem: "Cold-start anomalies and basic collaborative filtering engines fail to capture highly contextual user interactions, resulting in generic recommendations.",
-        importance: "High-precision personalization increases user engagement, session length, and overall discovery rate in digital library portals.",
-        howItWorks: "Combines collaborative filtering (Matrix Factorization) with content-based cosine similarity across 15+ behavioural features (read speed, hover logs, scroll depth). Integrated a Flask-based Conversational Agent allowing users to give real-time text feedback to adjust recommendations.",
-        challenges: "Handling real-time updates of recommendation weights when a user gives conversational feedback. Resolved by building a lightweight online weight adjustment layer.",
-        impact: "Reduced root mean squared prediction error (RMSE) to 0.82. Increased recommendation relevance precision by 32%.",
+        problem:
+          "Retail operations require intelligent shelf monitoring and recommendation capabilities that go beyond static inventory tracking—linking real-time shelf state, customer behavior, and product relationships into autonomous decision-making.",
+        importance:
+          "Smart retail intelligence enables proactive restocking, reduces out-of-stock and misplaced-product situations, and improves customer experience through personalized recommendations and data-driven analytics for managers.",
+        howItWorks:
+          "Built a Quantum-Enhanced Intelligent Retail Management System that integrates PennyLane-powered Quantum Machine Learning with an agentic AI layer. YOLO-based computer vision performs real-time shelf detection and inventory updates, while a hybrid quantum-classical recommendation engine (Variational Quantum Circuits + classical ranking) generates personalized product suggestions. Multiple specialized agents (monitoring, recommendation, analytics, and inventory intelligence) collaborate to automate decision workflows, and the unified Modern React + Flask architecture exposes actionable retail analytics backed by PostgreSQL.",
+        challenges:
+          "Coordinating hybrid quantum-classical recommendation workflows with real-time computer vision updates and multi-agent orchestration. Ensured modular, event-driven state updates and a unified data flow between the inventory intelligence layer, recommendation engine, and analytics dashboard.",
+        impact:
+          "Demonstrated a full-stack quantum-enhanced intelligent retail management platform that integrates Quantum Machine Learning, Agentic AI, YOLO Computer Vision, Recommendation Systems, and Business Analytics into a unified architecture—showcasing hybrid quantum-classical recommendation workflows, autonomous multi-agent decision-making, real-time shelf monitoring, and interactive retail analytics.",
+
         flowchart: [
-          { step: "Behavior Logs", desc: "Captures 15+ metrics (hovers, scrolls, rating logs)." },
-          { step: "Hybrid Modeling", desc: "Ensembles Matrix Factorization and TF-IDF similarity." },
-          { step: "Conversational Agent", desc: "User chats: 'Suggest shorter thrillers instead'." },
-          { step: "Online Adjustment", desc: "Modifies recommendation scores using feedback vectors." },
-          { step: "Output Feed", desc: "Serves updated personal recommendation list." }
-        ]
+          { step: "Real-time Shelf Monitoring", desc: "YOLO detects products and updates inventory state." },
+          { step: "Inventory Intelligence", desc: "Agents forecast shortages and propose restock priorities." },
+          { step: "Quantum-Enhanced Recommendations", desc: "PennyLane VQCs create hybrid quantum-classical embeddings for ranking." },
+          { step: "Agentic Decision-Making", desc: "Specialized agents coordinate monitoring, analytics, and recommendations." },
+          { step: "Retail Analytics & Feedback", desc: "Managers review dashboards; recommendations adapt to usage signals." }
+        ],
       }
+
     },
     {
       title: "AI Content Summarizer",
       subtitle: "Transformer-based NLP pipeline",
-      category: "Generative AI",
+      categories: ["Generative AI"],
       description: "Automated document summarization pipeline leveraging Hugging Face transformer models to compress multi-page text corpora into actionable summaries.",
       tech: ["NLP", "Transformers", "React", "Hugging Face API"],
       impactSummary: "Streamlined content reading by providing dynamic, user-configurable summaries.",
-      githubUrl: "https://github.com/Snigdha-Gayathri/AI-Powered-Content-Summarizer",
-      demoUrl: "https://summarize-ai-3e79c618.base44.app/",
+      githubUrl: "https://github.com/Snigdha-Gayathri/AI-Powered-Content-Summarizer", 
       isFeatured: false,
       details: {
         problem: "Information overload from long documents, research papers, and technical blogs makes knowledge acquisition slow and exhausting.",
@@ -154,7 +201,9 @@ const ProjectsSection = () => {
     {
       title: "AI Sentiment Analyzer",
       subtitle: "NLP Microservice",
-      category: "Deep Learning",
+      categories: ["Deep Learning"],
+
+
       description: "A smart web application classifying user reviews into positive, negative, or neutral sentiments, delivering live analytical insights.",
       tech: ["Flask", "Python", "Hugging Face Transformers", "React"],
       impactSummary: "Enables real-time feedback auditing for better consumer decisions.",
@@ -177,12 +226,15 @@ const ProjectsSection = () => {
     {
       title: "Student Grade Predictor",
       subtitle: "Predictive Academic Modeler",
-      category: "Machine Learning",
+      categories: ["Machine Learning"],
+
+
       description: "Predictive analytics engine using multi-variable regression on historical student datasets to identify early intervention requirements.",
       tech: ["Flask", "Python", "scikit-learn", "Linear Regression"],
       impactSummary: "Aids institutions in identifying struggling students prior to final assessments.",
       githubUrl: "https://github.com/Snigdha-Gayathri/Student-Grade-Predictor",
       demoUrl: "https://grade-boost-ai-c1a3f675.base44.app/",
+
       isFeatured: false,
       details: {
         problem: "Academic failure is often detected too late for remedial actions, leading to student dropouts or poor performance.",
@@ -201,7 +253,9 @@ const ProjectsSection = () => {
     {
       title: "Image Cartooniser",
       subtitle: "Generative Style-Transfer Model",
-      category: "Deep Learning",
+      categories: ["Deep Learning"],
+
+
       description: "Style-transfer generator applying custom Generative Adversarial Networks (GANs) and bilateral filtering to synthesize animated styling from real images.",
       tech: ["Python", "GANs", "OpenCV"],
       impactSummary: "Bridges creative art and ML using automated visual style transfer.",
@@ -224,7 +278,9 @@ const ProjectsSection = () => {
     {
       title: "ML Image Colorizer",
       subtitle: "Chrominance Restoration Model",
-      category: "Deep Learning",
+      categories: ["Deep Learning"],
+
+
       description: "Grayscale restoration system utilizing deep convolutional networks (CNNs) and pre-trained Caffe models to map luminance to chrominance values.",
       tech: ["CNNs", "OpenCV", "Deep Learning", "Caffe"],
       impactSummary: "Restores lifelike color to historic grayscale photographs with high precision.",
@@ -247,7 +303,10 @@ const ProjectsSection = () => {
     {
       title: "Car Price Predictor",
       subtitle: "Automobile Valuer",
-      category: "Machine Learning",
+      categories: ["Machine Learning"],
+
+
+
       description: "Regression model with structured ETL and categorical one-hot encoding pipelines, optimizing automobile pricing valuations using Random Forest.",
       tech: ["scikit-learn", "RandomForest", "Python"],
       impactSummary: "Automates resale valuation predictions based on age, mileage, and features.",
@@ -270,7 +329,8 @@ const ProjectsSection = () => {
     {
       title: "Loan Risk Preprocessing",
       subtitle: "Data Preprocessing & Encoding Pipeline",
-      category: "Data Engineering",
+      categories: ["Data Engineering"],
+
       description: "Enterprise-grade preprocessing pipeline designed for loan risk assessment, implementing missing-value imputation and feature scaling.",
       tech: ["Python", "Pandas", "Data Preprocessing"],
       impactSummary: "Ensures clean data inputs to prevent model drift in loan forecasting.",
@@ -316,8 +376,9 @@ const ProjectsSection = () => {
     {
       title: "Boston House Price Predictor",
       subtitle: "Real Estate Value Regression Model",
-      category: "Machine Learning",
+      categories: ["Machine Learning", "Data Engineering"],
       description: "Supervised regression pipeline optimizing property valuation forecasting by analyzing crime, rooms, location, and socio-environmental factors.",
+
       tech: ["Python", "scikit-learn", "XGBoost", "Matplotlib", "Seaborn"],
       impactSummary: "Predicted housing prices with minimized Root Mean Squared Error (RMSE) margins.",
       isFeatured: false,
@@ -339,8 +400,9 @@ const ProjectsSection = () => {
     {
       title: "Breast Cancer Diagnostic Model",
       subtitle: "High-Recall Binary Clinical Classifier",
-      category: "Machine Learning",
-      description: "A binary diagnostic model predicting tumor classification (malignant vs. benign) using SVM, XGBoost, and cell nucleus measurements.",
+      categories: ["Machine Learning", "Data Engineering"],
+      description: "A clinical-grade diagnostic pipeline for classifying breast tumor status (malignant vs. benign) using SVM, XGBoost, and nucleus feature measurements with threshold tuning optimized for high recall.",
+
       tech: ["Python", "scikit-learn", "SVM", "XGBoost", "Medical Analytics"],
       impactSummary: "Optimized diagnostic recall to minimize false-negative clinical warnings.",
       isFeatured: false,
@@ -361,10 +423,11 @@ const ProjectsSection = () => {
     }
   ]
 
-  const filteredProjects = projects.filter(project => {
+  const filteredProjects = projects.filter((project) => {
     if (activeCategory === "All") return true
-    return project.category === activeCategory
+    return project.categories.includes(activeCategory)
   })
+
 
   const featuredProjects = filteredProjects.filter(p => p.isFeatured)
   const regularProjects = filteredProjects.filter(p => !p.isFeatured)
@@ -419,8 +482,8 @@ const ProjectsSection = () => {
                 >
                   <CardHeader className="p-6 pb-4">
                     <div className="flex justify-between items-start mb-2">
-                      <span className="text-xs bg-primary/10 border border-primary/20 text-primary px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">
-                        {project.category}
+                    <span className="text-xs bg-primary/10 border border-primary/20 text-primary px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">
+                        {categoriesForProjectLabel(project)}
                       </span>
                     </div>
                     <CardTitle className="font-poppins font-extrabold text-2xl text-foreground">
@@ -437,7 +500,11 @@ const ProjectsSection = () => {
                     <div className="space-y-3">
                       <div className="flex flex-wrap gap-1.5">
                         {project.tech.slice(0, 4).map((tech, techIdx) => (
-                          <Badge key={techIdx} variant="secondary" className="text-[10px] py-0.5 px-2 font-medium bg-muted/60">
+                          <Badge
+                            key={techIdx}
+                            variant="secondary"
+                            className="text-[10px] py-0.5 px-2 font-medium bg-muted/60"
+                          >
                             {tech}
                           </Badge>
                         ))}
@@ -479,7 +546,7 @@ const ProjectsSection = () => {
                 >
                   <CardHeader className="p-5 pb-3">
                     <span className="self-start text-[10px] bg-muted text-muted-foreground px-2 py-0.5 rounded-full font-bold uppercase tracking-wider mb-2">
-                      {project.category}
+                      {categoriesForProjectLabel(project)}
                     </span>
                     <CardTitle className="font-poppins font-bold text-lg text-foreground mt-1">
                       {project.title}
@@ -520,8 +587,9 @@ const ProjectsSection = () => {
                 <DialogHeader className="mb-4">
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="text-[10px] bg-primary/10 text-primary border border-primary/20 px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                      {selectedProject.category}
+                      {selectedProject.categories.length === 1 ? selectedProject.categories[0] : `${selectedProject.categories[0]} +${selectedProject.categories.length - 1}`}
                     </span>
+
                     <span className="text-xs text-muted-foreground">System Overview</span>
                   </div>
                   <DialogTitle className="font-poppins font-extrabold text-3xl text-foreground flex items-center justify-between flex-wrap gap-4">
@@ -529,19 +597,29 @@ const ProjectsSection = () => {
                     <div className="flex gap-2">
                       {selectedProject.githubUrl && (
                         <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer">
-                          <Button size="sm" variant="outline" className="gap-1.5 py-1 px-3 h-8 rounded-lg text-xs">
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            className="gap-1.5 py-1 px-3 h-8 rounded-lg text-xs transition-all hover:bg-muted/60 hover:text-foreground"
+                          >
                             <Github className="w-3.5 h-3.5" /> Code
                           </Button>
                         </a>
                       )}
+
                       {selectedProject.demoUrl && (
                         <a href={selectedProject.demoUrl} target="_blank" rel="noopener noreferrer">
-                          <Button size="sm" variant="default" className="gap-1.5 py-1 px-3 h-8 rounded-lg text-xs">
+                          <Button
+                            size="sm"
+                            variant="default"
+                            className="gap-1.5 py-1 px-3 h-8 rounded-lg text-xs transition-all hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                          >
                             <ExternalLink className="w-3.5 h-3.5" /> Live Demo
                           </Button>
                         </a>
                       )}
                     </div>
+
                   </DialogTitle>
                   <DialogDescription className="text-sm text-primary font-semibold mt-1">
                     {selectedProject.subtitle}
