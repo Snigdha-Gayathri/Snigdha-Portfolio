@@ -74,34 +74,44 @@ const ProjectsSection = () => {
       subtitle: "Agentic Planning System",
       categories: ["Agentic AI"],
       demoUrl: "https://neuroplan-ai.onrender.com/",
-
-
-
       description:
-        "NeuroPlan AI is an Agentic Planning System that transforms high-level goals into structured, executable action plans. Instead of acting like a conventional chatbot, it behaves as an autonomous planning agent that understands user intent, decomposes objectives into milestones and tasks, schedules execution, tracks progress analytics, and dynamically refines plans through an adaptive feedback loop.",
-
-      tech: ["Gemini API", "Agentic Orchestration", "Python", "FastAPI", "Docker", "Azure ML"],
+        "NeuroPlan AI is an Agentic AI-powered planning and productivity platform designed to transform high-level goals into structured, executable action plans. Instead of functioning as a conventional chatbot, it behaves as an autonomous planning agent that understands user intent, decomposes objectives into milestones and tasks, schedules execution, tracks progress analytics, and dynamically refines plans.",
+      tech: [
+        "Agentic AI",
+        "Planning Agents",
+        "Goal Decomposition",
+        "Task Scheduling",
+        "API-first Architecture",
+        "LLM Integration",
+        "Progress Analytics",
+        "REST APIs",
+        "React + Flask",
+        "Dynamic Planning",
+        "Adaptive Scheduling",
+        "Personalized Planning",
+      ],
       impactSummary:
-        "NeuroPlan AI demonstrates how agentic planning agents transform high-level goals into adaptive roadmaps through LLM-powered reasoning, goal decomposition, dynamic planning, API-first orchestration, and progress analytics.",
-
-
+        "NeuroPlan AI demonstrates how Agentic AI can move beyond conversational assistance into intelligent execution planning. By combining LLM-powered reasoning, modular API integrations, adaptive scheduling, and progress analytics, the platform acts as a proactive planning assistant that not only understands user goals but also generates personalized roadmaps, monitors execution, and dynamically refines plans over time.",
       githubUrl: "https://github.com/Snigdha-Gayathri",
       isFeatured: true,
       details: {
-        problem: "Users often struggle to convert high-level objectives into concrete, scheduled execution plans—especially when constraints change over time. Traditional planners are static, lack adaptive reasoning, and do not support progressive task decomposition and progress-aware updates.",
-        importance: "An adaptive agentic planning assistant helps users stay aligned with real-world constraints by breaking goals into milestones and actionable tasks, scheduling execution, tracking progress analytics, and continuously refining future steps based on what has been completed.",
-        howItWorks: "NeuroPlan AI uses an Agentic Planning Agent to perform intent analysis, goal decomposition, dynamic task scheduling, and progress analytics. The system orchestrates LLM-based reasoning through an API-first architecture (REST APIs with a Flask backend), enabling modular integration of LLM providers. It supports dynamic planning where schedules are reorganized when tasks are delayed or priorities shift, and it generates personalized roadmaps based on user context.",
-        challenges: "Maintaining plan consistency while tasks change requires robust orchestration logic and schedule re-optimization without losing prior progress. The system resolves this by using structured task state, deterministic scheduling updates, and a feedback loop that recomputes future plan steps while preserving completed milestones.",
-        impact: "NeuroPlan AI demonstrates how agentic planning agents can transform goals into personalized, executable roadmaps—supporting adaptive scheduling, iterative refinement, and progress analytics to keep execution on track.",
-
+        problem:
+          "Users struggle to convert high-level objectives into concrete, structured action plans. Traditional planning tools are static and lack adaptive reasoning, while standard AI chatbots provide passive advice without execution tracking.",
+        importance:
+          "An active agentic planning partner assists users from ideation to real-world execution by breaking goals down recursively, scheduling tasks under custom constraints, tracking progress metrics, and dynamically re-planning when circumstances change.",
+        howItWorks:
+          "Runs on the Reason -> Plan -> Execute -> Monitor -> Improve cycle. The planning agent decomposes goals into a hierarchy (Goal -> Milestone -> Subtask -> Action Item). The RESTful Flask backend abstracts LLM reasoning (Gemini/OpenAI/Claude) and integrates with Calendar APIs for scheduling, displaying dynamic analytics on a React dashboard.",
+        challenges:
+          "Maintaining plan consistency while tasks change requires robust orchestration logic and schedule re-optimization. The system resolves this using structured task state, deterministic scheduling updates, and an adaptive feedback loop.",
+        impact:
+          "NeuroPlan AI demonstrates how Agentic AI can move beyond conversational assistance into intelligent execution planning. By combining LLM-powered reasoning, modular API integrations, adaptive scheduling, and progress analytics, the platform acts as a proactive planning assistant that not only understands user goals but also generates personalized roadmaps, monitors execution, and dynamically refines plans over time.",
         flowchart: [
-          { step: "User Goal", desc: "A user states an objective with constraints, priorities, and (optionally) deadlines." },
-          { step: "Intent Analysis", desc: "The system extracts requirements, dependencies, and execution context." },
-          { step: "Planning Agent", desc: "Plans milestones and decomposes goals into tasks and action items." },
-          { step: "Dynamic Scheduling", desc: "Schedules work and adapts when tasks slip or priorities change." },
-          { step: "Progress Analytics & Feedback", desc: "Tracks completion, updates future steps, and refines the plan." },
-        ]
-
+          { step: "User Goal Input", desc: "A user states an objective with constraints, deadlines, and preferences." },
+          { step: "Intent Analysis", desc: "Planning agent extracts requirements, dependencies, and available resources." },
+          { step: "Task Decomposition", desc: "Decomposes the objective recursively: Goal -> Milestone -> Subtask -> Action Item." },
+          { step: "Scheduling Engine", desc: "Schedules work and integrates with calendar services for study/work sessions." },
+          { step: "Dynamic Feedback Loop", desc: "Automatically reorganizes future plan schedules when tasks slip or priorities shift." },
+        ],
       }
     },
     {
@@ -136,44 +146,43 @@ const ProjectsSection = () => {
       description:
         "Quantum-Enhanced Intelligent Retail Management System integrating PennyLane quantum machine learning, agentic AI, YOLO computer vision shelf monitoring, recommendation systems, and retail business analytics—showcasing hybrid quantum-classical recommendation workflows and scalable retail intelligence.",
       tech: [
-
-
+        "Quantum Computing",
         "PennyLane",
-        "Variational Quantum Circuits (VQCs)",
-        "Quantum Machine Learning",
+        "Variational Quantum Circuits",
+        "Hybrid Quantum-Classical Recommendation Engine",
         "Agentic AI",
-        "YOLO",
-        "OpenCV",
-        "Recommendation Systems",
+        "YOLO Computer Vision",
+        "Business Analytics",
         "PostgreSQL",
-        "Modern React + Flask",
+        "Recommendation System",
+        "Inventory Intelligence",
+        "Retail Analytics",
+        "Modern React + Flask architecture",
       ],
       impactSummary:
         "Developed a full-stack intelligent retail management platform integrating Quantum Machine Learning, Agentic AI, Computer Vision, Recommendation Systems, and Business Analytics into a unified architecture. Demonstrated hybrid quantum-classical recommendation workflows, autonomous multi-agent decision-making, real-time shelf monitoring, and interactive retail analytics, showcasing scalable next-generation AI-driven retail intelligence.",
-
       githubUrl: "https://github.com/Snigdha-Gayathri/Smart-Shelf-AI",
+      demoUrl: "https://smart-shelf-ai-frontend-1.onrender.com/",
       isFeatured: true,
       details: {
         problem:
-          "Retail operations require intelligent shelf monitoring and recommendation capabilities that go beyond static inventory tracking—linking real-time shelf state, customer behavior, and product relationships into autonomous decision-making.",
+          "Traditional physical retail operations lack intelligent shelf monitoring and recommendation capabilities, leaving a gap between real-time shelf state, customer purchasing behavior, product relationships, and inventory trends.",
         importance:
-          "Smart retail intelligence enables proactive restocking, reduces out-of-stock and misplaced-product situations, and improves customer experience through personalized recommendations and data-driven analytics for managers.",
+          "Smart retail intelligence enables proactive restocking, reduces out-of-stock and misplaced products, and improves customer experience through personalized recommendations and data-backed analytics for managers.",
         howItWorks:
-          "Built a Quantum-Enhanced Intelligent Retail Management System that integrates PennyLane-powered Quantum Machine Learning with an agentic AI layer. YOLO-based computer vision performs real-time shelf detection and inventory updates, while a hybrid quantum-classical recommendation engine (Variational Quantum Circuits + classical ranking) generates personalized product suggestions. Multiple specialized agents (monitoring, recommendation, analytics, and inventory intelligence) collaborate to automate decision workflows, and the unified Modern React + Flask architecture exposes actionable retail analytics backed by PostgreSQL.",
+          "Built a full-stack intelligent retail shelf management platform that integrates PennyLane-powered Quantum Machine Learning (using Variational Quantum Circuits) with a collaborative Agentic AI layer. YOLO-based computer vision performs real-time shelf detection and inventory tracking, while multiple specialized agents (Shelf Monitoring, Recommendation, Analytics, and Inventory Intelligence) collaborate to automate retail decisions, supported by a React + Flask architecture and PostgreSQL database.",
         challenges:
-          "Coordinating hybrid quantum-classical recommendation workflows with real-time computer vision updates and multi-agent orchestration. Ensured modular, event-driven state updates and a unified data flow between the inventory intelligence layer, recommendation engine, and analytics dashboard.",
+          "Coordinating hybrid quantum-classical recommendation workflows with real-time computer vision updates and multi-agent orchestration. Resolved by designing an event-driven data flow and unified state updates between the inventory layer, recommendation engine, and analytics dashboard.",
         impact:
-          "Demonstrated a full-stack quantum-enhanced intelligent retail management platform that integrates Quantum Machine Learning, Agentic AI, YOLO Computer Vision, Recommendation Systems, and Business Analytics into a unified architecture—showcasing hybrid quantum-classical recommendation workflows, autonomous multi-agent decision-making, real-time shelf monitoring, and interactive retail analytics.",
-
+          "Developed a full-stack intelligent retail management platform integrating Quantum Machine Learning, Agentic AI, Computer Vision, Recommendation Systems, and Business Analytics into a unified architecture. Demonstrated hybrid quantum-classical recommendation workflows, autonomous multi-agent decision-making, real-time shelf monitoring, and interactive retail analytics, showcasing scalable next-generation AI-driven retail intelligence.",
         flowchart: [
-          { step: "Real-time Shelf Monitoring", desc: "YOLO detects products and updates inventory state." },
-          { step: "Inventory Intelligence", desc: "Agents forecast shortages and propose restock priorities." },
-          { step: "Quantum-Enhanced Recommendations", desc: "PennyLane VQCs create hybrid quantum-classical embeddings for ranking." },
-          { step: "Agentic Decision-Making", desc: "Specialized agents coordinate monitoring, analytics, and recommendations." },
-          { step: "Retail Analytics & Feedback", desc: "Managers review dashboards; recommendations adapt to usage signals." }
+          { step: "Customer Purchase History", desc: "Collected customer purchasing history is cleaned and normalized." },
+          { step: "Quantum Angle Embedding", desc: "Classical feature vectors are encoded into quantum states using PennyLane." },
+          { step: "Variational Quantum Circuit", desc: "Learns complex customer-product interactions through parameterized gates." },
+          { step: "Quantum Measurements & Embeddings", desc: "Generates enhanced feature representations to combine with classical ranking." },
+          { step: "Multi-Agent Decision-Making", desc: "Specialized agents coordinate shelf monitoring, analytics, and recommendations." },
         ],
       }
-
     },
     {
       title: "AI Content Summarizer",
@@ -519,9 +528,49 @@ const ProjectsSection = () => {
                         </p>
                       </div>
 
-                      <Button size="sm" className="w-full justify-between mt-2" variant="outline">
-                        Explore System Architecture <ArrowRight className="w-4 h-4" />
-                      </Button>
+                      <div className="flex gap-2 mt-2" onClick={(e) => e.stopPropagation()}>
+                        <Button
+                          size="sm"
+                          className="flex-grow justify-between"
+                          variant="outline"
+                          onClick={() => setSelectedProject(project)}
+                        >
+                          Explore System Architecture <ArrowRight className="w-4 h-4" />
+                        </Button>
+                        {project.githubUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="px-3 h-9 hover:bg-muted/60 hover:text-foreground border border-input bg-background"
+                              title="View Code"
+                            >
+                              <Github className="w-4 h-4" />
+                            </Button>
+                          </a>
+                        )}
+                        {project.demoUrl && (
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Button
+                              size="sm"
+                              variant="default"
+                              className="px-3 h-9 gap-1.5 hover:opacity-90 bg-primary text-primary-foreground"
+                              title="Live Demo"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                              <span className="hidden sm:inline">Demo</span>
+                            </Button>
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -567,9 +616,43 @@ const ProjectsSection = () => {
                         ))}
                       </div>
 
-                      <div className="flex items-center gap-2 pt-2 border-t border-border/40">
-                        <span className="text-[10px] text-primary font-bold">Details & System Flow</span>
-                        <ArrowRight className="w-3 h-3 text-primary" />
+                      <div 
+                        className="flex items-center justify-between gap-2 pt-2 border-t border-border/40"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <div 
+                          className="flex items-center gap-2 cursor-pointer hover:opacity-85 transition-opacity"
+                          onClick={() => setSelectedProject(project)}
+                        >
+                          <span className="text-[10px] text-primary font-bold">Details & System Flow</span>
+                          <ArrowRight className="w-3 h-3 text-primary" />
+                        </div>
+                        <div className="flex gap-1.5">
+                          {project.githubUrl && (
+                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="h-7 w-7 p-0 hover:bg-muted/60 hover:text-foreground"
+                                title="View Code"
+                              >
+                                <Github className="w-3.5 h-3.5" />
+                              </Button>
+                            </a>
+                          )}
+                          {project.demoUrl && (
+                            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                              <Button
+                                size="sm"
+                                variant="default"
+                                className="h-7 px-2 text-[10px] gap-1 hover:opacity-90"
+                                title="Live Demo"
+                              >
+                                <ExternalLink className="w-3.5 h-3.5" /> Demo
+                              </Button>
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </CardContent>

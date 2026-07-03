@@ -26,28 +26,28 @@ const AboutSection = () => {
   const impactCards = [
     {
       headline: "SmartShelf AI",
-      subheadline: "Multi-Agent Retail Intelligence Platform",
-      description: "An AI-powered retail assistant that coordinates multiple specialized agents for inventory analysis, demand forecasting, product recommendations, and customer query handling through a unified workflow."
+      subheadline: "Quantum-Enhanced Intelligent Retail",
+      description: "Developed a full-stack retail management platform integrating Quantum Machine Learning (PennyLane), YOLO computer vision, and autonomous agent networks into a unified Flask + React architecture."
     },
     {
-      headline: "4 AI Agents",
-      subheadline: "Agent Collaboration Architecture",
-      description: "SmartShelf uses dedicated Inventory, Recommendation, Analytics, and Support agents that collaborate through orchestrated reasoning and task delegation."
+      headline: "Agentic & QML",
+      subheadline: "Hybrid Decision Engine",
+      description: "SmartShelf coordinates dedicated Shelf Monitoring, Recommendation, Analytics, and Inventory agents, leveraging Variational Quantum Circuits (VQCs) for high-dimensional feature learning."
     },
     {
-      headline: "Agentic RAG",
-      subheadline: "Knowledge-Aware Decision System",
-      description: "Combines vector search, semantic retrieval, embeddings, and LLM reasoning to provide accurate inventory insights and contextual recommendations."
+      headline: "YOLO Vision",
+      subheadline: "Real-Time Shelf Monitoring",
+      description: "Utilizes real-time computer vision object detection to trace shelf levels, counts, and item status, triggering immediate restocking alerts and inventory updates."
     },
     {
       headline: "Production APIs",
-      subheadline: "FastAPI-Powered Backend",
-      description: "Built scalable REST APIs for agent communication, retrieval workflows, inventory operations, and real-time business intelligence services."
+      subheadline: "Flask REST Backend",
+      description: "Built scalable APIs for multi-agent workflows, recommendation pipelines, inventory management, and interactive analytics dashboards."
     },
     {
-      headline: "AI Engineering Stack",
-      subheadline: "End-to-End Deployment",
-      description: "Developed using Python, Gemini, LangGraph, ChromaDB, FastAPI, Docker, and modern MLOps practices for scalable deployment."
+      headline: "Business Analytics",
+      subheadline: "Retail Intelligence Services",
+      description: "Exposes interactive sales, inventory, customer behavior, and recommendation metrics dashboards, backed by PostgreSQL centralized data storage."
     }
   ]
 
