@@ -70,119 +70,154 @@ const ProjectsSection = () => {
   const projects: Project[] = [
 
     {
-      title: "NeuroPlan AI",
-      subtitle: "Agentic Planning System",
+      title: "RepoPilot",
+      subtitle: "Agentic AI GitHub Repository Engineering Assistant",
       categories: ["Agentic AI"],
-      demoUrl: "https://neuroplan-ai.onrender.com/",
+      githubUrl: "https://github.com/Snigdha-Gayathri/Repo-Pilot",
+      demoUrl: "https://repo-pilot-8j45.onrender.com/",
       description:
-        "NeuroPlan AI is an Agentic AI-powered planning and productivity platform designed to transform high-level goals into structured, executable action plans. Instead of functioning as a conventional chatbot, it behaves as an autonomous planning agent that understands user intent, decomposes objectives into milestones and tasks, schedules execution, tracks progress analytics, and dynamically refines plans.",
+        "RepoPilot is an Agentic AI-powered GitHub repository engineering assistant that analyzes an existing GitHub repository, identifies improvement opportunities, generates production-ready code, and—with explicit user approval—creates a pull request from the user's own GitHub account. Six specialized AI agents collaborate to understand, improve, validate, and contribute to a repository.",
       tech: [
         "Agentic AI",
-        "Planning Agents",
-        "Goal Decomposition",
-        "Task Scheduling",
-        "API-first Architecture",
+        "Multi-Agent Architecture",
+        "GitHub API",
+        "Code Generation",
+        "Pull Request Automation",
         "LLM Integration",
-        "Progress Analytics",
-        "REST APIs",
-        "React + Flask",
-        "Dynamic Planning",
-        "Adaptive Scheduling",
-        "Personalized Planning",
+        "Python",
       ],
       impactSummary:
-        "NeuroPlan AI demonstrates how Agentic AI can move beyond conversational assistance into intelligent execution planning. By combining LLM-powered reasoning, modular API integrations, adaptive scheduling, and progress analytics, the platform acts as a proactive planning assistant that not only understands user goals but also generates personalized roadmaps, monitors execution, and dynamically refines plans over time.",
-      githubUrl: "https://github.com/Snigdha-Gayathri",
+        "Six specialized agents—Repository Analyst, Issue Hunter, Solution Architect, Code Engineer, QA Agent, and Reviewer—analyze a repository, generate production-ready improvements, and create a pull request from the user's authenticated GitHub account only after explicit user approval.",
       isFeatured: true,
       details: {
         problem:
-          "Users struggle to convert high-level objectives into concrete, structured action plans. Traditional planning tools are static and lack adaptive reasoning, while standard AI chatbots provide passive advice without execution tracking.",
+          "Contributing improvements to existing repositories is time-consuming: developers must understand an unfamiliar codebase, identify meaningful issues, propose solutions, write production-quality code, and go through the PR process—all manually.",
         importance:
-          "An active agentic planning partner assists users from ideation to real-world execution by breaking goals down recursively, scheduling tasks under custom constraints, tracking progress metrics, and dynamically re-planning when circumstances change.",
+          "An agentic system that analyzes a repository end-to-end and generates ready-to-merge improvements lowers the barrier to contribution while ensuring code quality through multi-agent review before any PR is created.",
         howItWorks:
-          "Runs on the Reason -> Plan -> Execute -> Monitor -> Improve cycle. The planning agent decomposes goals into a hierarchy (Goal -> Milestone -> Subtask -> Action Item). The RESTful Flask backend abstracts LLM reasoning (Gemini/OpenAI/Claude) and integrates with Calendar APIs for scheduling, displaying dynamic analytics on a React dashboard.",
+          "The user provides a GitHub repository URL. Six specialized agents collaborate: the Repository Analyst reads structure, frameworks, dependencies, and coding conventions. The Issue Hunter scans for bugs, TODOs, code smells, duplicated logic, missing tests, security risks, and beginner-friendly opportunities. The Solution Architect proposes implementation strategies with trade-offs, complexity estimates, risk estimates, and confidence scores. The Code Engineer generates production-quality code as git-style diffs matching the repo's style, producing two independent implementations for important issues. The QA Agent reviews generated code, detects regressions, and writes unit and integration tests matching the repo's testing conventions. The Reviewer compares all implementations, scores them on quality and risk, selects the best solution, and explains why. Only after explicit user approval does RepoPilot create a Pull Request from the user's authenticated GitHub account.",
         challenges:
-          "Maintaining plan consistency while tasks change requires robust orchestration logic and schedule re-optimization. The system resolves this using structured task state, deterministic scheduling updates, and an adaptive feedback loop.",
+          "Ensuring six agents coordinate without producing conflicting outputs requires a structured pipeline where each agent's output feeds deterministically into the next stage. The PR creation step is gated behind explicit user confirmation to prevent unintended contributions.",
         impact:
-          "NeuroPlan AI demonstrates how Agentic AI can move beyond conversational assistance into intelligent execution planning. By combining LLM-powered reasoning, modular API integrations, adaptive scheduling, and progress analytics, the platform acts as a proactive planning assistant that not only understands user goals but also generates personalized roadmaps, monitors execution, and dynamically refines plans over time.",
+          "RepoPilot automates the full repository improvement pipeline—from codebase analysis to production-ready PR creation—using six specialized agents, while keeping the user in full control through an explicit approval gate before any pull request is made.",
         flowchart: [
-          { step: "User Goal Input", desc: "A user states an objective with constraints, deadlines, and preferences." },
-          { step: "Intent Analysis", desc: "Planning agent extracts requirements, dependencies, and available resources." },
-          { step: "Task Decomposition", desc: "Decomposes the objective recursively: Goal -> Milestone -> Subtask -> Action Item." },
-          { step: "Scheduling Engine", desc: "Schedules work and integrates with calendar services for study/work sessions." },
-          { step: "Dynamic Feedback Loop", desc: "Automatically reorganizes future plan schedules when tasks slip or priorities shift." },
+          { step: "Repository URL Input", desc: "User provides a GitHub repository URL to analyze." },
+          { step: "Repository Analyst", desc: "Reads structure, frameworks, dependencies, and coding conventions." },
+          { step: "Issue Hunter", desc: "Scans for bugs, TODOs, code smells, missing tests, security risks, and contribution opportunities." },
+          { step: "Solution Architect + Code Engineer", desc: "Proposes strategies with trade-offs, then generates production-ready git-style diffs matching the repo's style." },
+          { step: "QA Agent + Reviewer", desc: "Reviews code for regressions, writes tests, scores implementations, and selects the best solution." },
+          { step: "User Approval & PR Creation", desc: "User is asked for explicit approval; only then does RepoPilot create a Pull Request from their GitHub account." },
         ],
-      }
+      },
+    },
+
+    {
+      title: "NeuroPlan AI",
+      subtitle: "Multi-Agent AI Learning Roadmap Generator",
+      categories: ["Agentic AI"],
+      githubUrl: "https://github.com/Snigdha-Gayathri/NeuroPlan-AI",
+      demoUrl: "https://neuroplan-ai.onrender.com/",
+      description:
+        "NeuroPlan AI is a multi-agent AI learning roadmap generator. Users specify a skill they want to learn, their desired proficiency level (Beginner, Intermediate, or Advanced), and their target learning goal. The application then generates a personalized learning roadmap, suggests resources, breaks the roadmap into subtasks, and lets users mark completed subtasks. As users progress, the dashboard updates with analytics covering skills learned, current progress, relationships between skills, and how smaller skills contribute toward larger learning goals.",
+      tech: [
+        "Agentic AI",
+        "Multi-Agent Architecture",
+        "LLM Integration",
+        "Personalized Roadmaps",
+        "Learning Analytics",
+        "Subtask Tracking",
+        "React",
+        "Flask",
+        "REST APIs",
+      ],
+      impactSummary:
+        "NeuroPlan AI combines multi-agent reasoning with interactive progress tracking to turn a learning goal into a structured, personalized roadmap—complete with resource suggestions, subtask breakdowns, and a live analytics dashboard that shows how skills interconnect and build toward the user's target proficiency.",
+      isFeatured: true,
+      details: {
+        problem:
+          "Learners often know what they want to learn but lack a clear, structured path to get there. Generic resources don't account for proficiency level, target goals, or how individual skills relate to each other.",
+        importance:
+          "A personalized, agent-generated roadmap removes ambiguity from the learning journey. By breaking goals into trackable subtasks and visualizing skill relationships, learners can stay focused and measure real progress.",
+        howItWorks:
+          "Users provide a skill, a desired proficiency level (Beginner, Intermediate, or Advanced), and a target learning goal. Multiple AI agents collaborate to generate a personalized roadmap, curate relevant learning resources, and decompose the roadmap into subtasks. As users mark subtasks complete, the dashboard refreshes analytics showing skills learned, current progress percentage, skill relationship graphs, and how smaller skills contribute toward the larger goal.",
+        challenges:
+          "Generating a coherent, non-redundant roadmap that accurately reflects skill dependencies and proficiency levels requires careful agent coordination. The system handles this by structuring agent outputs into a dependency graph before presenting subtasks to the user.",
+        impact:
+          "NeuroPlan AI transforms a vague learning intention into a concrete, structured roadmap with curated resources, trackable subtasks, and a live analytics dashboard—helping users see exactly where they are and where each skill takes them.",
+        flowchart: [
+          { step: "User Input", desc: "User specifies the skill to learn, proficiency level, and target learning goal." },
+          { step: "Roadmap Generation", desc: "AI agents generate a personalized learning roadmap with curated resources." },
+          { step: "Subtask Breakdown", desc: "The roadmap is decomposed into smaller, trackable subtasks." },
+          { step: "Progress Tracking", desc: "Users mark subtasks as complete; the dashboard updates in real time." },
+          { step: "Skill Analytics", desc: "Dashboard shows skills learned, progress, skill relationships, and contribution toward the larger goal." },
+        ],
+      },
     },
     {
       title: "Placement RAG Agent",
-      subtitle: "Production-Grade Serverless Semantic Retrieval System",
-      categories: ["Generative AI", "Agentic AI"],
+      subtitle: "RAG-Powered Company-Specific Interview Prep Assistant",
+      categories: ["Agentic AI"],
+      githubUrl: "https://github.com/Snigdha-Gayathri/Placement-RAG-Agent",
       demoUrl: "https://placement-rag-agent.onrender.com/",
-      description: "Enterprise RAG pipeline indexing 250+ highly specialized DSA and interview preparation resources, utilizing hybrid semantic search and serverless scaling.",
-      tech: ["Gemini API", "Vector Database", "LangChain", "Python", "Azure Functions", "Serverless"],
-      impactSummary: "Delivered context-aware responses in under 2 seconds with 45% improvement in semantic relevance.",
-      githubUrl: "https://github.com/Snigdha-Gayathri",
+      description: "Placement RAG Agent is a Retrieval-Augmented Generation (RAG) application with a knowledge base containing interview questions from more than 20 companies. It uses true RAG to retrieve relevant interview information before generating responses, helping users prepare for company-specific interviews by surfacing targeted questions and information from its curated knowledge base.",
+      tech: ["RAG", "Retrieval-Augmented Generation", "Vector Database", "LangChain", "Python", "LLM Integration"],
+      impactSummary: "Provides company-specific interview preparation by retrieving relevant questions and context from a curated knowledge base covering more than 20 companies—grounded answers rather than generic LLM responses.",
       isFeatured: true,
       details: {
-        problem: "Recruitment preparation resources are highly fragmented, leading to search inefficiencies and generic responses from generic LLMs that fail to answer technical edge cases.",
-        importance: "Candidates need rapid, precise, contextually grounded answers to system design and algorithm questions to save time and optimize preparation.",
-        howItWorks: "Built a document parser and embedding pipeline chunking PDF resources, writing to a Vector Database using Gemini Embeddings. Developed a serverless API that processes queries, performs hybrid search, expansion, and reranking before forwarding to Gemini's LLM.",
-        challenges: "High LLM subscription costs and high latency of cold starts in serverless environments. Solved by leveraging a serverless scaling database, optimizing context compression, and implementing token-caching layers.",
-        impact: "Reduced query response latency to under 2 seconds. Improved answer accuracy and semantic alignment by 45% while reducing infrastructure costs to $0 via scale-to-zero compute.",
+        problem: "Interview preparation resources are scattered across the web, and generic AI assistants lack company-specific knowledge. Candidates spend hours searching for targeted interview questions for particular companies.",
+        importance: "Company-specific preparation significantly improves interview performance. A RAG-based system with a curated knowledge base surfaces exactly the right context for a given company rather than generating plausible-sounding but ungrounded answers.",
+        howItWorks: "The application maintains a knowledge base of interview questions sourced from more than 20 companies. When a user asks a question, the RAG pipeline retrieves the most relevant context from this knowledge base before passing it to the LLM—ensuring responses are grounded in real interview data rather than fabricated by the model alone.",
+        challenges: "Ensuring retrieval quality across a diverse multi-company knowledge base requires careful chunking and embedding strategies so that queries about one company do not surface irrelevant results from another.",
+        impact: "Placement RAG Agent gives candidates access to a curated, company-specific knowledge base of interview questions from more than 20 companies, retrieved and surfaced through a true RAG pipeline for grounded, targeted interview preparation.",
         flowchart: [
-          { step: "Query Input", desc: "User inputs complex technical or DSA-related question." },
-          { step: "Semantic Search", desc: "Query expanded and vectorized to query Pinecone / Vector DB." },
-          { step: "Reranking Engine", desc: "Sorts results to retrieve top 5 most relevant context chunks." },
-          { step: "Context Injection", desc: "Injects verified chunks into prompt template with strict guidelines." },
-          { step: "Serverless LLM", desc: "Gemini synthesizes a formatted, code-complete answer in < 2s." }
-        ]
-      }
+          { step: "User Query", desc: "User asks about interview questions or preparation for a specific company." },
+          { step: "Knowledge Base Retrieval", desc: "RAG pipeline retrieves relevant interview questions and context from the 20+ company knowledge base." },
+          { step: "Context Injection", desc: "Retrieved context is injected into the LLM prompt." },
+          { step: "Response Generation", desc: "LLM generates a grounded response based on retrieved company-specific information." },
+          { step: "Interview Prep Output", desc: "User receives targeted, company-specific interview preparation content." },
+        ],
+      },
     },
     {
-      title: "Smart Shelf AI",
-      subtitle: "Quantum-Enhanced Intelligent Retail Management System",
+      title: "SmartShelf AI",
+      subtitle: "Quantum Computing-Powered Multi-Agent Book Recommendation System",
       categories: ["Quantum Computing", "Agentic AI", "Machine Learning", "Data Engineering"],
       description:
-        "Quantum-Enhanced Intelligent Retail Management System integrating PennyLane quantum machine learning, agentic AI, YOLO computer vision shelf monitoring, recommendation systems, and retail business analytics—showcasing hybrid quantum-classical recommendation workflows and scalable retail intelligence.",
+        "SmartShelf AI is a Quantum Computing-powered multi-agent AI book recommendation system. It combines multiple AI agents with Quantum Computing techniques to generate intelligent book recommendations while providing rich analytics for readers. Key capabilities include a multi-agent AI architecture, a Quantum Computing-powered recommendation engine, personalized book recommendations, author insights, annual reading wrapped, educational reading insights, reading analytics, and user behavior insights.",
       tech: [
         "Quantum Computing",
-        "PennyLane",
-        "Variational Quantum Circuits",
-        "Hybrid Quantum-Classical Recommendation Engine",
-        "Agentic AI",
-        "YOLO Computer Vision",
-        "Business Analytics",
-        "PostgreSQL",
-        "Recommendation System",
-        "Inventory Intelligence",
-        "Retail Analytics",
-        "Modern React + Flask architecture",
+        "Multi-Agent AI",
+        "Recommendation Engine",
+        "Reading Analytics",
+        "User Behavior Insights",
+        "Author Insights",
+        "React",
+        "Flask",
       ],
       impactSummary:
-        "Developed a full-stack intelligent retail management platform integrating Quantum Machine Learning, Agentic AI, Computer Vision, Recommendation Systems, and Business Analytics into a unified architecture. Demonstrated hybrid quantum-classical recommendation workflows, autonomous multi-agent decision-making, real-time shelf monitoring, and interactive retail analytics, showcasing scalable next-generation AI-driven retail intelligence.",
+        "SmartShelf AI combines a Quantum Computing-powered recommendation engine with a multi-agent AI architecture to deliver personalized book recommendations alongside rich reading analytics—including annual reading wrapped, author insights, educational reading insights, and user behavior analysis.",
       githubUrl: "https://github.com/Snigdha-Gayathri/Smart-Shelf-AI",
       demoUrl: "https://smart-shelf-ai-frontend-1.onrender.com/",
       isFeatured: true,
       details: {
         problem:
-          "Traditional physical retail operations lack intelligent shelf monitoring and recommendation capabilities, leaving a gap between real-time shelf state, customer purchasing behavior, product relationships, and inventory trends.",
+          "Generic book recommendation systems fail to capture the nuanced reading preferences, learning goals, and behavioral patterns of individual readers, resulting in low-quality suggestions that don't account for a reader's history or interests.",
         importance:
-          "Smart retail intelligence enables proactive restocking, reduces out-of-stock and misplaced products, and improves customer experience through personalized recommendations and data-backed analytics for managers.",
+          "A recommendation system combining Quantum Computing techniques with multi-agent AI can surface more relevant book suggestions while also giving readers meaningful analytics about their reading habits, favorite authors, and learning progress.",
         howItWorks:
-          "Built a full-stack intelligent retail shelf management platform that integrates PennyLane-powered Quantum Machine Learning (using Variational Quantum Circuits) with a collaborative Agentic AI layer. YOLO-based computer vision performs real-time shelf detection and inventory tracking, while multiple specialized agents (Shelf Monitoring, Recommendation, Analytics, and Inventory Intelligence) collaborate to automate retail decisions, supported by a React + Flask architecture and PostgreSQL database.",
+          "SmartShelf AI uses multiple specialized AI agents that collaborate to generate recommendations and analytics. A Quantum Computing-powered recommendation engine processes reader preferences and behavior to produce personalized book suggestions. Alongside recommendations, the system provides author insights, annual reading wrapped summaries, educational reading insights, reading analytics, and user behavior insights—all surfaced through a unified dashboard.",
         challenges:
-          "Coordinating hybrid quantum-classical recommendation workflows with real-time computer vision updates and multi-agent orchestration. Resolved by designing an event-driven data flow and unified state updates between the inventory layer, recommendation engine, and analytics dashboard.",
+          "Integrating Quantum Computing-based recommendation logic with a multi-agent AI architecture requires careful coordination between agents to ensure recommendations and analytics remain consistent and personalized to each user.",
         impact:
-          "Developed a full-stack intelligent retail management platform integrating Quantum Machine Learning, Agentic AI, Computer Vision, Recommendation Systems, and Business Analytics into a unified architecture. Demonstrated hybrid quantum-classical recommendation workflows, autonomous multi-agent decision-making, real-time shelf monitoring, and interactive retail analytics, showcasing scalable next-generation AI-driven retail intelligence.",
+          "SmartShelf AI demonstrates how Quantum Computing techniques and multi-agent AI can work together in a book recommendation context—delivering personalized recommendations with supporting reader analytics including author insights, reading progress, and behavioral patterns.",
         flowchart: [
-          { step: "Customer Purchase History", desc: "Collected customer purchasing history is cleaned and normalized." },
-          { step: "Quantum Angle Embedding", desc: "Classical feature vectors are encoded into quantum states using PennyLane." },
-          { step: "Variational Quantum Circuit", desc: "Learns complex customer-product interactions through parameterized gates." },
-          { step: "Quantum Measurements & Embeddings", desc: "Generates enhanced feature representations to combine with classical ranking." },
-          { step: "Multi-Agent Decision-Making", desc: "Specialized agents coordinate shelf monitoring, analytics, and recommendations." },
+          { step: "Reader Profile", desc: "User reading history, preferences, and behavior are collected." },
+          { step: "Quantum Recommendation Engine", desc: "Quantum Computing techniques process preferences to generate personalized book recommendations." },
+          { step: "Multi-Agent Collaboration", desc: "Specialized agents handle recommendations, author insights, analytics, and user behavior." },
+          { step: "Analytics Generation", desc: "System produces reading wrapped, educational insights, and behavior analysis." },
+          { step: "Dashboard Output", desc: "Recommendations and rich reading analytics are surfaced to the user." },
         ],
-      }
+      },
     },
     {
       title: "AI Content Summarizer",
@@ -362,7 +397,7 @@ const ProjectsSection = () => {
     {
       title: "Amazon Prime Movie Classifier",
       subtitle: "Feature-Engineered Metadata Classification Pipeline",
-      category: "Machine Learning",
+      categories: ["Machine Learning"],
       description: "Designed a multi-variable classification model categorizing movie content and user preferences on Amazon Prime by parsing rich metadata streams.",
       tech: ["Python", "scikit-learn", "XGBoost", "Pandas", "Logistic Regression"],
       impactSummary: "Automated content tagging and preference predictions using ensembled decision trees.",
