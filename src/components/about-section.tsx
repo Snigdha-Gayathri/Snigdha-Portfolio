@@ -26,28 +26,28 @@ const AboutSection = () => {
   const impactCards = [
     {
       headline: "SmartShelf AI",
-      subheadline: "Quantum-Enhanced Intelligent Retail",
-      description: "Developed a full-stack retail management platform integrating Quantum Machine Learning (PennyLane), YOLO computer vision, and autonomous agent networks into a unified Flask + React architecture."
+      subheadline: "Quantum-Powered Book Intelligence",
+      description: "A Quantum Computing-powered multi-agent AI book recommendation system combining multiple AI agents with quantum techniques for intelligent book recommendations and rich reader analytics."
     },
     {
-      headline: "Agentic & QML",
-      subheadline: "Hybrid Decision Engine",
-      description: "SmartShelf coordinates dedicated Shelf Monitoring, Recommendation, Analytics, and Inventory agents, leveraging Variational Quantum Circuits (VQCs) for high-dimensional feature learning."
+      headline: "Multi-Agent AI",
+      subheadline: "Intelligent Recommendation Engine",
+      description: "Coordinates specialized AI agents with a Quantum Computing-powered recommendation engine to deliver personalized book recommendations, author insights, and reading analytics."
     },
     {
-      headline: "YOLO Vision",
-      subheadline: "Real-Time Shelf Monitoring",
-      description: "Utilizes real-time computer vision object detection to trace shelf levels, counts, and item status, triggering immediate restocking alerts and inventory updates."
+      headline: "Reading Wrapped",
+      subheadline: "Annual Reader Analytics",
+      description: "Provides annual reading wrapped summaries, educational reading insights, and user behavior analytics to help readers track and understand their reading patterns."
     },
     {
-      headline: "Production APIs",
-      subheadline: "Flask REST Backend",
-      description: "Built scalable APIs for multi-agent workflows, recommendation pipelines, inventory management, and interactive analytics dashboards."
+      headline: "RepoPilot",
+      subheadline: "AI Repository Assistant",
+      description: "Agentic AI-powered GitHub repository engineering assistant that analyzes repositories, identifies improvements, and creates pull requests through six specialized AI agents."
     },
     {
-      headline: "Business Analytics",
-      subheadline: "Retail Intelligence Services",
-      description: "Exposes interactive sales, inventory, customer behavior, and recommendation metrics dashboards, backed by PostgreSQL centralized data storage."
+      headline: "NeuroPlan AI",
+      subheadline: "Learning Roadmap Generator",
+      description: "Multi-agent AI learning roadmap generator creating personalized learning paths with subtask tracking, progress analytics, and skill relationship insights."
     }
   ]
 

@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ExternalLink, Github, Cpu, Layers, Trophy, AlertTriangle, ArrowRight, Lightbulb, Sparkles } from "lucide-react"
+import { ExternalLink, Github, ArrowRight, Sparkles, ChevronRight } from "lucide-react"
 
-// Types for Project Narratives
 interface ProjectDetails {
   problem: string
   importance: string
@@ -29,7 +28,6 @@ interface Project {
   details: ProjectDetails
 }
 
-
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [activeCategory, setActiveCategory] = useState<string>("All")
@@ -37,806 +35,525 @@ const ProjectsSection = () => {
   const categoriesForProjectLabel = (p: Project) =>
     p.categories.length <= 2 ? p.categories.join(" • ") : `${p.categories.slice(0, 2).join(" • ")} • +${p.categories.length - 2}`
 
-
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.05,
-      rootMargin: "0px 0px -50px 0px",
-    }
+    const observerOptions = { threshold: 0.05, rootMargin: "0px 0px -50px 0px" }
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view")
-        }
-      })
+      entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add("in-view") })
     }, observerOptions)
-
     const elements = document.querySelectorAll("#projects .slide-up")
     elements.forEach((el) => observer.observe(el))
-
     return () => observer.disconnect()
   }, [activeCategory])
 
-  const categories = [
-    "All",
-    "Agentic AI",
-    "Quantum Computing",
-    "Generative AI",
-    "Machine Learning",
-    "Deep Learning",
-    "Data Engineering",
-  ]
-
   const projects: Project[] = [
-
     {
       title: "RepoPilot",
-      subtitle: "Agentic AI GitHub Repository Engineering Assistant",
+      subtitle: "AI Repository Engineering Assistant",
       categories: ["Agentic AI"],
+      description: "An Agentic AI-powered GitHub repository engineering assistant that analyzes repositories, identifies improvements, generates production-ready code, and creates pull requests with user approval through six specialized AI agents.",
+      tech: ["Agentic AI", "Multi-Agent Systems", "GitHub API"],
+      impactSummary: "Six specialized AI agents collaborating to analyze, improve, and contribute to GitHub repositories.",
       githubUrl: "https://github.com/Snigdha-Gayathri/Repo-Pilot",
       demoUrl: "https://repo-pilot-8j45.onrender.com/",
-      description:
-        "RepoPilot is an Agentic AI-powered GitHub repository engineering assistant that analyzes an existing GitHub repository, identifies improvement opportunities, generates production-ready code, and—with explicit user approval—creates a pull request from the user's own GitHub account. Six specialized AI agents collaborate to understand, improve, validate, and contribute to a repository.",
-      tech: [
-        "Agentic AI",
-        "Multi-Agent Architecture",
-        "GitHub API",
-        "Code Generation",
-        "Pull Request Automation",
-        "LLM Integration",
-        "Python",
-      ],
-      impactSummary:
-        "Six specialized agents—Repository Analyst, Issue Hunter, Solution Architect, Code Engineer, QA Agent, and Reviewer—analyze a repository, generate production-ready improvements, and create a pull request from the user's authenticated GitHub account only after explicit user approval.",
       isFeatured: true,
       details: {
-        problem:
-          "Contributing improvements to existing repositories is time-consuming: developers must understand an unfamiliar codebase, identify meaningful issues, propose solutions, write production-quality code, and go through the PR process—all manually.",
-        importance:
-          "An agentic system that analyzes a repository end-to-end and generates ready-to-merge improvements lowers the barrier to contribution while ensuring code quality through multi-agent review before any PR is created.",
-        howItWorks:
-          "The user provides a GitHub repository URL. Six specialized agents collaborate: the Repository Analyst reads structure, frameworks, dependencies, and coding conventions. The Issue Hunter scans for bugs, TODOs, code smells, duplicated logic, missing tests, security risks, and beginner-friendly opportunities. The Solution Architect proposes implementation strategies with trade-offs, complexity estimates, risk estimates, and confidence scores. The Code Engineer generates production-quality code as git-style diffs matching the repo's style, producing two independent implementations for important issues. The QA Agent reviews generated code, detects regressions, and writes unit and integration tests matching the repo's testing conventions. The Reviewer compares all implementations, scores them on quality and risk, selects the best solution, and explains why. Only after explicit user approval does RepoPilot create a Pull Request from the user's authenticated GitHub account.",
-        challenges:
-          "Ensuring six agents coordinate without producing conflicting outputs requires a structured pipeline where each agent's output feeds deterministically into the next stage. The PR creation step is gated behind explicit user confirmation to prevent unintended contributions.",
-        impact:
-          "RepoPilot automates the full repository improvement pipeline—from codebase analysis to production-ready PR creation—using six specialized agents, while keeping the user in full control through an explicit approval gate before any pull request is made.",
+        problem: "GitHub repositories accumulate bugs, TODOs, code smells, and improvement opportunities over time. Manual identification and resolution is time-consuming.",
+        importance: "Automating repository analysis and improvement helps developers maintain code quality and contribute meaningfully to projects.",
+        howItWorks: "Six specialized AI agents collaborate: Repository Analyst understands the codebase structure, frameworks, and conventions. Issue Hunter scans for bugs, TODOs, code smells, duplicated logic, missing tests, and security risks. Solution Architect proposes implementation strategies with trade-offs, complexity estimates, and confidence scores. Code Engineer generates production-quality code with git-style diffs matching the repository's style. QA Agent reviews code, detects regressions, and writes tests matching the repository's conventions. Reviewer compares implementations, scores them, and selects the best solution.",
+        challenges: "Coordinating six AI agents to produce coherent, production-ready improvements that match a repository's existing coding style and conventions.",
+        impact: "Enables automated repository improvement with production-ready code generation and pull request creation through the user's own GitHub account.",
         flowchart: [
-          { step: "Repository URL Input", desc: "User provides a GitHub repository URL to analyze." },
-          { step: "Repository Analyst", desc: "Reads structure, frameworks, dependencies, and coding conventions." },
-          { step: "Issue Hunter", desc: "Scans for bugs, TODOs, code smells, missing tests, security risks, and contribution opportunities." },
-          { step: "Solution Architect + Code Engineer", desc: "Proposes strategies with trade-offs, then generates production-ready git-style diffs matching the repo's style." },
-          { step: "QA Agent + Reviewer", desc: "Reviews code for regressions, writes tests, scores implementations, and selects the best solution." },
-          { step: "User Approval & PR Creation", desc: "User is asked for explicit approval; only then does RepoPilot create a Pull Request from their GitHub account." },
-        ],
-      },
-    },
-
-    {
-      title: "NeuroPlan AI",
-      subtitle: "Multi-Agent AI Learning Roadmap Generator",
-      categories: ["Agentic AI"],
-      githubUrl: "https://github.com/Snigdha-Gayathri/NeuroPlan-AI",
-      demoUrl: "https://neuroplan-ai.onrender.com/",
-      description:
-        "NeuroPlan AI is a multi-agent AI learning roadmap generator. Users specify a skill they want to learn, their desired proficiency level (Beginner, Intermediate, or Advanced), and their target learning goal. The application then generates a personalized learning roadmap, suggests resources, breaks the roadmap into subtasks, and lets users mark completed subtasks. As users progress, the dashboard updates with analytics covering skills learned, current progress, relationships between skills, and how smaller skills contribute toward larger learning goals.",
-      tech: [
-        "Agentic AI",
-        "Multi-Agent Architecture",
-        "LLM Integration",
-        "Personalized Roadmaps",
-        "Learning Analytics",
-        "Subtask Tracking",
-        "React",
-        "Flask",
-        "REST APIs",
-      ],
-      impactSummary:
-        "NeuroPlan AI combines multi-agent reasoning with interactive progress tracking to turn a learning goal into a structured, personalized roadmap—complete with resource suggestions, subtask breakdowns, and a live analytics dashboard that shows how skills interconnect and build toward the user's target proficiency.",
-      isFeatured: true,
-      details: {
-        problem:
-          "Learners often know what they want to learn but lack a clear, structured path to get there. Generic resources don't account for proficiency level, target goals, or how individual skills relate to each other.",
-        importance:
-          "A personalized, agent-generated roadmap removes ambiguity from the learning journey. By breaking goals into trackable subtasks and visualizing skill relationships, learners can stay focused and measure real progress.",
-        howItWorks:
-          "Users provide a skill, a desired proficiency level (Beginner, Intermediate, or Advanced), and a target learning goal. Multiple AI agents collaborate to generate a personalized roadmap, curate relevant learning resources, and decompose the roadmap into subtasks. As users mark subtasks complete, the dashboard refreshes analytics showing skills learned, current progress percentage, skill relationship graphs, and how smaller skills contribute toward the larger goal.",
-        challenges:
-          "Generating a coherent, non-redundant roadmap that accurately reflects skill dependencies and proficiency levels requires careful agent coordination. The system handles this by structuring agent outputs into a dependency graph before presenting subtasks to the user.",
-        impact:
-          "NeuroPlan AI transforms a vague learning intention into a concrete, structured roadmap with curated resources, trackable subtasks, and a live analytics dashboard—helping users see exactly where they are and where each skill takes them.",
-        flowchart: [
-          { step: "User Input", desc: "User specifies the skill to learn, proficiency level, and target learning goal." },
-          { step: "Roadmap Generation", desc: "AI agents generate a personalized learning roadmap with curated resources." },
-          { step: "Subtask Breakdown", desc: "The roadmap is decomposed into smaller, trackable subtasks." },
-          { step: "Progress Tracking", desc: "Users mark subtasks as complete; the dashboard updates in real time." },
-          { step: "Skill Analytics", desc: "Dashboard shows skills learned, progress, skill relationships, and contribution toward the larger goal." },
-        ],
-      },
-    },
-    {
-      title: "Placement RAG Agent",
-      subtitle: "RAG-Powered Company-Specific Interview Prep Assistant",
-      categories: ["Agentic AI"],
-      githubUrl: "https://github.com/Snigdha-Gayathri/Placement-RAG-Agent",
-      demoUrl: "https://placement-rag-agent.onrender.com/",
-      description: "Placement RAG Agent is a Retrieval-Augmented Generation (RAG) application with a knowledge base containing interview questions from more than 20 companies. It uses true RAG to retrieve relevant interview information before generating responses, helping users prepare for company-specific interviews by surfacing targeted questions and information from its curated knowledge base.",
-      tech: ["RAG", "Retrieval-Augmented Generation", "Vector Database", "LangChain", "Python", "LLM Integration"],
-      impactSummary: "Provides company-specific interview preparation by retrieving relevant questions and context from a curated knowledge base covering more than 20 companies—grounded answers rather than generic LLM responses.",
-      isFeatured: true,
-      details: {
-        problem: "Interview preparation resources are scattered across the web, and generic AI assistants lack company-specific knowledge. Candidates spend hours searching for targeted interview questions for particular companies.",
-        importance: "Company-specific preparation significantly improves interview performance. A RAG-based system with a curated knowledge base surfaces exactly the right context for a given company rather than generating plausible-sounding but ungrounded answers.",
-        howItWorks: "The application maintains a knowledge base of interview questions sourced from more than 20 companies. When a user asks a question, the RAG pipeline retrieves the most relevant context from this knowledge base before passing it to the LLM—ensuring responses are grounded in real interview data rather than fabricated by the model alone.",
-        challenges: "Ensuring retrieval quality across a diverse multi-company knowledge base requires careful chunking and embedding strategies so that queries about one company do not surface irrelevant results from another.",
-        impact: "Placement RAG Agent gives candidates access to a curated, company-specific knowledge base of interview questions from more than 20 companies, retrieved and surfaced through a true RAG pipeline for grounded, targeted interview preparation.",
-        flowchart: [
-          { step: "User Query", desc: "User asks about interview questions or preparation for a specific company." },
-          { step: "Knowledge Base Retrieval", desc: "RAG pipeline retrieves relevant interview questions and context from the 20+ company knowledge base." },
-          { step: "Context Injection", desc: "Retrieved context is injected into the LLM prompt." },
-          { step: "Response Generation", desc: "LLM generates a grounded response based on retrieved company-specific information." },
-          { step: "Interview Prep Output", desc: "User receives targeted, company-specific interview preparation content." },
-        ],
-      },
+          { step: "Repository Analysis", desc: "Agent reads structure, frameworks, dependencies, and coding conventions" },
+          { step: "Issue Discovery", desc: "Scans for bugs, TODOs, code smells, security risks, and missing tests" },
+          { step: "Solution Architecture", desc: "Proposes strategies with trade-offs, complexity, and confidence scores" },
+          { step: "Code Generation", desc: "Produces production-quality diffs matching repository style" },
+          { step: "Quality Assurance", desc: "Reviews code, detects regressions, writes unit and integration tests" },
+          { step: "Review & Selection", desc: "Compares implementations, scores quality, selects best solution" },
+          { step: "Pull Request", desc: "Creates PR from user's account after explicit approval" }
+        ]
+      }
     },
     {
       title: "SmartShelf AI",
-      subtitle: "Quantum Computing-Powered Multi-Agent Book Recommendation System",
+      subtitle: "Quantum-Powered Book Recommendations",
       categories: ["Quantum Computing", "Agentic AI", "Machine Learning", "Data Engineering"],
-      description:
-        "SmartShelf AI is a Quantum Computing-powered multi-agent AI book recommendation system. It combines multiple AI agents with Quantum Computing techniques to generate intelligent book recommendations while providing rich analytics for readers. Key capabilities include a multi-agent AI architecture, a Quantum Computing-powered recommendation engine, personalized book recommendations, author insights, annual reading wrapped, educational reading insights, reading analytics, and user behavior insights.",
-      tech: [
-        "Quantum Computing",
-        "Multi-Agent AI",
-        "Recommendation Engine",
-        "Reading Analytics",
-        "User Behavior Insights",
-        "Author Insights",
-        "React",
-        "Flask",
-      ],
-      impactSummary:
-        "SmartShelf AI combines a Quantum Computing-powered recommendation engine with a multi-agent AI architecture to deliver personalized book recommendations alongside rich reading analytics—including annual reading wrapped, author insights, educational reading insights, and user behavior analysis.",
+      description: "A Quantum Computing-powered multi-agent AI book recommendation system combining multiple AI agents with quantum techniques for intelligent book recommendations and rich reader analytics.",
+      tech: ["Quantum Computing", "Multi-Agent AI", "PennyLane", "Flask", "React"],
+      impactSummary: "Multi-agent architecture combining Quantum Computing with intelligent book recommendation and reader analytics capabilities.",
       githubUrl: "https://github.com/Snigdha-Gayathri/Smart-Shelf-AI",
       demoUrl: "https://smart-shelf-ai-frontend-1.onrender.com/",
       isFeatured: true,
       details: {
-        problem:
-          "Generic book recommendation systems fail to capture the nuanced reading preferences, learning goals, and behavioral patterns of individual readers, resulting in low-quality suggestions that don't account for a reader's history or interests.",
-        importance:
-          "A recommendation system combining Quantum Computing techniques with multi-agent AI can surface more relevant book suggestions while also giving readers meaningful analytics about their reading habits, favorite authors, and learning progress.",
-        howItWorks:
-          "SmartShelf AI uses multiple specialized AI agents that collaborate to generate recommendations and analytics. A Quantum Computing-powered recommendation engine processes reader preferences and behavior to produce personalized book suggestions. Alongside recommendations, the system provides author insights, annual reading wrapped summaries, educational reading insights, reading analytics, and user behavior insights—all surfaced through a unified dashboard.",
-        challenges:
-          "Integrating Quantum Computing-based recommendation logic with a multi-agent AI architecture requires careful coordination between agents to ensure recommendations and analytics remain consistent and personalized to each user.",
-        impact:
-          "SmartShelf AI demonstrates how Quantum Computing techniques and multi-agent AI can work together in a book recommendation context—delivering personalized recommendations with supporting reader analytics including author insights, reading progress, and behavioral patterns.",
+        problem: "Readers often struggle to discover books that match their interests and track their reading progress meaningfully.",
+        importance: "Intelligent book recommendations powered by quantum computing techniques provide more nuanced and personalized reading suggestions.",
+        howItWorks: "Combines multiple AI agents with Quantum Computing techniques to generate intelligent book recommendations. Key capabilities include a multi-agent AI architecture, Quantum Computing-powered recommendation engine, personalized book recommendations, author insights, annual reading wrapped, educational reading insights, reading analytics, and user behavior insights.",
+        challenges: "Integrating Quantum Computing techniques with multi-agent AI architecture for practical book recommendation applications.",
+        impact: "Provides personalized book recommendations, author insights, annual reading wrapped, educational reading insights, reading analytics, and user behavior insights.",
         flowchart: [
-          { step: "Reader Profile", desc: "User reading history, preferences, and behavior are collected." },
-          { step: "Quantum Recommendation Engine", desc: "Quantum Computing techniques process preferences to generate personalized book recommendations." },
-          { step: "Multi-Agent Collaboration", desc: "Specialized agents handle recommendations, author insights, analytics, and user behavior." },
-          { step: "Analytics Generation", desc: "System produces reading wrapped, educational insights, and behavior analysis." },
-          { step: "Dashboard Output", desc: "Recommendations and rich reading analytics are surfaced to the user." },
-        ],
-      },
+          { step: "User Input", desc: "Reader provides preferences and reading history" },
+          { step: "Multi-Agent Processing", desc: "Specialized AI agents analyze reading patterns" },
+          { step: "Quantum Recommendation", desc: "Quantum Computing-powered engine generates recommendations" },
+          { step: "Personalization", desc: "Tailored book suggestions based on user behavior" },
+          { step: "Analytics", desc: "Reading wrapped, educational insights, and behavior analytics" }
+        ]
+      }
     },
     {
-      title: "AI Content Summarizer",
-      subtitle: "Transformer-based NLP pipeline",
-      categories: ["Generative AI"],
-      description: "Automated document summarization pipeline leveraging Hugging Face transformer models to compress multi-page text corpora into actionable summaries.",
-      tech: ["NLP", "Transformers", "React", "Hugging Face API"],
-      impactSummary: "Streamlined content reading by providing dynamic, user-configurable summaries.",
-      githubUrl: "https://github.com/Snigdha-Gayathri/AI-Powered-Content-Summarizer", 
+      title: "NeuroPlan AI",
+      subtitle: "AI Learning Roadmap Generator",
+      categories: ["Agentic AI"],
+      description: "A multi-agent AI learning roadmap generator that creates personalized learning paths based on skill goals and proficiency levels, with subtask tracking and progress analytics.",
+      tech: ["Agentic AI", "Multi-Agent"],
+      impactSummary: "Generates personalized learning roadmaps with subtask tracking and skill progress analytics.",
+      githubUrl: "https://github.com/Snigdha-Gayathri/NeuroPlan-AI",
+      demoUrl: "https://neuroplan-ai.onrender.com/",
       isFeatured: false,
       details: {
-        problem: "Information overload from long documents, research papers, and technical blogs makes knowledge acquisition slow and exhausting.",
-        importance: "Users need structured, condensed summaries that capture core arguments without reading hundreds of pages.",
-        howItWorks: "Built a frontend in React that integrates with a Python backend processing documents, running Hugging Face transformer summarizers (BART/T5) to generate key bullet points.",
-        challenges: "Large document chunking to prevent token overflow. Resolved by writing a sliding window text-chunking parser.",
-        impact: "Accelerated reading efficiency by summarizing PDFs in under 5 seconds.",
+        problem: "Learners need structured guidance to develop new skills efficiently with clear milestones and progress tracking.",
+        importance: "Personalized learning roadmaps help learners stay on track and understand how smaller skills contribute to larger goals.",
+        howItWorks: "Users specify their target skill, desired proficiency level (Beginner, Intermediate, or Advanced), and learning goal. The multi-agent system generates a personalized roadmap with learning resources, breaks it into subtasks, and allows users to mark completed subtasks. As users complete tasks, the dashboard updates with analytics including skills learned, current progress, relationships between learned skills, how smaller skills contribute toward larger skills, and learning progress insights.",
+        challenges: "Creating adaptive learning roadmaps that accurately reflect skill hierarchies and progress relationships.",
+        impact: "Generates personalized learning roadmaps with subtask tracking, progress analytics, skill relationships, and learning insights.",
         flowchart: [
-          { step: "Upload File", desc: "User uploads PDF or pastes large text corpora." },
-          { step: "Text Chunking", desc: "Parser splits text into overlapping chunks." },
-          { step: "Model Inference", desc: "Hugging Face Bart models run inference on chunks." },
-          { step: "Consolidation", desc: "Stitches summaries together cleanly." }
+          { step: "Skill Selection", desc: "User specifies target skill and proficiency level" },
+          { step: "Goal Setting", desc: "User defines target score or learning goal" },
+          { step: "Roadmap Generation", desc: "AI generates personalized learning roadmap" },
+          { step: "Resource Suggestion", desc: "Relevant learning resources are recommended" },
+          { step: "Subtask Breakdown", desc: "Roadmap is broken into trackable subtasks" },
+          { step: "Progress Tracking", desc: "Dashboard updates with analytics as tasks are completed" }
+        ]
+      }
+    },
+    {
+      title: "Placement RAG Agent",
+      subtitle: "Company Interview Preparation",
+      categories: ["Agentic AI"],
+      description: "A Retrieval-Augmented Generation application with a knowledge base of interview questions from 20+ companies, helping users prepare with company-specific interview information.",
+      tech: ["RAG", "Knowledge Base"],
+      impactSummary: "Knowledge base with interview questions from 20+ companies for targeted interview preparation.",
+      githubUrl: "https://github.com/Snigdha-Gayathri/Placement-RAG-Agent",
+      demoUrl: "https://placement-rag-agent.onrender.com/",
+      isFeatured: false,
+      details: {
+        problem: "Job seekers need company-specific interview preparation but information is scattered across various sources.",
+        importance: "Having a centralized knowledge base with interview questions from 20+ companies streamlines preparation.",
+        howItWorks: "Uses true Retrieval-Augmented Generation to retrieve relevant interview information from its knowledge base before generating responses. The application helps users prepare for company interviews by providing company-specific interview questions and information retrieved from its curated knowledge base.",
+        challenges: "Building and maintaining a comprehensive knowledge base of interview questions across 20+ companies.",
+        impact: "Helps users prepare for company interviews with company-specific questions retrieved from a curated knowledge base.",
+        flowchart: [
+          { step: "User Query", desc: "User asks about specific company interview preparation" },
+          { step: "Retrieval", desc: "RAG retrieves relevant questions from knowledge base" },
+          { step: "Generation", desc: "Generates contextual response with retrieved information" },
+          { step: "Response", desc: "Provides company-specific interview questions and guidance" }
         ]
       }
     },
     {
       title: "AI Sentiment Analyzer",
-      subtitle: "NLP Microservice",
-      categories: ["Deep Learning"],
-
-
-      description: "A smart web application classifying user reviews into positive, negative, or neutral sentiments, delivering live analytical insights.",
-      tech: ["Flask", "Python", "Hugging Face Transformers", "React"],
-      impactSummary: "Enables real-time feedback auditing for better consumer decisions.",
-      demoUrl: "https://sentia-b586d409.base44.app/",
-      isFeatured: false,
-      details: {
-        problem: "Manually monitoring hundreds of daily customer reviews or social feeds is impossible and highly prone to subjective biases.",
-        importance: "Businesses need automated, real-time sentiment mapping to detect service complaints and customer satisfaction immediately.",
-        howItWorks: "Engineered a React UI connected to a Flask API. The backend processes the input strings and routes them through a DistilBERT transformer fine-tuned for sentiment classification.",
-        challenges: "Inference latency of transformer models. Solved by caching predictions and structuring lightweight inference payloads.",
-        impact: "Achieved sub-150ms sentiment classification latency.",
-        flowchart: [
-          { step: "Review Input", desc: "User types review or inputs feedback data." },
-          { step: "Pre-processing", desc: "Cleans emojis, punctuation, and tokenizes text." },
-          { step: "DistilBERT model", desc: "Classifies sentiment probabilities (Pos/Neg/Neu)." },
-          { step: "Dashboard UI", desc: "Displays color-coded charts of sentiment distributions." }
-        ]
-      }
-    },
-    {
-      title: "Student Grade Predictor",
-      subtitle: "Predictive Academic Modeler",
+      subtitle: "Sentiment Classification Engine",
       categories: ["Machine Learning"],
-
-
-      description: "Predictive analytics engine using multi-variable regression on historical student datasets to identify early intervention requirements.",
-      tech: ["Flask", "Python", "scikit-learn", "Linear Regression"],
-      impactSummary: "Aids institutions in identifying struggling students prior to final assessments.",
-      githubUrl: "https://github.com/Snigdha-Gayathri/Student-Grade-Predictor",
-      demoUrl: "https://grade-boost-ai-c1a3f675.base44.app/",
-
+      description: "A web application classifying user reviews into positive, negative, or neutral sentiments, delivering live analytical insights.",
+      tech: ["Flask", "Python", "Hugging Face Transformers"],
+      impactSummary: "Real-time sentiment classification across positive, negative, and neutral categories.",
       isFeatured: false,
       details: {
-        problem: "Academic failure is often detected too late for remedial actions, leading to student dropouts or poor performance.",
-        importance: "Early predictive warnings allow educators to step in and offer targeted support beforehand.",
-        howItWorks: "Preprocesses demographic, socioeconomic, and intermediate grade data. Trains a Scikit-Learn regression model to output final grades.",
-        challenges: "Data imbalance and missing value errors. Solved by implementing robust KNN-imputation and data normalization.",
-        impact: "Allowed accurate grade prediction within a ±5% margins.",
+        problem: "Understanding customer sentiment from reviews requires automated classification at scale.",
+        importance: "Real-time sentiment analysis enables timely responses to customer feedback.",
+        howItWorks: "Classifies user reviews into positive, negative, or neutral sentiments using Hugging Face Transformers, served through a Flask web application with live analytical insights.",
+        challenges: "Handling nuanced language and context in sentiment classification.",
+        impact: "Provides live analytical insights from automated sentiment classification.",
         flowchart: [
-          { step: "Data Upload", desc: "Imports demographic and mid-term grades." },
-          { step: "Data Pipeline", desc: "Imputes values and scales variables." },
-          { step: "Model Predict", desc: "Regressor estimates final marks percentage." },
-          { step: "Insight Report", desc: "Flags students whose scores fall below warning thresholds." }
+          { step: "Input", desc: "User submits review text" },
+          { step: "Processing", desc: "Hugging Face Transformer model analyzes sentiment" },
+          { step: "Classification", desc: "Review classified as positive, negative, or neutral" },
+          { step: "Analytics", desc: "Live analytical insights displayed" }
         ]
       }
     },
     {
       title: "Image Cartooniser",
-      subtitle: "Generative Style-Transfer Model",
-      categories: ["Deep Learning"],
-
-
-      description: "Style-transfer generator applying custom Generative Adversarial Networks (GANs) and bilateral filtering to synthesize animated styling from real images.",
+      subtitle: "GAN-Based Style Transfer",
+      categories: ["Machine Learning"],
+      description: "Style-transfer generator applying Generative Adversarial Networks (GANs) and bilateral filtering to synthesize animated styling from real images.",
       tech: ["Python", "GANs", "OpenCV"],
-      impactSummary: "Bridges creative art and ML using automated visual style transfer.",
-      githubUrl: "https://github.com/Snigdha-Gayathri/Cartoonifier-ML-model",
+      impactSummary: "Transforms real photographs into cartoon-style images using GANs and bilateral filtering.",
       isFeatured: false,
       details: {
-        problem: "Creating hand-drawn cartoon assets manually is tedious, slow, and expensive for visual designers.",
-        importance: "Automated filters fail to preserve clean edges. Deep learning-based GANs resolve this by learning structural painting lines.",
-        howItWorks: "Uses bilateral filters to smooth textures while keeping edges sharp. Passes images through a pre-trained GAN for cartoon stylization.",
-        challenges: "Halos and pixelation around fine edges. Corrected by applying custom laplacian edge enhancement in OpenCV.",
-        impact: "Generates stylized cartoon assets in real-time.",
+        problem: "Converting real photographs into cartoon-style images requires complex style transfer techniques.",
+        importance: "Automated image stylization enables creative content generation from photographs.",
+        howItWorks: "Applies custom Generative Adversarial Networks (GANs) and bilateral filtering to transform real images into cartoon-style illustrations.",
+        challenges: "Preserving important details while applying cartoon styling.",
+        impact: "Synthesizes animated styling from real images using GANs and filtering techniques.",
         flowchart: [
-          { step: "Source Image", desc: "Uploads standard digital photograph." },
-          { step: "Edge Extraction", desc: "OpenCV isolates structural contours and lines." },
-          { step: "Style GAN", desc: "Applies trained cartoon textures to flat regions." },
-          { step: "Merge layers", desc: "Combines contour lines and cartoon textures." }
+          { step: "Input Image", desc: "User provides a real photograph" },
+          { step: "GAN Processing", desc: "Custom GAN applies style transfer" },
+          { step: "Bilateral Filtering", desc: "Smoothing and edge preservation applied" },
+          { step: "Output", desc: "Cartoon-style image generated" }
         ]
       }
     },
     {
       title: "ML Image Colorizer",
-      subtitle: "Chrominance Restoration Model",
-      categories: ["Deep Learning"],
-
-
+      subtitle: "Deep Learning Colorization",
+      categories: ["Machine Learning"],
       description: "Grayscale restoration system utilizing deep convolutional networks (CNNs) and pre-trained Caffe models to map luminance to chrominance values.",
-      tech: ["CNNs", "OpenCV", "Deep Learning", "Caffe"],
-      impactSummary: "Restores lifelike color to historic grayscale photographs with high precision.",
-      githubUrl: "https://github.com/Snigdha-Gayathri/Image-Colorizer-ML",
+      tech: ["CNNs", "OpenCV", "Deep Learning"],
+      impactSummary: "Restores color to grayscale images using deep convolutional networks.",
       isFeatured: false,
       details: {
-        problem: "Colorizing historic grayscale photographs manually takes hours of meticulous digital painting.",
-        importance: "AI colorization helps preserve historical media rapidly and accurately.",
-        howItWorks: "Converts images to Lab color space. Takes the L (luminance) channel, feeds it through a CNN to predict a and b channels, then stitches them back.",
-        challenges: "Incorrect color predictions on unseen structures (e.g. skies turning yellow). Rectified by incorporating deep Caffe model priors.",
-        impact: "Converts black & white photographs into color in under 1 second.",
+        problem: "Restoring color to grayscale images is a challenging task requiring understanding of color distributions.",
+        importance: "Automated colorization can restore historical photographs and enhance grayscale imagery.",
+        howItWorks: "Utilizes deep convolutional networks (CNNs) and pre-trained Caffe models to map luminance channels to chrominance values for color restoration.",
+        challenges: "Accurately predicting chrominance values from luminance information alone.",
+        impact: "Restores realistic color to grayscale images using deep learning techniques.",
         flowchart: [
-          { step: "Grayscale Input", desc: "Uploads historic black and white image." },
-          { step: "Lab Conversion", desc: "Extracts brightness (L channel) as input." },
-          { step: "CNN Predict", desc: "Model estimates chrominance (a & b channels)." },
-          { step: "Final Composite", desc: "Recombines L + a + b channels to output RGB image." }
+          { step: "Input", desc: "Grayscale image provided" },
+          { step: "Feature Extraction", desc: "CNN extracts luminance features" },
+          { step: "Color Prediction", desc: "Caffe model maps luminance to chrominance" },
+          { step: "Reconstruction", desc: "Full-color image reconstructed" }
+        ]
+      }
+    },
+    {
+      title: "Student Grade Predictor",
+      subtitle: "Academic Performance Analytics",
+      categories: ["Machine Learning"],
+      description: "Predictive analytics engine using multi-variable regression on historical student datasets to identify early intervention requirements.",
+      tech: ["Flask", "Python", "scikit-learn"],
+      impactSummary: "Multi-variable regression for early academic intervention identification.",
+      isFeatured: false,
+      details: {
+        problem: "Identifying students at risk of underperforming requires analysis of multiple academic factors.",
+        importance: "Early identification of at-risk students enables timely intervention and support.",
+        howItWorks: "Uses multi-variable regression on historical student datasets to predict grades and identify students requiring early intervention, served through a Flask web application.",
+        challenges: "Selecting relevant features and handling varying data quality across student datasets.",
+        impact: "Predicts student performance for early intervention identification.",
+        flowchart: [
+          { step: "Data Collection", desc: "Historical student datasets gathered" },
+          { step: "Feature Engineering", desc: "Multi-variable features prepared" },
+          { step: "Regression Model", desc: "Model trained on historical data" },
+          { step: "Prediction", desc: "Grade predictions and intervention flags generated" }
         ]
       }
     },
     {
       title: "Car Price Predictor",
-      subtitle: "Automobile Valuer",
+      subtitle: "Automobile Valuation Model",
       categories: ["Machine Learning"],
-
-
-
       description: "Regression model with structured ETL and categorical one-hot encoding pipelines, optimizing automobile pricing valuations using Random Forest.",
       tech: ["scikit-learn", "RandomForest", "Python"],
-      impactSummary: "Automates resale valuation predictions based on age, mileage, and features.",
-      githubUrl: "https://github.com/Snigdha-Gayathri/Car-Price-Prediction-Using-ML",
+      impactSummary: "Random Forest-based automobile pricing with ETL pipelines.",
       isFeatured: false,
       details: {
-        problem: "Resale pricing for cars is highly subjective, resulting in transaction bottlenecks and unfair pricing.",
-        importance: "Clear mathematical predictions provide standard baselines for buyers and sellers.",
-        howItWorks: "Cleans categorical variables, runs one-hot encoding on brands, and trains a RandomForestRegressor model.",
-        challenges: "Outlier data skewing predictions. Fixed by applying robust z-score filtering.",
-        impact: "Achieved an R-squared valuation accuracy of 91%.",
+        problem: "Accurate automobile pricing requires analysis of multiple vehicle attributes and market factors.",
+        importance: "Automated pricing models help buyers and sellers make informed decisions.",
+        howItWorks: "Applies structured ETL pipelines with categorical one-hot encoding and Random Forest regression to optimize automobile pricing valuations.",
+        challenges: "Handling categorical features and building robust ETL pipelines for diverse vehicle data.",
+        impact: "Provides optimized automobile pricing valuations using ensemble methods.",
         flowchart: [
-          { step: "Specs Input", desc: "Enter mileage, year, fuel type, and brand." },
-          { step: "ETL Pipeline", desc: "One-hot encodes categories and handles outliers." },
-          { step: "Model Evaluation", desc: "Runs estimation using Random Forest nodes." },
-          { step: "Valuation Feed", desc: "Outputs estimated price with accuracy range." }
-        ]
-      }
-    },
-    {
-      title: "Loan Risk Preprocessing",
-      subtitle: "Data Preprocessing & Encoding Pipeline",
-      categories: ["Data Engineering"],
-
-      description: "Enterprise-grade preprocessing pipeline designed for loan risk assessment, implementing missing-value imputation and feature scaling.",
-      tech: ["Python", "Pandas", "Data Preprocessing"],
-      impactSummary: "Ensures clean data inputs to prevent model drift in loan forecasting.",
-      githubUrl: "https://github.com/Snigdha-Gayathri/Loan-Risk-Data-Preprocessing-Encoding-Pipeline",
-      isFeatured: false,
-      details: {
-        problem: "Financial datasets are often full of missing values, mismatched data, and un-scaled fields, which cause ML models to fail.",
-        importance: "Loan assessment requires 100% data integrity to prevent financial risk.",
-        howItWorks: "Implements median imputation for numeric values, mode imputation for categories, and scales features via StandardScaler.",
-        challenges: "Information leakage during data preprocessing. Prevented by strict split-first-transform pipelines.",
-        impact: "Prepared clean datasets ready for instant neural network training.",
-        flowchart: [
-          { step: "Raw CSV Load", desc: "Imports raw credit application logs." },
-          { step: "Data Auditing", desc: "Locates missing values and mismatched categories." },
-          { step: "Imputation Layer", desc: "Replaces empty logs mathematically." },
-          { step: "Normalization", desc: "Standardizes values to prevent neural scale bias." }
+          { step: "Data Ingestion", desc: "Vehicle data collected and cleaned" },
+          { step: "ETL Pipeline", desc: "Structured extraction, transformation, and loading" },
+          { step: "Feature Encoding", desc: "Categorical one-hot encoding applied" },
+          { step: "Random Forest", desc: "Ensemble model generates price valuations" }
         ]
       }
     },
     {
       title: "Amazon Prime Movie Classifier",
-      subtitle: "Feature-Engineered Metadata Classification Pipeline",
+      subtitle: "Content Classification System",
       categories: ["Machine Learning"],
-      description: "Designed a multi-variable classification model categorizing movie content and user preferences on Amazon Prime by parsing rich metadata streams.",
-      tech: ["Python", "scikit-learn", "XGBoost", "Pandas", "Logistic Regression"],
-      impactSummary: "Automated content tagging and preference predictions using ensembled decision trees.",
+      description: "Multi-variable classification model categorizing movie content and user preferences on Amazon Prime by parsing rich metadata streams.",
+      tech: ["Python", "scikit-learn", "XGBoost"],
+      impactSummary: "Multi-variable classification of Amazon Prime movie content.",
       isFeatured: false,
       details: {
-        problem: "Automated content discovery requires high-fidelity genre and age rating classifications to prevent recommendation mismatch and user fatigue.",
-        importance: "Precision in metadata categorization directly raises search alignment and platform content consumption indices.",
-        howItWorks: "Cleaned and processed raw movie catalog metrics, handling cardinality issues by target-encoding features. Developed supervised classifiers leveraging Decision Trees, Random Forests, XGBoost, and Logistic Regression.",
-        challenges: "Imbalanced ratings and Cardinality of categorical metadata. Resolved by applying SMOTE class balance filters and grouped feature binning.",
-        impact: "Successfully trained classifiers delivering high precision in multi-label content categorization.",
+        problem: "Categorizing movie content across streaming platforms requires parsing complex metadata.",
+        importance: "Automated classification improves content organization and user experience.",
+        howItWorks: "Parses rich metadata streams to categorize movie content and user preferences on Amazon Prime using multi-variable classification with XGBoost.",
+        challenges: "Handling diverse and unstructured metadata from streaming platform content.",
+        impact: "Classifies Amazon Prime movie content based on multiple variables and metadata.",
         flowchart: [
-          { step: "Catalog Ingestion", desc: "Retrieves metadata (genre, age rating, duration, release year, language)." },
-          { step: "Data Cleaning", desc: "Imputes missing attributes and normalizes numerical features." },
-          { step: "Feature Encoding", desc: "Converts categorical strings into structured numerical matrices." },
-          { step: "Model Training", desc: "Trains Decision Trees, Random Forests, and XGBoost models." },
-          { step: "Classification Out", desc: "Validates model performance and exports movie tags." }
+          { step: "Metadata Parsing", desc: "Rich metadata streams extracted from Amazon Prime" },
+          { step: "Feature Engineering", desc: "Multi-variable features constructed" },
+          { step: "Classification", desc: "XGBoost model categorizes content" },
+          { step: "Output", desc: "Movie categories and preference mappings generated" }
         ]
       }
     },
     {
       title: "Boston House Price Predictor",
-      subtitle: "Real Estate Value Regression Model",
+      subtitle: "Property Valuation Pipeline",
       categories: ["Machine Learning", "Data Engineering"],
       description: "Supervised regression pipeline optimizing property valuation forecasting by analyzing crime, rooms, location, and socio-environmental factors.",
-
-      tech: ["Python", "scikit-learn", "XGBoost", "Matplotlib", "Seaborn"],
-      impactSummary: "Predicted housing prices with minimized Root Mean Squared Error (RMSE) margins.",
+      tech: ["Python", "scikit-learn", "XGBoost"],
+      impactSummary: "Forecasts property valuations using supervised regression on socio-environmental data.",
       isFeatured: false,
       details: {
-        problem: "Property valuation models are heavily impacted by socio-environmental multi-collinearity, causing high errors in pricing forecasts.",
-        importance: "Accurate real estate metrics reduce transaction valuation discrepancies and optimize investor portfolios.",
-        howItWorks: "Conducted Exploratory Data Analysis (EDA) on geographic datasets, handled outliers using IQR boundaries, and engineered features. Trained Linear Regression, Random Forest Regressors, and XGBoost Regressors.",
-        challenges: "Severe multi-collinearity between tax rates and distance to highway indices. Solved by variance inflation factor (VIF) pruning.",
-        impact: "Reduced price forecasting error, achieving highly stable performance metrics (RMSE & MAE).",
+        problem: "Property valuation depends on numerous socio-environmental factors that are difficult to assess manually.",
+        importance: "Automated property valuation forecasting helps buyers, sellers, and analysts make data-driven decisions.",
+        howItWorks: "Applies supervised regression analysis on features including crime rates, number of rooms, location, and socio-environmental factors to forecast property valuations.",
+        challenges: "Selecting and weighting multiple correlated environmental and social factors.",
+        impact: "Forecasts property valuations using supervised regression on socio-environmental data.",
         flowchart: [
-          { step: "EDA & Auditing", desc: "Analyzes socio-environmental datasets for missing records." },
-          { step: "Outlier Treatment", desc: "Removes extreme pricing variables using IQR filtering." },
-          { step: "Feature Selection", desc: "Prunes high-correlation predictors using VIF threshold audits." },
-          { step: "Regression Training", desc: "Trains Linear Regression and XGBoost Regressors." },
-          { step: "Valuation output", desc: "Generates real estate pricing forecasts with minimal error." }
+          { step: "Data Collection", desc: "Housing data with socio-environmental features gathered" },
+          { step: "Feature Analysis", desc: "Crime, rooms, location factors analyzed" },
+          { step: "Regression Training", desc: "Supervised model trained on historical data" },
+          { step: "Valuation", desc: "Property price predictions generated" }
         ]
       }
     },
     {
       title: "Breast Cancer Diagnostic Model",
-      subtitle: "High-Recall Binary Clinical Classifier",
+      subtitle: "Medical Diagnostic Classifier",
       categories: ["Machine Learning", "Data Engineering"],
-      description: "A clinical-grade diagnostic pipeline for classifying breast tumor status (malignant vs. benign) using SVM, XGBoost, and nucleus feature measurements with threshold tuning optimized for high recall.",
-
-      tech: ["Python", "scikit-learn", "SVM", "XGBoost", "Medical Analytics"],
-      impactSummary: "Optimized diagnostic recall to minimize false-negative clinical warnings.",
+      description: "Diagnostic classification model for breast cancer detection using machine learning techniques to classify tumors as benign or malignant.",
+      tech: ["Python", "Machine Learning"],
+      impactSummary: "Machine learning-based classification for breast cancer diagnosis.",
       isFeatured: false,
       details: {
-        problem: "Clinical diagnosis requires minimizing false negatives (misclassifying malignant tumors as benign) to prevent life-threatening delays.",
-        importance: "Computer-aided diagnostic models provide critical secondary validation checks for oncologists.",
-        howItWorks: "Processed raw nucleus metrics (radius, texture, perimeter). Trained binary classification networks (Logistic Regression, Random Forest, Support Vector Machines with RBF kernel, and XGBoost), optimizing for Recall and F1 Score.",
-        challenges: "Severe cost discrepancy of misclassification errors. Resolved by shifting classifier thresholds to favor high recall.",
-        impact: "Trained medical diagnosis model achieving excellent F1-score and recall rates.",
+        problem: "Early and accurate diagnosis of breast cancer is critical for patient outcomes.",
+        importance: "Machine learning-assisted diagnosis can support medical professionals in classification decisions.",
+        howItWorks: "Uses machine learning classification techniques to distinguish between benign and malignant tumors based on diagnostic features.",
+        challenges: "Ensuring high accuracy and reliability in medical diagnostic applications.",
+        impact: "Classifies breast tumors as benign or malignant using machine learning.",
         flowchart: [
-          { step: "Nucleus Feature Load", desc: "Imports cell structural attributes (radius, texture, perimeter)." },
-          { step: "MinMax Scaling", desc: "Standardizes features to prevent model scale bias." },
-          { step: "Classifier Training", desc: "Trains SVM, Random Forest, and XGBoost algorithms." },
-          { step: "Threshold Optimization", desc: "Tunes model decision thresholds to maximize recall." },
-          { step: "Diagnostic Report", desc: "Classifies tumors as benign or malignant with high confidence." }
+          { step: "Data Input", desc: "Diagnostic features collected from tumor samples" },
+          { step: "Feature Processing", desc: "Diagnostic features prepared for classification" },
+          { step: "Classification", desc: "ML model classifies tumor as benign or malignant" },
+          { step: "Diagnosis", desc: "Classification result presented for review" }
         ]
       }
     }
   ]
 
-  const filteredProjects = projects.filter((project) => {
-    if (activeCategory === "All") return true
-    return project.categories.includes(activeCategory)
-  })
+  // Derive categories dynamically from project data
+  const categoryOrder = ["All", "Agentic AI", "Quantum Computing", "Generative AI", "Machine Learning", "Data Engineering"]
+  const usedCategories = new Set(projects.flatMap(p => p.categories))
+  const categories = categoryOrder.filter(c => c === "All" || usedCategories.has(c))
 
-
-  const featuredProjects = filteredProjects.filter(p => p.isFeatured)
-  const regularProjects = filteredProjects.filter(p => !p.isFeatured)
+  const filteredProjects = activeCategory === "All"
+    ? projects
+    : projects.filter(p => p.categories.includes(activeCategory))
 
   return (
-    <section id="projects" className="py-24 px-6 bg-background">
+    <section id="projects" className="py-24 px-6 relative">
       <div className="container mx-auto max-w-6xl">
-        {/* Section Title */}
+        {/* Section Header */}
         <div className="text-center mb-16 slide-up">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary uppercase tracking-wider mb-3">
-            Portfolio Showcase
+            Portfolio
           </div>
           <h2 className="font-poppins font-extrabold text-4xl md:text-5xl mb-4 text-foreground">
-            Featured Systems
+            Projects
           </h2>
           <div className="w-16 h-1 bg-primary mx-auto rounded-full mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Explore autonomous agents, neural architectures, and semantic retrieval systems built to solve real-world problems.
+            A collection of AI and Machine Learning projects spanning agentic systems, quantum computing, and predictive analytics.
           </p>
         </div>
 
-        {/* Filter Navigation */}
+        {/* Category Filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-12 slide-up delay-100">
-          {categories.map((cat, idx) => (
+          {categories.map((category) => (
             <button
-              key={idx}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 border ${
-                activeCategory === cat
-                  ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                  : "bg-muted/40 hover:bg-muted text-muted-foreground hover:text-foreground border-transparent"
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
+                activeCategory === category
+                  ? "bg-primary text-primary-foreground border-primary shadow-glow"
+                  : "bg-card text-muted-foreground border-border/50 hover:border-primary/50 hover:text-foreground"
               }`}
             >
-              {cat}
+              {category}
             </button>
           ))}
         </div>
 
-        {/* Featured Projects Grid */}
-        {featuredProjects.length > 0 && (
-          <div className="space-y-8 mb-16">
-            <h3 className="text-xl font-bold font-poppins text-foreground/80 flex items-center gap-2 slide-up">
-              <Sparkles className="w-5 h-5 text-primary animate-pulse" /> Production-Grade Systems
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProjects.map((project, index) => (
-                <Card
-                  key={index}
-                  className="card-hover border bg-card shadow-md flex flex-col justify-between cursor-pointer slide-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                  onClick={() => setSelectedProject(project)}
-                >
-                  <CardHeader className="p-6 pb-4">
-                    <div className="flex justify-between items-start mb-2">
-                    <span className="text-xs bg-primary/10 border border-primary/20 text-primary px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">
-                        {categoriesForProjectLabel(project)}
-                      </span>
-                    </div>
-                    <CardTitle className="font-poppins font-extrabold text-2xl text-foreground">
-                      {project.title}
-                    </CardTitle>
-                    <p className="text-sm text-primary font-medium mt-1">{project.subtitle}</p>
-                  </CardHeader>
-
-                  <CardContent className="p-6 pt-0 space-y-4 flex-grow flex flex-col justify-between">
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-grow">
-                      {project.description}
-                    </p>
-
-                    <div className="space-y-3">
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.tech.slice(0, 4).map((tech, techIdx) => (
-                          <Badge
-                            key={techIdx}
-                            variant="secondary"
-                            className="text-[10px] py-0.5 px-2 font-medium bg-muted/60"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                        {project.tech.length > 4 && (
-                          <span className="text-[10px] text-muted-foreground font-semibold self-center ml-1">+{project.tech.length - 4} more</span>
-                        )}
-                      </div>
-
-                      <div className="p-3 bg-accent/40 rounded-xl border border-accent/10 flex items-center justify-between group-hover:bg-accent transition-all duration-300">
-                        <p className="text-xs text-muted-foreground leading-snug">
-                          <span className="font-bold text-primary">Outcome:</span> {project.impactSummary}
-                        </p>
-                      </div>
-
-                      <div className="flex gap-2 mt-2" onClick={(e) => e.stopPropagation()}>
-                        <Button
-                          size="sm"
-                          className="flex-grow justify-between"
-                          variant="outline"
-                          onClick={() => setSelectedProject(project)}
-                        >
-                          Explore System Architecture <ArrowRight className="w-4 h-4" />
-                        </Button>
-                        {project.githubUrl && (
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              className="px-3 h-9 hover:bg-muted/60 hover:text-foreground border border-input bg-background"
-                              title="View Code"
-                            >
-                              <Github className="w-4 h-4" />
-                            </Button>
-                          </a>
-                        )}
-                        {project.demoUrl && (
-                          <a
-                            href={project.demoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Button
-                              size="sm"
-                              variant="default"
-                              className="px-3 h-9 gap-1.5 hover:opacity-90 bg-primary text-primary-foreground"
-                              title="Live Demo"
-                            >
-                              <ExternalLink className="w-4 h-4" />
-                              <span className="hidden sm:inline">Demo</span>
-                            </Button>
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Regular Projects Grid */}
-        {regularProjects.length > 0 && (
-          <div className="space-y-6">
-            <h3 className="text-xl font-bold font-poppins text-foreground/80 flex items-center gap-2 slide-up">
-              <Layers className="w-5 h-5 text-primary" /> Engineering Pipelines & Models
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {regularProjects.map((project, index) => (
-                <Card
-                  key={index}
-                  className="card-hover border bg-card shadow-sm flex flex-col justify-between cursor-pointer slide-up"
-                  style={{ animationDelay: `${index * 0.05}s` }}
-                  onClick={() => setSelectedProject(project)}
-                >
-                  <CardHeader className="p-5 pb-3">
-                    <span className="self-start text-[10px] bg-muted text-muted-foreground px-2 py-0.5 rounded-full font-bold uppercase tracking-wider mb-2">
-                      {categoriesForProjectLabel(project)}
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project, index) => (
+            <Card
+              key={project.title}
+              className={`card-hover rounded-2xl flex flex-col slide-up ${
+                index % 3 === 0 ? "delay-100" : index % 3 === 1 ? "delay-200" : "delay-300"
+              } ${project.isFeatured ? "ring-1 ring-primary/30 dark:ring-primary/20" : ""}`}
+            >
+              <div className="p-6 flex flex-col flex-1">
+                {/* Category Label & Featured Badge */}
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[10px] font-bold text-primary uppercase tracking-wider">
+                    {categoriesForProjectLabel(project)}
+                  </span>
+                  {project.isFeatured && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-semibold text-primary">
+                      <Sparkles className="w-3 h-3" /> Featured
                     </span>
-                    <CardTitle className="font-poppins font-bold text-lg text-foreground mt-1">
-                      {project.title}
-                    </CardTitle>
-                  </CardHeader>
+                  )}
+                </div>
 
-                  <CardContent className="p-5 pt-0 space-y-4 flex-grow flex flex-col justify-between">
-                    <p className="text-xs text-muted-foreground leading-relaxed flex-grow">
-                      {project.description}
-                    </p>
+                {/* Title & Subtitle */}
+                <h3 className="font-poppins font-bold text-lg text-foreground mb-1">
+                  {project.title}
+                </h3>
+                <p className="text-xs text-muted-foreground font-medium mb-3">
+                  {project.subtitle}
+                </p>
 
-                    <div className="space-y-2">
-                      <div className="flex flex-wrap gap-1">
-                        {project.tech.slice(0, 3).map((tech, techIdx) => (
-                          <Badge key={techIdx} variant="outline" className="text-[9px] py-px px-1.5 font-medium">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
+                {/* Description */}
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
+                  {project.description}
+                </p>
 
-                      <div 
-                        className="flex items-center justify-between gap-2 pt-2 border-t border-border/40"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <div 
-                          className="flex items-center gap-2 cursor-pointer hover:opacity-85 transition-opacity"
-                          onClick={() => setSelectedProject(project)}
-                        >
-                          <span className="text-[10px] text-primary font-bold">Details & System Flow</span>
-                          <ArrowRight className="w-3 h-3 text-primary" />
-                        </div>
-                        <div className="flex gap-1.5">
-                          {project.githubUrl && (
-                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                className="h-7 w-7 p-0 hover:bg-muted/60 hover:text-foreground"
-                                title="View Code"
-                              >
-                                <Github className="w-3.5 h-3.5" />
-                              </Button>
-                            </a>
-                          )}
-                          {project.demoUrl && (
-                            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                              <Button
-                                size="sm"
-                                variant="default"
-                                className="h-7 px-2 text-[10px] gap-1 hover:opacity-90"
-                                title="Live Demo"
-                              >
-                                <ExternalLink className="w-3.5 h-3.5" /> Demo
-                              </Button>
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
+                {/* Tech Badges */}
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {project.tech.map((t) => (
+                    <Badge
+                      key={t}
+                      variant="secondary"
+                      className="text-[10px] bg-card hover:bg-primary hover:text-primary-foreground transition-colors border border-border/50 font-medium"
+                    >
+                      {t}
+                    </Badge>
+                  ))}
+                </div>
 
-        {/* System Detail Modal */}
-        <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
-          <DialogContent className="max-w-3xl w-[95vw] rounded-2xl p-6 bg-card border overflow-y-auto max-h-[85vh]">
+                {/* Action Buttons — flex-wrap prevents overflow */}
+                <div className="flex flex-wrap gap-2 mt-auto pt-2">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => setSelectedProject(project)}
+                    className="text-xs gap-1"
+                  >
+                    Details <ArrowRight className="w-3 h-3" />
+                  </Button>
+                  {project.githubUrl && (
+                    <Button size="sm" variant="outline" className="text-xs gap-1" asChild>
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-3 h-3" /> GitHub
+                      </a>
+                    </Button>
+                  )}
+                  {project.demoUrl && (
+                    <Button size="sm" variant="default" className="text-xs gap-1" asChild>
+                      <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-3 h-3" /> Demo
+                      </a>
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        {/* Project Details Dialog */}
+        <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
+          <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto rounded-2xl">
             {selectedProject && (
               <>
-                <DialogHeader className="mb-4">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-[10px] bg-primary/10 text-primary border border-primary/20 px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                      {selectedProject.categories.length === 1 ? selectedProject.categories[0] : `${selectedProject.categories[0]} +${selectedProject.categories.length - 1}`}
+                <DialogHeader>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-[10px] font-bold text-primary uppercase tracking-wider">
+                      {categoriesForProjectLabel(selectedProject)}
                     </span>
-
-                    <span className="text-xs text-muted-foreground">System Overview</span>
+                    {selectedProject.isFeatured && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-semibold text-primary">
+                        <Sparkles className="w-3 h-3" /> Featured
+                      </span>
+                    )}
                   </div>
-                  <DialogTitle className="font-poppins font-extrabold text-3xl text-foreground flex items-center justify-between flex-wrap gap-4">
+                  <DialogTitle className="font-poppins font-extrabold text-2xl">
                     {selectedProject.title}
-                    <div className="flex gap-2">
-                      {selectedProject.githubUrl && (
-                        <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="gap-1.5 py-1 px-3 h-8 rounded-lg text-xs transition-all hover:bg-muted/60 hover:text-foreground"
-                          >
-                            <Github className="w-3.5 h-3.5" /> Code
-                          </Button>
-                        </a>
-                      )}
-
-                      {selectedProject.demoUrl && (
-                        <a href={selectedProject.demoUrl} target="_blank" rel="noopener noreferrer">
-                          <Button
-                            size="sm"
-                            variant="default"
-                            className="gap-1.5 py-1 px-3 h-8 rounded-lg text-xs transition-all hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary/40"
-                          >
-                            <ExternalLink className="w-3.5 h-3.5" /> Live Demo
-                          </Button>
-                        </a>
-                      )}
-                    </div>
-
                   </DialogTitle>
-                  <DialogDescription className="text-sm text-primary font-semibold mt-1">
+                  <DialogDescription className="text-sm text-muted-foreground">
                     {selectedProject.subtitle}
                   </DialogDescription>
                 </DialogHeader>
 
-                <Tabs defaultValue="narrative" className="w-full">
-                  <TabsList className="grid grid-cols-3 mb-6 bg-muted/60 p-1 rounded-xl">
-                    <TabsTrigger value="narrative" className="rounded-lg text-xs py-1.5">System Narrative</TabsTrigger>
-                    <TabsTrigger value="architecture" className="rounded-lg text-xs py-1.5">Architecture Flow</TabsTrigger>
-                    <TabsTrigger value="challenges" className="rounded-lg text-xs py-1.5">Bottlenecks & MLOps</TabsTrigger>
+                <Tabs defaultValue="overview" className="mt-4">
+                  <TabsList className="grid w-full grid-cols-3 mb-4">
+                    <TabsTrigger value="overview">Overview</TabsTrigger>
+                    <TabsTrigger value="how">How It Works</TabsTrigger>
+                    <TabsTrigger value="flow">System Flow</TabsTrigger>
                   </TabsList>
 
-                  {/* System Narrative Tab */}
-                  <TabsContent value="narrative" className="space-y-5 text-sm leading-relaxed">
-                    <div className="space-y-1">
-                      <h4 className="font-bold text-foreground flex items-center gap-1.5 text-xs uppercase tracking-wider text-primary/95">
-                        <AlertTriangle className="w-4 h-4" /> The Problem
-                      </h4>
-                      <p className="text-muted-foreground pl-5.5">{selectedProject.details.problem}</p>
+                  <TabsContent value="overview" className="space-y-4">
+                    <div>
+                      <h4 className="font-poppins font-bold text-sm text-foreground mb-2">Problem</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{selectedProject.details.problem}</p>
                     </div>
-
-                    <div className="space-y-1">
-                      <h4 className="font-bold text-foreground flex items-center gap-1.5 text-xs uppercase tracking-wider text-primary/95">
-                        <Lightbulb className="w-4 h-4" /> Why It Matters
-                      </h4>
-                      <p className="text-muted-foreground pl-5.5">{selectedProject.details.importance}</p>
+                    <div>
+                      <h4 className="font-poppins font-bold text-sm text-foreground mb-2">Why It Matters</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{selectedProject.details.importance}</p>
                     </div>
-
-                    <div className="space-y-1">
-                      <h4 className="font-bold text-foreground flex items-center gap-1.5 text-xs uppercase tracking-wider text-primary/95">
-                        <Cpu className="w-4 h-4" /> How It Was Built
-                      </h4>
-                      <p className="text-muted-foreground pl-5.5">{selectedProject.details.howItWorks}</p>
+                    <div>
+                      <h4 className="font-poppins font-bold text-sm text-foreground mb-2">Outcome</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{selectedProject.details.impact}</p>
                     </div>
-
-                    <div className="space-y-1">
-                      <h4 className="font-bold text-foreground flex items-center gap-1.5 text-xs uppercase tracking-wider text-primary/95">
-                        <Trophy className="w-4 h-4" /> Impact & Metrics Achieved
-                      </h4>
-                      <p className="text-muted-foreground pl-5.5">{selectedProject.details.impact}</p>
-                    </div>
-                  </TabsContent>
-
-                  {/* Architecture Flow Tab */}
-                  <TabsContent value="architecture" className="space-y-6">
-                    <div className="p-4 bg-muted/30 dark:bg-muted/10 rounded-2xl border border-border/40">
-                      <p className="text-xs text-muted-foreground mb-4 text-center font-medium uppercase tracking-wider">
-                        Dynamic Data Flow Layout
-                      </p>
-                      
-                      {/* Vertical Flow Steps */}
-                      <div className="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-primary/25">
-                        {selectedProject.details.flowchart.map((step, idx) => (
-                          <div key={idx} className="relative">
-                            <span className="absolute -left-6 top-1 w-5 h-5 rounded-full bg-primary border-4 border-card flex items-center justify-center text-[10px] font-bold text-primary-foreground shadow-sm">
-                              {idx + 1}
-                            </span>
-                            <div>
-                              <h5 className="font-bold text-sm text-foreground">{step.step}</h5>
-                              <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{step.desc}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="text-xs font-bold text-foreground/80 self-center mr-1">System Tech Stack:</span>
-                      {selectedProject.tech.map((t, idx) => (
-                        <Badge key={idx} variant="secondary" className="text-[10px] bg-primary/5 text-primary border border-primary/10">
+                    <div className="flex flex-wrap gap-1.5 pt-2">
+                      {selectedProject.tech.map((t) => (
+                        <Badge key={t} variant="secondary" className="text-[10px] border border-border/50 font-medium">
                           {t}
                         </Badge>
                       ))}
                     </div>
                   </TabsContent>
 
-                  {/* Bottlenecks & MLOps Tab */}
-                  <TabsContent value="challenges" className="space-y-4">
-                    <div className="p-4 bg-amber-500/5 border border-amber-500/10 rounded-2xl flex gap-3">
-                      <AlertTriangle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <h4 className="font-bold text-foreground text-sm">Engineering Bottleneck</h4>
-                        <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
-                          {selectedProject.details.challenges}
-                        </p>
-                      </div>
+                  <TabsContent value="how" className="space-y-4">
+                    <div>
+                      <h4 className="font-poppins font-bold text-sm text-foreground mb-2">Technical Approach</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{selectedProject.details.howItWorks}</p>
                     </div>
+                    <div>
+                      <h4 className="font-poppins font-bold text-sm text-foreground mb-2">Challenges</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{selectedProject.details.challenges}</p>
+                    </div>
+                  </TabsContent>
 
-                    <div className="p-4 bg-primary/5 border border-primary/10 rounded-2xl space-y-2">
-                      <h4 className="font-bold text-foreground text-sm flex items-center gap-1.5">
-                        <Cpu className="w-4.5 h-4.5 text-primary" /> MLOps, Pipelines & Monitoring
-                      </h4>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        To scale this system, components were built as modular microservices, wrapping tasks in distinct logical steps. Logging dashboards track latency distributions and output variances, allowing rapid evaluation metrics monitoring (F1-score, RMSE, recall grids) to isolate data drift.
-                      </p>
+                  <TabsContent value="flow">
+                    <div className="space-y-0">
+                      {selectedProject.details.flowchart.map((step, i) => (
+                        <div key={i} className="flex items-start gap-4 relative">
+                          {/* Timeline Line */}
+                          {i < selectedProject.details.flowchart.length - 1 && (
+                            <div className="absolute left-[15px] top-[32px] w-0.5 h-[calc(100%-8px)] bg-border" />
+                          )}
+                          {/* Step Number */}
+                          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 border border-primary/30 flex items-center justify-center text-xs font-bold text-primary z-10">
+                            {i + 1}
+                          </div>
+                          {/* Step Content */}
+                          <div className="pb-6 flex-1">
+                            <h4 className="font-poppins font-bold text-sm text-foreground flex items-center gap-1.5">
+                              {step.step}
+                              <ChevronRight className="w-3 h-3 text-primary" />
+                            </h4>
+                            <p className="text-xs text-muted-foreground mt-1">{step.desc}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </TabsContent>
                 </Tabs>
+
+                {/* Dialog Action Buttons */}
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-border/40">
+                  {selectedProject.githubUrl && (
+                    <Button size="sm" variant="outline" className="text-xs gap-1" asChild>
+                      <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <Github className="w-3 h-3" /> View on GitHub
+                      </a>
+                    </Button>
+                  )}
+                  {selectedProject.demoUrl && (
+                    <Button size="sm" variant="default" className="text-xs gap-1" asChild>
+                      <a href={selectedProject.demoUrl} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="w-3 h-3" /> Live Demo
+                      </a>
+                    </Button>
+                  )}
+                </div>
               </>
             )}
           </DialogContent>
