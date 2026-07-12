@@ -2,14 +2,17 @@ import { useEffect } from "react"
 import Navigation from "@/components/navigation"
 import HeroSection from "@/components/hero-section"
 import AboutSection from "@/components/about-section"
+import CapstoneSection from "@/components/capstone-section"
+import PublicationSection from "@/components/publication-section"
 import ProjectsSection from "@/components/projects-section"
 import SkillsSection from "@/components/skills-section"
 import ExperienceSection from "@/components/experience-section"
+import MilestonesSection from "@/components/milestones-section"
+import CertificationsSection from "@/components/certifications-section"
 import ContactSection from "@/components/contact-section"
 
 const Index = () => {
   useEffect(() => {
-    // Initialize animation observer
     const observerOptions = {
       threshold: 0.1,
       rootMargin: "0px 0px -100px 0px",
@@ -23,10 +26,7 @@ const Index = () => {
       })
     }, observerOptions)
 
-    // Observe all animated elements
-    const animatedElements = document.querySelectorAll(
-      ".slide-up, .fade-in, .scale-in"
-    )
+    const animatedElements = document.querySelectorAll(".slide-up, .fade-in, .scale-in")
     animatedElements.forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()
@@ -37,10 +37,13 @@ const Index = () => {
       <Navigation />
       <HeroSection />
       <AboutSection />
+      <CapstoneSection />
+      <PublicationSection />
       <ProjectsSection />
       <SkillsSection />
       <ExperienceSection />
-      {/* ✅ Removed <ResumeSection /> */}
+      <MilestonesSection />
+      <CertificationsSection />
       <ContactSection />
     </main>
   )

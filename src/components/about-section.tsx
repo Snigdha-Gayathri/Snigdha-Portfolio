@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { MapPin, Mail, GraduationCap, Cpu, Database, Server, Trophy } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { MapPin, Mail, GraduationCap, Cpu, Database, Server, Trophy, FileText, ExternalLink } from "lucide-react"
 
 const AboutSection = () => {
   const strengths = [
@@ -40,14 +41,14 @@ const AboutSection = () => {
       description: "Provides annual reading wrapped summaries, educational reading insights, and user behavior analytics to help readers track and understand their reading patterns."
     },
     {
-      headline: "RepoPilot",
-      subheadline: "AI Repository Assistant",
-      description: "Agentic AI-powered GitHub repository engineering assistant that analyzes repositories, identifies improvements, and creates pull requests through six specialized AI agents."
+      headline: "Author Insights",
+      subheadline: "Smart Reading Discovery",
+      description: "Surfaces featured authors and recommended authors based on the user's reading history, helping readers discover new writers aligned with their interests and preferences."
     },
     {
-      headline: "NeuroPlan AI",
-      subheadline: "Learning Roadmap Generator",
-      description: "Multi-agent AI learning roadmap generator creating personalized learning paths with subtask tracking, progress analytics, and skill relationship insights."
+      headline: "Q-Lexi",
+      subheadline: "AI Mascot Orchestrator",
+      description: "The Q-Lexi mascot robot oversees and coordinates multiple specialized agents including the Analysis Agent, Recommendation Agent, Reading History Memory Agent, Settings Agent, and Personaliser Agent."
     }
   ]
 
@@ -161,6 +162,25 @@ const AboutSection = () => {
               </Card>
             )
           })}
+        </div>
+
+        {/* Smart Shelf AI Paper Publication Button */}
+        <div className="flex justify-center mb-16 -mt-8 slide-up delay-200">
+          <Button
+            size="lg"
+            className="rounded-full shadow-glow gap-2 px-6 h-12 font-poppins font-semibold text-sm bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 text-primary-foreground hover:scale-105 transition-all duration-300"
+            asChild
+          >
+            <a
+              href="http://ijcrt.org/viewfull.php?&p_id=IJCRT2604072"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FileText className="w-4 h-4" />
+              Read Smart Shelf AI Research Publication (IJCRT)
+              <ExternalLink className="w-4 h-4 ml-1" />
+            </a>
+          </Button>
         </div>
 
         {/* Strengths Grid */}
