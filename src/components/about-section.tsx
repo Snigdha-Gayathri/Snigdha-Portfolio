@@ -71,14 +71,16 @@ const AboutSection = () => {
           {/* Narrative Column */}
           <div className="lg:col-span-8 space-y-6 text-muted-foreground leading-relaxed slide-up">
             <p className="text-lg">
-              Hello! I'm <span className="text-foreground font-bold text-gradient">Jaya Snigdha Gayathri Mandapati</span>, 
-              a computer science engineer specializing in AI and Machine Learning at Aditya University. My core focus lies at the intersection of cognitive intelligence and software engineering. I design and build systems that don't just process data, but reason, plan, and execute tasks autonomously.
+              I build intelligent systems that combine <strong className="text-foreground font-semibold">Generative AI, Agentic AI, Retrieval-Augmented Generation (RAG), and Machine Learning</strong> to solve complex engineering problems. My work focuses on transforming large language models into scalable, production-ready applications through robust software engineering and modern AI architectures.
             </p>
             <p className="text-base">
-              Through internships at Cognifyz Technologies and Technical Hub, I have engineered machine learning pipelines that reduce feature dimensionality, deploy low-latency inference endpoints, and build real-time prediction capabilities processing thousands of daily records. I focus on writing clean, scalable Python, C#, and TypeScript code, implementing robust data validation, and ensuring model drift is monitored effectively.
+              I design and develop end-to-end AI systems, including multi-agent workflows, enterprise knowledge platforms, AI-powered developer tools, intelligent automation solutions, and LLM-driven applications. I'm currently building <strong className="text-foreground font-semibold">RepoPilot</strong>, a multi-agent GitHub repository intelligence platform; <strong className="text-foreground font-semibold">EKIP</strong>, an enterprise knowledge intelligence platform powered by advanced RAG; and <strong className="text-foreground font-semibold">AI Resume Tailor</strong>, an intelligent resume optimization system that aligns resumes with job requirements using LLMs and ATS-aware optimization.
             </p>
             <p className="text-base">
-              I am highly passionate about Generative AI, RAG pipelines, and Multi-Agent system design. Currently, I am seeking opportunities to contribute as an AI Engineer / ML Engineer where I can develop and scale enterprise-ready intelligent systems.
+              Previously, I developed <strong className="text-foreground font-semibold">NeuroPlan AI</strong>, an AI-powered career intelligence platform, and <strong className="text-foreground font-semibold">Smart Shelf AI</strong>, a retail intelligence system that integrated AI with quantum-inspired optimization. I also authored <strong className="text-foreground font-semibold">"Smart Shelf AI: A Quantum Computing Powered Book Recommendation System,"</strong> published in the <span className="italic">International Journal of Creative Research Thoughts (IJCRT)</span>.
+            </p>
+            <p className="text-base">
+              My expertise spans <strong className="text-foreground font-semibold">Python, FastAPI, LangChain, LangGraph, React, Next.js, TypeScript, Docker, vector databases, cloud-native AI infrastructure, and modern LLM frameworks</strong>. I engineer AI systems with an emphasis on scalability, reliability, and clean architecture—building software that doesn't just demonstrate AI capabilities, but delivers measurable value in production.
             </p>
           </div>
           
