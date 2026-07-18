@@ -399,7 +399,10 @@ const ProjectCard = ({
   index: number
   onSelect: (p: Project) => void
 }) => {
+  const [isExpanded, setIsExpanded] = useState(false)
   const delayClass = index % 3 === 0 ? "delay-100" : index % 3 === 1 ? "delay-200" : "delay-300"
+  const isLong = project.description.length > 115
+
   return (
     <Card
       className={`card-hover rounded-2xl flex flex-col slide-up ${delayClass} ${
@@ -419,7 +422,23 @@ const ProjectCard = ({
         </div>
         <h3 className="font-poppins font-bold text-lg text-foreground mb-1">{project.title}</h3>
         <p className="text-xs text-muted-foreground font-medium mb-3">{project.subtitle}</p>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">{project.description}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+          {isExpanded || !isLong
+            ? project.description
+            : `${project.description.slice(0, 115).trim()}... `}
+          {isLong && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation()
+                setIsExpanded(!isExpanded)
+              }}
+              className="text-primary hover:underline font-semibold text-xs ml-1 focus:outline-none inline-block"
+            >
+              {isExpanded ? "less" : "more"}
+            </button>
+          )}
+        </p>
         <div className="flex flex-wrap gap-1.5 mb-5">
           {project.tech.map((t) => (
             <Badge key={t} variant="secondary" className="text-[10px] bg-card hover:bg-primary hover:text-primary-foreground transition-colors border border-border/50 font-medium">

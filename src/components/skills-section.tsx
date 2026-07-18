@@ -122,125 +122,28 @@ const toolsData = [
   },
 ]
 
-// ── Individual dodger-blue circular skill bubble ──────────────────────────────
-const SkillBubble = ({ name }: { name: string }) => {
-  const len = name.length
-  // Diameter grows with text length so every skill fits
-  const d = len <= 5 ? 72 : len <= 8 ? 82 : len <= 11 ? 92 : len <= 15 ? 102 : len <= 19 ? 112 : 122
-  const fs = len <= 7 ? "11px" : len <= 12 ? "10px" : len <= 17 ? "9px" : "8px"
-
-  return (
-    <div
-      className="group relative flex-shrink-0 flex items-center justify-center cursor-default select-none"
-      style={{ width: d, height: d }}
-    >
-      {/* Hover outer glow */}
-      <div
-        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, rgba(30,144,255,0.35) 0%, transparent 65%)",
-          transform: "scale(1.55)",
-          filter: "blur(10px)",
-        }}
-      />
-      {/* Bubble body */}
-      <div
-        className="relative w-full h-full rounded-full flex items-center justify-center text-center font-semibold leading-tight transition-all duration-300 ease-out group-hover:-translate-y-2 group-hover:scale-[1.12]"
-        style={{
-          fontSize: fs,
-          padding: "8px",
-          background: [
-            "radial-gradient(ellipse at 30% 25%, rgba(255,255,255,0.72) 0%, transparent 42%)",
-            "radial-gradient(ellipse at 65% 68%, rgba(0,90,200,0.22) 0%, transparent 55%)",
-            "linear-gradient(145deg, rgba(30,144,255,0.60) 0%, rgba(30,144,255,0.35) 45%, rgba(0,100,230,0.55) 100%)",
-          ].join(", "),
-          border: "1.5px solid rgba(30,144,255,0.55)",
-          boxShadow: [
-            "0 6px 20px rgba(30,144,255,0.32)",
-            "0 2px 6px rgba(30,144,255,0.20)",
-            "inset 0 1.5px 0 rgba(255,255,255,0.72)",
-            "inset 0 -1px 0 rgba(0,80,180,0.22)",
-          ].join(", "),
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-          color: "#ffffff",
-        }}
-      >
-        {/* Specular top-left highlight */}
-        <div
-          className="absolute rounded-full pointer-events-none"
-          style={{
-            top: "10%", left: "17%",
-            width: "36%", height: "21%",
-            background: "radial-gradient(ellipse, rgba(255,255,255,0.82) 0%, transparent 75%)",
-            transform: "rotate(-22deg)",
-          }}
-        />
-        {/* Tiny bottom reflection */}
-        <div
-          className="absolute rounded-full pointer-events-none"
-          style={{
-            bottom: "11%", right: "20%",
-            width: "20%", height: "10%",
-            background: "radial-gradient(ellipse, rgba(255,255,255,0.35) 0%, transparent 80%)",
-          }}
-        />
-        <span className="relative z-10 px-1 break-words drop-shadow-sm">{name}</span>
-      </div>
-    </div>
-  )
-}
-
-// ── Category card — large rounded container, NOT a fixed circle ───────────────
-// Using border-radius: 50% on a fixed-square would clip content.
-// Instead we use a very-high border-radius pill (2rem+) that looks circular/blob-like
-// but auto-sizes to fit all bubbles inside.
+// ── Category card — clean normal card exactly like Tools & Frameworks ────────
 const CategoryCard = ({ group }: { group: SkillGroup }) => {
   const Icon = group.icon
   return (
-    <div
-      className="relative flex flex-col items-center p-7 transition-all duration-300 hover:scale-[1.015] hover:shadow-glow"
-      style={{
-        borderRadius: "2.5rem",
-        background: [
-          "radial-gradient(ellipse at 35% 20%, rgba(255,255,255,0.20) 0%, transparent 50%)",
-          "linear-gradient(145deg, rgba(30,144,255,0.10) 0%, rgba(30,144,255,0.05) 60%, rgba(30,144,255,0.09) 100%)",
-        ].join(", "),
-        border: "1.5px solid rgba(30,144,255,0.22)",
-        boxShadow: [
-          "0 8px 32px rgba(30,144,255,0.10)",
-          "inset 0 1px 0 rgba(255,255,255,0.40)",
-        ].join(", "),
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
-      }}
-    >
-      {/* Specular sheen top */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          top: "6%", left: "12%",
-          width: "45%", height: "14%",
-          borderRadius: "50%",
-          background: "radial-gradient(ellipse, rgba(255,255,255,0.30) 0%, transparent 70%)",
-          transform: "rotate(-12deg)",
-        }}
-      />
-
-      {/* Icon + title */}
-      <div className="flex flex-col items-center gap-2 mb-5 z-10">
-        <div className="w-10 h-10 rounded-xl bg-primary/15 border border-primary/25 text-primary flex items-center justify-center">
-          <Icon className="w-5 h-5" />
+    <div className="p-5 rounded-2xl bg-card border border-border/40 space-y-4 hover:border-primary/30 hover:shadow-glow transition-all duration-300 flex flex-col h-full">
+      <div className="flex items-center gap-3 border-b border-border/40 pb-3">
+        <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center flex-shrink-0">
+          <Icon className="w-4 h-4" />
         </div>
-        <h3 className="font-poppins font-bold text-sm text-foreground text-center leading-snug max-w-[180px]">
+        <h3 className="font-poppins font-bold text-sm sm:text-base text-foreground leading-snug">
           {group.title}
         </h3>
       </div>
-
-      {/* Bubble cluster — wraps freely, no overflow:hidden so every bubble shows */}
-      <div className="flex flex-wrap justify-center gap-2.5 z-10">
+      <div className="flex flex-wrap gap-1.5 pt-1">
         {group.skills.map((skill) => (
-          <SkillBubble key={skill} name={skill} />
+          <Badge
+            key={skill}
+            variant="secondary"
+            className="text-[11px] bg-card hover:bg-primary hover:text-primary-foreground transition-colors border border-border/50 font-medium py-1 px-2.5"
+          >
+            {skill}
+          </Badge>
         ))}
       </div>
     </div>
@@ -267,8 +170,8 @@ const SkillsSection = () => (
         </p>
       </div>
 
-      {/* 3-column grid of rounded category containers */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* 3-column grid of normal category cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {skillGroups.map((group, gi) => (
           <div
             key={group.id}

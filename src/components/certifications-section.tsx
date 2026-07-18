@@ -1,4 +1,5 @@
 import { Award, BrainCircuit, Sparkles, Code2, BarChart2, Briefcase } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
 
 interface Cert {
   name: string
@@ -88,53 +89,6 @@ const certCategories: CertCategory[] = [
   },
 ]
 
-// ── Dodger-blue glass cert bubble ─────────────────────────────────────────────
-const CertBubble = ({ cert }: { cert: Cert }) => (
-  <div
-    className="group relative flex flex-col items-center justify-center text-center cursor-default select-none
-      transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.04]"
-    style={{
-      borderRadius: "1.5rem",
-      padding: "10px 14px",
-      minWidth: 100,
-      background: [
-        "radial-gradient(ellipse at 30% 22%, rgba(255,255,255,0.65) 0%, transparent 42%)",
-        "radial-gradient(ellipse at 68% 70%, rgba(0,90,200,0.18) 0%, transparent 52%)",
-        "linear-gradient(145deg, rgba(30,144,255,0.52) 0%, rgba(30,144,255,0.30) 45%, rgba(0,100,230,0.48) 100%)",
-      ].join(", "),
-      border: "1.5px solid rgba(30,144,255,0.50)",
-      boxShadow: [
-        "0 6px 18px rgba(30,144,255,0.28)",
-        "inset 0 1.5px 0 rgba(255,255,255,0.68)",
-        "inset 0 -1px 0 rgba(0,80,180,0.18)",
-      ].join(", "),
-      backdropFilter: "blur(10px)",
-      WebkitBackdropFilter: "blur(10px)",
-    }}
-  >
-    {/* Specular shine */}
-    <div
-      className="absolute pointer-events-none"
-      style={{
-        top: "10%", left: "14%",
-        width: "38%", height: "22%",
-        borderRadius: "50%",
-        background: "radial-gradient(ellipse, rgba(255,255,255,0.75) 0%, transparent 72%)",
-        transform: "rotate(-18deg)",
-      }}
-    />
-    {/* Hover glow ring */}
-    <div
-      className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
-      style={{
-        boxShadow: "0 0 18px 4px rgba(30,144,255,0.30)",
-      }}
-    />
-    <p className="relative z-10 text-[11px] font-bold text-white leading-snug drop-shadow-sm">{cert.name}</p>
-    <p className="relative z-10 text-[9px] font-semibold text-blue-100 mt-1 uppercase tracking-wider">{cert.issuer}</p>
-  </div>
-)
-
 const CertificationsSection = () => (
   <section id="certifications" className="py-24 px-6 bg-background relative">
     <div className="absolute top-1/3 right-0 w-[350px] h-[350px] bg-primary/4 blur-3xl rounded-full pointer-events-none" />
@@ -154,30 +108,36 @@ const CertificationsSection = () => (
         </p>
       </div>
 
-      {/* Category cards */}
-      <div className="space-y-8">
+      {/* Category cards — clean normal cards without bubbles */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {certCategories.map((cat, idx) => {
           const Icon = cat.icon
           const delayClass = idx % 3 === 0 ? "delay-100" : idx % 3 === 1 ? "delay-200" : "delay-300"
           return (
             <div key={cat.id} className={`slide-up ${delayClass}`}>
-              <div className="glass rounded-2xl border border-border/40 p-6 hover:border-primary/25 transition-all duration-300">
+              <div className="p-5 rounded-2xl bg-card border border-border/40 space-y-4 hover:border-primary/30 hover:shadow-glow transition-all duration-300 flex flex-col h-full">
                 {/* Category heading */}
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 border-b border-border/40 pb-3">
                   <div className={`w-9 h-9 rounded-xl flex items-center justify-center border flex-shrink-0 ${cat.iconColor}`}>
                     <Icon className="w-4 h-4" />
                   </div>
-                  <h3 className="font-poppins font-bold text-lg text-foreground">{cat.title}</h3>
-                  <div className="flex-1 h-px bg-border/40 ml-2" />
-                  <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider flex-shrink-0">
+                  <h3 className="font-poppins font-bold text-sm sm:text-base text-foreground leading-snug">{cat.title}</h3>
+                  <span className="ml-auto text-[10px] font-bold text-muted-foreground uppercase tracking-wider flex-shrink-0">
                     {cat.certs.length} certs
                   </span>
                 </div>
 
-                {/* Cert bubbles — all dodger blue, flex wrap */}
-                <div className="flex flex-wrap gap-3">
+                {/* Cert items — normal badges, no bubbles */}
+                <div className="flex flex-wrap gap-1.5 pt-1">
                   {cat.certs.map((cert, ci) => (
-                    <CertBubble key={ci} cert={cert} />
+                    <Badge
+                      key={ci}
+                      variant="secondary"
+                      className="text-[11px] bg-card hover:bg-primary hover:text-primary-foreground transition-colors border border-border/50 font-medium py-1 px-2.5 flex items-center gap-1 leading-normal"
+                    >
+                      <span className="font-semibold">{cert.name}</span>
+                      <span className="text-[10px] opacity-75 font-normal">({cert.issuer})</span>
+                    </Badge>
                   ))}
                 </div>
               </div>
