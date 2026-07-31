@@ -196,6 +196,30 @@ const showcaseProjects: ShowcaseProject[] = [
           { id: "response", label: "Cited Answer", sublabel: "SSE Stream", type: "default" },
         ],
       },
+    ],
+    journey: [
+      { title: "Problem", content: "Company interview information is scattered across PDFs, forums, and websites. Basic RAG systems miss relevant content due to vocabulary mismatch (sparse vs. semantic gap)." },
+      { title: "Research", content: "Studied hybrid retrieval strategies (BM25 + dense), reciprocal rank fusion algorithms, cross-encoder reranking architectures, and differential sync patterns." },
+      { title: "Design Decisions", content: "Chose dual retrieval over single-method for better recall. Added cross-encoder reranking for precision. Implemented SSE for real-time pipeline visibility." },
+      { title: "Architecture", content: "Decoupled frontend-backend on Render. Backend auto-syncs PDFs from Google Drive, hashes files for incremental updates, and serves a multi-stage retrieval pipeline." },
+      { title: "Implementation", content: "Built the ingestion pipeline first (Drive sync → parse → chunk → embed → index), then the retrieval pipeline (reformulate → dual retrieval → fusion → rerank → generate)." },
+      { title: "Challenges", content: "Balancing retrieval latency with quality — cross-encoder reranking adds latency but dramatically improves relevance. SSE streaming mitigates perceived wait time." },
+      { title: "Lessons Learned", content: "Hybrid retrieval (sparse + dense) consistently outperforms either method alone. Differential sync is essential for production RAG systems with evolving knowledge bases." },
+    ],
+    metrics: [
+      { value: "20+", label: "Companies Covered" },
+      { value: "Hybrid", label: "Dual Retrieval" },
+      { value: "Real-time", label: "SSE Pipeline" },
+    ],
+    githubLinks: [
+      { label: "Frontend", url: "https://github.com/Snigdha-Gayathri/Agentic-Placement-RAG-Frontend" },
+      { label: "Backend", url: "https://github.com/Snigdha-Gayathri/Agentic-Placement-RAG-Backend" },
+    ],
+    demoUrl: "https://agentic-placement-rag.onrender.com/",
+    challenges: "Achieving high retrieval quality across diverse PDF formats while maintaining sub-3-second response times for the full pipeline.",
+    lessonsLearned: "Production RAG requires much more than basic vector search — hybrid retrieval, reranking, and smart chunking are essential for quality.",
+    futureImprovements: "Multi-modal document support (images, tables), query-adaptive retrieval strategies, and collaborative knowledge base curation.",
+  },
 
   // ── 2. EKIP ──────────────────────────────────────────────────────────────
   {
@@ -239,7 +263,29 @@ const showcaseProjects: ShowcaseProject[] = [
           { id: "supabase", label: "Supabase", sublabel: "Metadata DB", type: "default" },
         ],
       },
-
+    ],
+    journey: [
+      { title: "Problem", content: "Enterprise knowledge is split between unstructured documents (semantic content) and structured relationships (system dependencies, entity connections). No single retrieval method covers both." },
+      { title: "Research", content: "Studied hybrid retrieval architectures, knowledge graph construction from documents, and LangGraph's cyclic graph execution for multi-hop reasoning." },
+      { title: "Design Decisions", content: "Three databases instead of one — each optimized for its access pattern. Chose LangGraph for its cyclic execution model enabling multi-hop agent reasoning." },
+      { title: "Architecture", content: "Supervisor Agent decides whether to invoke Search Agent (Qdrant), KG Agent (Neo4j), or both — iterating until enough evidence is gathered. Reasoning Agent synthesizes, Report Agent formats." },
+      { title: "Implementation", content: "Built dual-indexing ingestion pipeline: documents simultaneously indexed in Qdrant (vectors) and Neo4j (entities/relationships). React Flow frontend for visual exploration." },
+      { title: "Challenges", content: "Coordinating three databases with different consistency models and ensuring the Supervisor Agent knows when to stop gathering evidence and start reasoning." },
+      { title: "Lessons Learned", content: "Triple-database architecture is powerful but requires careful orchestration. The Supervisor's stopping criteria are crucial for response quality and latency." },
+    ],
+    metrics: [
+      { value: "4", label: "AI Agents" },
+      { value: "3", label: "Databases" },
+      { value: "Cyclic", label: "Graph Execution" },
+    ],
+    githubLinks: [
+      { label: "Repository", url: "https://github.com/Snigdha-Gayathri/EKIP" },
+    ],
+    demoUrl: "https://ekip-u0ip.onrender.com/",
+    challenges: "Designing reliable stopping criteria for the Supervisor Agent's cyclic execution and maintaining consistency across three different database systems.",
+    lessonsLearned: "Specialized databases > general-purpose solutions. The combination of vector search + graph traversal covers far more ground than either alone.",
+    futureImprovements: "Real-time document monitoring, collaborative knowledge curation, automated knowledge graph maintenance, and cross-organizational knowledge federation.",
+  },
   // ── 3. Smart Shelf AI ────────────────────────────────────────────────────
   {
     id: "smartshelf",
@@ -281,6 +327,30 @@ const showcaseProjects: ShowcaseProject[] = [
           { id: "quantum", label: "Quantum Layer", sublabel: "PennyLane Circuits", type: "primary" },
         ],
       },
+    ],
+    journey: [
+      { title: "Problem", content: "Traditional recommendation engines use simple collaborative filtering that misses nuanced reading preferences and fails to provide holistic reading intelligence." },
+      { title: "Research", content: "Explored quantum computing applications in recommendation systems and multi-agent architectures for complex task orchestration." },
+      { title: "Design Decisions", content: "Chose a dual-layer approach: quantum-enhanced recommendations for quality and multi-agent orchestration for comprehensive intelligence. Built Q-Lexi as a unifying mascot/orchestrator." },
+      { title: "Implementation", content: "Built the quantum recommendation engine with PennyLane, then layered the LangGraph multi-agent system on top for task routing and agent coordination." },
+      { title: "Challenges", content: "Integrating quantum computing techniques with practical AI agent workflows while maintaining responsive user experience." },
+      { title: "Solutions", content: "Designed asynchronous agent execution with fallback mechanisms and quantum circuit optimization for acceptable latency." },
+      { title: "Lessons Learned", content: "Quantum computing in recommendation systems is promising but requires careful hybrid classical-quantum design to be practical." },
+    ],
+    metrics: [
+      { value: "5", label: "AI Agents" },
+      { value: "6+", label: "Intelligence Features" },
+      { value: "Quantum", label: "Computing Layer" },
+    ],
+    githubLinks: [
+      { label: "Frontend", url: "https://github.com/Snigdha-Gayathri/Smart-Shelf-AI-Frontend" },
+      { label: "Backend", url: "https://github.com/Snigdha-Gayathri/Smart-Shelf-AI-Backend" },
+    ],
+    demoUrl: "https://smart-shelf-ai-frontend-1.onrender.com/",
+    challenges: "Coordinating five specialized agents with reliable inter-agent communication while integrating quantum computing techniques for practical recommendation quality.",
+    lessonsLearned: "Multi-agent systems require careful state management and fallback strategies. Quantum computing works best as an enhancement layer rather than a replacement.",
+    futureImprovements: "Expand quantum circuits for deeper similarity analysis, add social reading features, and implement real-time collaborative recommendations.",
+  },
 
   // ── 4. NeuroPlan AI ──────────────────────────────────────────────────────
   {
@@ -327,6 +397,30 @@ const showcaseProjects: ShowcaseProject[] = [
           { id: "llm", label: "Gemini / Groq", sublabel: "LLM APIs", type: "primary" },
         ],
       },
+    ],
+    journey: [
+      { title: "Problem", content: "Static learning paths ignore individual learning pace, cognitive fatigue, retention decay, and cross-domain skill transfer — leading to inefficient learning." },
+      { title: "Research", content: "Deep-dived into learning science: Ebbinghaus forgetting curve for spaced repetition, cognitive load theory for fatigue management, and transfer learning theory for skill mapping." },
+      { title: "Design Decisions", content: "Chose Next.js 14 App Router for full-stack capabilities. Designed eight specialized agents instead of one monolithic AI to handle distinct learning concerns." },
+      { title: "Architecture", content: "Arbitration Agent acts as the brain — balancing user requests, fatigue levels, and retention needs. Each agent has a clear responsibility and communicates through typed interfaces." },
+      { title: "Implementation", content: "Built incrementally: roadmap generation first, then quiz evaluation, mastery tracking, spaced repetition scheduling, fatigue monitoring, and finally transfer learning analysis." },
+      { title: "Challenges", content: "Implementing the Ebbinghaus forgetting curve with real-time decay factor calculations and ensuring the Fatigue Agent's assessments meaningfully impact the learning experience." },
+      { title: "Lessons Learned", content: "Learning science principles translate well into AI agent responsibilities. The key is keeping agents focused and letting the orchestrator handle coordination." },
+    ],
+    metrics: [
+      { value: "8", label: "AI Agents" },
+      { value: "6", label: "DB Models" },
+      { value: "Real-time", label: "Adaptation" },
+    ],
+    githubLinks: [
+      { label: "Repository", url: "https://github.com/Snigdha-Gayathri/NeuroPlan-AI" },
+    ],
+    demoUrl: "https://neuroplan-ai.onrender.com/",
+    challenges: "Balancing eight specialized agents with real-time adaptation while maintaining responsive UI and accurate learning science implementations.",
+    lessonsLearned: "Multi-agent systems work exceptionally well for educational AI — each learning science principle maps naturally to a dedicated agent.",
+    futureImprovements: "Peer learning integration, visual knowledge graphs, mobile app, and integration with external learning platforms (Coursera, Udemy).",
+  },
+
 ]
 
 // ═══════════════════════════════════════════════════════════════════════════
