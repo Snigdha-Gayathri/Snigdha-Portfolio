@@ -2,9 +2,9 @@ import { useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import {
   ExternalLink, Github, Wrench, Brain, Database, Cpu, Layers, Search, BookOpen,
-  Target, Lightbulb, Zap, Shield, BarChart3, GitBranch, Puzzle, Bot, Workflow,
+  Target, Zap, Shield, BarChart3, GitBranch, Puzzle, Bot, Workflow,
   Code2, Sparkles, ChevronRight, CheckCircle2, Clock, GraduationCap, Network, FileText,
-  Activity, TrendingUp, Rocket, MessageSquare
+  Activity, TrendingUp, Rocket, Lock, Gauge
 } from "lucide-react"
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -71,11 +71,19 @@ interface ShowcaseProject {
   futureImprovements: string
 }
 
-interface PassionProject {
+interface PassionProjectDetail {
+  id: string
   title: string
+  tagline: string
+  category: string
+  statusBadge: string
   description: string
-  highlights: string[]
-  demoUrl: string
+  problem: string
+  implementation: string
+  keyHighlights: string[]
+  techStack: string[]
+  githubUrl?: string
+  demoUrl?: string
 }
 
 interface CompactProject {
@@ -158,67 +166,68 @@ const showcaseProjects: ShowcaseProject[] = [
   {
     id: "placement-rag",
     title: "Agentic Placement RAG",
-    tagline: "Intelligent Interview Preparation with Hybrid RAG",
+    tagline: "Production-Grade Agentic RAG for Technical Placement Preparation",
     status: "completed",
-    category: "Agentic AI × RAG",
-    description: "A production-grade Retrieval-Augmented Generation system for company-specific interview preparation. Features dual retrieval (BM25 + dense vectors), reciprocal rank fusion, cross-encoder reranking, real-time pipeline progress tracking via SSE, and automatic knowledge base sync with Google Drive.",
-    problem: "Job seekers need company-specific interview preparation, but relevant information is scattered across forums, websites, and PDFs — making systematic preparation difficult.",
-    motivation: "Wanted to build a real-world RAG system that goes beyond basic vector search — implementing production patterns like hybrid retrieval, reranking, differential sync, and real-time progress tracking.",
-    solution: "Built a full-stack RAG application with a sophisticated retrieval pipeline: query reformulation → dual retrieval (BM25 sparse + ChromaDB dense) → reciprocal rank fusion → cross-encoder reranking → agentic evaluation → LLM generation. Knowledge base auto-syncs from Google Drive on startup.",
+    category: "Agentic AI × Hybrid RAG",
+    description: "A production-grade, security-hardened Retrieval-Augmented Generation system engineered for technical placement interview preparation (DSA, System Design, Behavioral, and Company-Specific Q&A). Combines hybrid retrieval (dense Gemini text-embedding-004 + rank-bm25 with score fusion), HyDE query expansion, neural cross-encoder reranking, a 6-layer security guardrail pipeline, and real-time Server-Sent Events (SSE) streaming with a developer observability dashboard.",
+    problem: "Job seekers preparing for technical interviews encounter fragmented resources across data structures, system design, and company interview rounds without reliable, context-grounded verification.",
+    motivation: "Engineered to overcome the limitations of naive vector search by implementing production RAG patterns: hybrid sparse/dense retrieval, hypothetical document expansion (HyDE), neural cross-encoder reranking, multi-layer security guardrails, and real-time observability.",
+    solution: "Built a decoupled full-stack architecture with a React 19 + Vite frontend and a FastAPI backend. Incoming queries undergo input validation and prompt injection checks, trigger query rewriting and HyDE expansion, retrieve candidates via parallel dense vector search (ChromaDB) and sparse keyword search (BM25), fuse scores, rerank top candidates with cross-encoder/ms-marco-MiniLM-L-6-v2, verify context grounding, and stream Gemini 2.5 Flash responses over SSE with per-stage latency metrics.",
     features: [
-      { icon: <Search className="w-5 h-5" />, title: "Hybrid Retrieval", description: "Dual BM25 sparse + ChromaDB dense vector retrieval with Reciprocal Rank Fusion for comprehensive coverage." },
-      { icon: <Shield className="w-5 h-5" />, title: "Cross-Encoder Reranking", description: "Neural reranking stage that reorders retrieved chunks by semantic relevance before generation." },
-      { icon: <Activity className="w-5 h-5" />, title: "Real-time Pipeline Tracking", description: "Server-Sent Events stream pipeline stage progress to the frontend in real-time." },
-      { icon: <Database className="w-5 h-5" />, title: "Auto-Sync Knowledge Base", description: "Differential sync with Google Drive on startup — only downloads new or modified PDFs." },
-      { icon: <Bot className="w-5 h-5" />, title: "Agentic Evaluation", description: "AI agent evaluates retrieval quality and context relevance before generating responses." },
-      { icon: <MessageSquare className="w-5 h-5" />, title: "Conversational Interface", description: "Chat-based UI with markdown rendering, conversation history, and developer dashboard." },
+      { icon: <Search className="w-5 h-5" />, title: "Hybrid Retrieval", description: "Dense semantic search via Gemini text-embedding-004 combined with sparse keyword search via rank-bm25 and score fusion for high recall and keyword precision." },
+      { icon: <Brain className="w-5 h-5" />, title: "HyDE Query Expansion", description: "Generates hypothetical answer documents to enrich sparse or underspecified queries before retrieval, significantly improving recall on technical terminology." },
+      { icon: <Shield className="w-5 h-5" />, title: "Cross-Encoder Reranking", description: "Neural reranking with cross-encoder/ms-marco-MiniLM-L-6-v2 and similarity threshold filtering to ensure only high-relevance chunks reach generation." },
+      { icon: <Lock className="w-5 h-5" />, title: "6-Layer Security Pipeline", description: "End-to-end security: input validation, prompt injection defense, sliding-window rate limiting, retrieval safety guards, context sanitization, and grounding checks." },
+      { icon: <Activity className="w-5 h-5" />, title: "Live SSE Stage Tracking", description: "Server-Sent Events stream pipeline stage progress (rewrite → expand → retrieve → rerank → ground → generate) directly to the UI in real time." },
+      { icon: <Gauge className="w-5 h-5" />, title: "Developer Observability Dashboard", description: "Per-request dashboard reporting stage latencies, chunk relevance scores, context window usage, security verdicts, and dynamic runtime feature toggles." },
     ],
     techStack: [
-      { label: "Frontend", items: ["React", "Vite", "Markdown Renderer"] },
-      { label: "Backend", items: ["FastAPI", "Python", "SSE Streaming"] },
-      { label: "AI", items: ["Gemini API", "LangChain", "Cross-Encoder"] },
-      { label: "Retrieval", items: ["ChromaDB", "BM25", "Reciprocal Rank Fusion"] },
-      { label: "Cloud", items: ["Google Drive API", "Render", "Service Accounts"] },
-      { label: "Data", items: ["PDF Parsing", "SHA-256 Hashing", "Chunking"] },
+      { label: "Frontend", items: ["React 19", "Vite", "JavaScript", "Tailwind CSS", "SSE Client"] },
+      { label: "Backend", items: ["FastAPI", "Python 3.10+", "Uvicorn", "Pydantic", "HTTPX"] },
+      { label: "AI & Embeddings", items: ["Gemini 2.5 Flash", "text-embedding-004", "HyDE Expansion"] },
+      { label: "Retrieval & Ranking", items: ["ChromaDB", "rank-bm25", "Cross-Encoder MiniLM", "Score Fusion"] },
+      { label: "Security & Ingestion", items: ["Prompt Injection Defense", "Rate Limiting", "PyPDF", "python-docx", "Pytest"] },
+      { label: "Deployment", items: ["Render Web Service", "Render Static Site", "Environment Config"] },
     ],
     architecture: [
       {
-        title: "RAG Pipeline",
+        title: "Agentic RAG & Observability Pipeline",
         nodes: [
-          { id: "user", label: "User Query", sublabel: "Chat Interface", type: "default" },
-          { id: "reformulate", label: "Query Reformulation", sublabel: "Analysis & Rewrite", type: "accent" },
+          { id: "query", label: "User Query", sublabel: "Vite Chat Interface", type: "default" },
+          { id: "security", label: "Security Guardrails", sublabel: "Injection & Rate Check", type: "accent" },
+          { id: "hyde", label: "Query Rewriter & HyDE", sublabel: "Hypothetical Doc Expansion", type: "accent" },
           { id: "bm25", label: "BM25 Sparse", sublabel: "Keyword Retrieval", type: "accent" },
-          { id: "dense", label: "ChromaDB Dense", sublabel: "Vector Search", type: "accent" },
-          { id: "fusion", label: "Reciprocal Rank Fusion", sublabel: "Hybrid Merge", type: "primary" },
-          { id: "rerank", label: "Cross-Encoder Reranking", sublabel: "Semantic Reorder", type: "primary" },
-          { id: "eval", label: "Agentic Evaluation", sublabel: "Quality Check", type: "accent" },
-          { id: "llm", label: "Gemini Generation", sublabel: "Grounded Response", type: "primary" },
-          { id: "response", label: "Cited Answer", sublabel: "SSE Stream", type: "default" },
+          { id: "dense", label: "ChromaDB Dense", sublabel: "text-embedding-004", type: "accent" },
+          { id: "fusion", label: "Score Fusion", sublabel: "Hybrid Merge", type: "primary" },
+          { id: "rerank", label: "Cross-Encoder Reranker", sublabel: "ms-marco-MiniLM-L-6-v2", type: "primary" },
+          { id: "ground", label: "Context Grounding", sublabel: "Hallucination Check", type: "accent" },
+          { id: "llm", label: "Gemini 2.5 Flash", sublabel: "Grounded Generation", type: "primary" },
+          { id: "sse", label: "SSE Streaming & Dashboard", sublabel: "Live Stage Telemetry", type: "default" },
         ],
       },
     ],
     journey: [
-      { title: "Problem", content: "Company interview information is scattered across PDFs, forums, and websites. Basic RAG systems miss relevant content due to vocabulary mismatch (sparse vs. semantic gap)." },
-      { title: "Research", content: "Studied hybrid retrieval strategies (BM25 + dense), reciprocal rank fusion algorithms, cross-encoder reranking architectures, and differential sync patterns." },
-      { title: "Design Decisions", content: "Chose dual retrieval over single-method for better recall. Added cross-encoder reranking for precision. Implemented SSE for real-time pipeline visibility." },
-      { title: "Architecture", content: "Decoupled frontend-backend on Render. Backend auto-syncs PDFs from Google Drive, hashes files for incremental updates, and serves a multi-stage retrieval pipeline." },
-      { title: "Implementation", content: "Built the ingestion pipeline first (Drive sync → parse → chunk → embed → index), then the retrieval pipeline (reformulate → dual retrieval → fusion → rerank → generate)." },
-      { title: "Challenges", content: "Balancing retrieval latency with quality — cross-encoder reranking adds latency but dramatically improves relevance. SSE streaming mitigates perceived wait time." },
-      { title: "Lessons Learned", content: "Hybrid retrieval (sparse + dense) consistently outperforms either method alone. Differential sync is essential for production RAG systems with evolving knowledge bases." },
+      { title: "Problem", content: "Technical placement preparation requires both exact keyword matching (for algorithms, specific problems, and terminology) and semantic matching for conceptual questions. Naive dense-only vector search suffered from vocabulary mismatch." },
+      { title: "Research", content: "Evaluated sparse vs. dense retrieval dynamics, reciprocal score fusion formulas, cross-encoder latency overheads, and guardrail architectures to prevent prompt injections and off-topic hallucinations." },
+      { title: "Design Decisions", content: "Built a dual-retrieval pipeline pairing BM25 with ChromaDB. Added HyDE to generate hypothetical answer representations before dense retrieval, and a cross-encoder to rerank candidate chunks for precision." },
+      { title: "Observability & Guardrails", content: "Implemented Server-Sent Events to stream each pipeline step to the frontend in real time, accompanied by a developer dashboard showing latency breakdowns, chunk similarity scores, and runtime toggles." },
+      { title: "Implementation", content: "Engineered automatic ingestion of knowledge base PDFs on startup, structured modular core/agent interfaces, implemented 6-layer security verification, and deployed frontend and backend as decoupled services on Render." },
+      { title: "Challenges", content: "Balancing cross-encoder reranking latency with response speed; mitigated user-perceived wait time via real-time SSE progress streaming." },
+      { title: "Lessons Learned", content: "Hybrid retrieval with score fusion and cross-encoder reranking consistently outperforms single-index RAG systems on domain-specific technical queries." },
     ],
     metrics: [
-      { value: "20+", label: "Companies Covered" },
-      { value: "Hybrid", label: "Dual Retrieval" },
-      { value: "Real-time", label: "SSE Pipeline" },
+      { value: "Hybrid", label: "Dense + BM25 Search" },
+      { value: "6-Layer", label: "Security Guardrails" },
+      { value: "Real-time", label: "SSE Telemetry" },
     ],
     githubLinks: [
-      { label: "Frontend", url: "https://github.com/Snigdha-Gayathri/Agentic-Placement-RAG-Frontend" },
-      { label: "Backend", url: "https://github.com/Snigdha-Gayathri/Agentic-Placement-RAG-Backend" },
+      { label: "Frontend Repo", url: "https://github.com/Snigdha-Gayathri/Agentic-Placement-RAG-Frontend" },
+      { label: "Backend Repo", url: "https://github.com/Snigdha-Gayathri/Agentic-Placement-RAG-Backend" },
     ],
     demoUrl: "https://agentic-placement-rag.onrender.com/",
-    challenges: "Achieving high retrieval quality across diverse PDF formats while maintaining sub-3-second response times for the full pipeline.",
-    lessonsLearned: "Production RAG requires much more than basic vector search — hybrid retrieval, reranking, and smart chunking are essential for quality.",
-    futureImprovements: "Multi-modal document support (images, tables), query-adaptive retrieval strategies, and collaborative knowledge base curation.",
+    challenges: "Achieving high retrieval precision across diverse technical interview documents while maintaining low latency and strict guardrail verification.",
+    lessonsLearned: "Production RAG requires defense-in-depth: hybrid retrieval, query expansion, neural reranking, and observability are essential for dependable AI systems.",
+    futureImprovements: "Query-adaptive retrieval routing, multi-modal diagram retrieval, and automated benchmark evaluation runs across candidate interview sets.",
   },
 
   // ── 2. EKIP ──────────────────────────────────────────────────────────────
@@ -241,7 +250,7 @@ const showcaseProjects: ShowcaseProject[] = [
       { icon: <Layers className="w-5 h-5" />, title: "Interactive Explorer", description: "React Flow-powered visual knowledge graph for architecture maps, impact analysis, and entity exploration." },
     ],
     techStack: [
-      { label: "Frontend", items: ["React 19", "Tailwind CSS v4", "React Flow", "Zustand", "React Query"] },
+      { label: "Frontend", items: ["React 19", "Tailwind CSS", "React Flow", "Zustand", "React Query"] },
       { label: "Backend", items: ["FastAPI", "Python", "REST API", "SSE"] },
       { label: "AI", items: ["LangGraph", "Gemini API", "Groq API", "FastEmbed"] },
       { label: "Databases", items: ["Supabase (PostgreSQL)", "Qdrant Cloud", "Neo4j Aura"] },
@@ -286,6 +295,7 @@ const showcaseProjects: ShowcaseProject[] = [
     lessonsLearned: "Specialized databases > general-purpose solutions. The combination of vector search + graph traversal covers far more ground than either alone.",
     futureImprovements: "Real-time document monitoring, collaborative knowledge curation, automated knowledge graph maintenance, and cross-organizational knowledge federation.",
   },
+
   // ── 3. Smart Shelf AI ────────────────────────────────────────────────────
   {
     id: "smartshelf",
@@ -420,44 +430,163 @@ const showcaseProjects: ShowcaseProject[] = [
     lessonsLearned: "Multi-agent systems work exceptionally well for educational AI — each learning science principle maps naturally to a dedicated agent.",
     futureImprovements: "Peer learning integration, visual knowledge graphs, mobile app, and integration with external learning platforms (Coursera, Udemy).",
   },
-
 ]
 
 // ═══════════════════════════════════════════════════════════════════════════
-// PASSION PROJECTS DATA
+// PASSION PROJECTS DATA (7 Verified Projects)
 // ═══════════════════════════════════════════════════════════════════════════
 
-const passionProjects: PassionProject[] = [
+const passionProjects: PassionProjectDetail[] = [
+  // ── 1. AI Job Hunter Automation ──────────────────────────────────────────
   {
-    title: "DPO Playground",
-    description: "DPO Playground is an interactive platform for exploring and understanding Direct Preference Optimization (DPO), the modern alignment technique that is rapidly replacing traditional RLHF pipelines. It enables users to experiment with preference datasets, compare chosen versus rejected responses, visualize the DPO optimization process, and gain intuition for how preference-based fine-tuning aligns large language models with human preferences. The platform combines theoretical explanations with hands-on experimentation, making complex alignment concepts accessible through an intuitive interface.",
-    highlights: [
-      "Interactive DPO workflow visualization",
-      "Preference pair creation and comparison",
-      "Chosen vs rejected response analysis",
-      "DPO loss and optimization intuition",
-      "Educational playground for LLM alignment concepts",
-      "Modern responsive UI for experimentation"
+    id: "ai-job-hunter",
+    title: "AI Job Hunter Automation",
+    tagline: "Automated LinkedIn Job Scraping & LLM Candidate-Matching Engine",
+    category: "Agentic Automation × LLM Scoring",
+    statusBadge: "Automated Workflow",
+    description: "An automated job intelligence pipeline that queries LinkedIn via Apify, manages persistent state to avoid duplicate processing across runs, applies local heuristic and seniority filters, and scores candidate-job fit using Groq-hosted LLMs against a structured engineering profile.",
+    problem: "Manual job hunting for AI and ML roles requires sifting through hundreds of repetitive postings, filtering senior from entry-level positions, and manually checking technical alignment.",
+    implementation: "Integrated Apify's LinkedIn scraper actor, built a persistent local cache (seen_jobs.json) with LRU pruning (5,000 jobs) to eliminate redundant external calls, executed local keyword filtering for AI/ML roles and exclusion of senior titles, and performed batch candidate scoring via the Groq API against an engineering profile. Runs automatically via a scheduled GitHub Actions workflow.",
+    keyHighlights: [
+      "Single-request Apify actor execution for targeted India AI/ML positions",
+      "Persistent JSON state cache preventing duplicate processing across workflow runs",
+      "Local multi-tier filtering for role titles, technical keywords, and seniority exclusion",
+      "Batched LLM evaluation against candidate education, skills, and target roles via Groq",
+      "Automated scheduled execution via GitHub Actions with zero manual intervention",
     ],
-    demoUrl: "https://dpo-playground.onrender.com"
+    techStack: ["Python", "Groq API", "Apify API", "GitHub Actions", "BeautifulSoup4", "SMTP Email"],
+    githubUrl: "https://github.com/Snigdha-Gayathri/ai-job-hunter",
   },
+
+  // ── 2. Recruiter Mailing Automation ──────────────────────────────────────
   {
-    title: "LLM Quest",
-    description: "LLM Quest is a gamified, browser-based learning platform designed to help aspiring AI engineers master the complete LLM engineering stack through interactive challenges and quizzes. Rather than relying on passive reading, the platform reinforces concepts using progressively difficult questions, instant feedback, performance tracking, and interview-style assessments across transformers, RAG, vector databases, fine-tuning, inference optimization, and AI agents. The project aims to make learning modern LLM systems engaging while preparing users for real-world AI engineering interviews.",
-    highlights: [
-      "Interactive quiz engine with instant evaluation",
-      "Interview-focused LLM engineering curriculum",
-      "Covers Transformers, RAG, Fine-tuning, Agents, and MLOps",
-      "Progress tracking and performance analytics",
-      "Responsive web application with a modern UI",
-      "Designed for AI interview preparation and concept mastery"
+    id: "recruiter-mailing",
+    title: "Recruiter Mailing Automation",
+    tagline: "Autonomous Recruiter Discovery, Relevance Scoring & Outreach Pipeline",
+    category: "Outreach Engineering × API Automation",
+    statusBadge: "Production Pipeline",
+    description: "An automated end-to-end recruitment outreach system that discovers recruiters across targeted segments using Apify, calculates recruiter-candidate relevance, generates personalized multi-variant communication packages, and sends emails through the Gmail API using OAuth2.",
+    problem: "Cold recruiter outreach is time-consuming and often impersonal, while naive mass mailers lack relevance scoring, risk email rate limits, and suffer from high duplication rates.",
+    implementation: "Architected a 4-stage modular pipeline (discovery, matching, outreach, storage). It scrapes and deduplicates recruiters matching target locations and tech domains, computes candidate match scores, dynamically renders personalized emails and 3-variant LinkedIn messages (connection notes, InMail, follow-up), and executes authenticated sending via Gmail API with strict run limits (MAX_EMAILS_PER_RUN) and persistent state tracking.",
+    keyHighlights: [
+      "Targeted recruiter discovery with multi-segment search, location matching, and deduplication",
+      "Relevance scoring engine weighing domain fit, company hiring activity, and technical alignment",
+      "Dynamic personalization package generating tailored email bodies and LinkedIn connection notes",
+      "Direct delivery via Google Gmail API using OAuth2 tokens and rate-limiting safeguards",
+      "Persistent state management tracking contacted profiles to prevent duplicate outreach",
     ],
-    demoUrl: "https://llm-quest.onrender.com/"
-  }
+    techStack: ["Python", "Gmail API", "Google OAuth2", "Apify API", "Requests", "JSON State"],
+    githubUrl: "https://github.com/Snigdha-Gayathri/recruiter-mailing-automation",
+  },
+
+  // ── 3. NOOA Ablation Study ───────────────────────────────────────────────
+  {
+    id: "nooa-study",
+    title: "NOOA Ablation Study",
+    tagline: "Controlled Empirical Evaluation of Tool-Using AI Agent Harness Components",
+    category: "Systems Research × Agent Engineering",
+    statusBadge: "Research Study",
+    description: "An experimental ablation research study developed from a systems-performance perspective (inspired by NVIDIA Deep Learning Performance Architect engineering) to measure how individual agent-harness components affect reliability, execution latency, and error modes in tool-using agents.",
+    problem: "Agent systems frequently add complex abstractions (CodeAct, contracts, persistent memory, validation retries) without isolating which components actually improve task completion versus adding latency, serialization overhead, and new failure points.",
+    implementation: "Structured controlled experimental configurations (A through D) systematically isolating 11 architectural mechanisms: CodeAct, Typed I/O, Validation + Retry, Pass-by-Reference data movement, Persistent State, Structured Event Logging, Static vs Dynamic Context, Validated Termination, Multi-Agent Contracts, and Failure Recovery. Implemented in a reproducible research notebook with paired comparisons and failure classification taxonomy.",
+    keyHighlights: [
+      "Ablation matrix isolating 11 distinct agent harness mechanisms across 4 configurations (A–D)",
+      "Evaluates task completion, failure frequency, execution overhead, and data-movement costs",
+      "Rigorous failure taxonomy distinguishing tool errors, state failures, and validation breakdowns",
+      "Systems-first perspective: measuring whether architectural complexity justifies latency overhead",
+      "Reproducible research notebook with automated statistical analysis and visualization figures",
+    ],
+    techStack: ["Python", "Jupyter Notebook", "PyTorch / Agent Harness", "Statistical Analysis", "Matplotlib"],
+    githubUrl: "https://github.com/Snigdha-Gayathri/NOOA-Ablation-Study",
+  },
+
+  // ── 4. LLM Inference Optimization ────────────────────────────────────────
+  {
+    id: "llm-inference",
+    title: "LLM Inference Optimization Lab",
+    tagline: "GPU Benchmarking & Performance Profiling for Large Language Model Serving",
+    category: "ML Systems × Inference Optimization",
+    statusBadge: "Benchmarking Lab",
+    description: "A comprehensive benchmarking and optimization framework for evaluating LLM inference performance across models, precisions, batch sizes, and sequence lengths on GPU hardware.",
+    problem: "Modern LLM systems spend the majority of their lifecycle in inference where serving efficiency directly dictates throughput, latency, GPU memory footprint, and operating costs.",
+    implementation: "Built an automated benchmarking pipeline for transformer language models (TinyLlama, instruction-tuned architectures) on CUDA GPUs. Evaluates precision modes (FP32, FP16, BF16), batch-size scaling, prompt length vs generation length trade-offs, and torch.compile() kernel optimization. Automatically logs first-token latency (TTFT), total latency, tokens-per-second throughput, and peak VRAM.",
+    keyHighlights: [
+      "Multi-model GPU benchmarking measuring TTFT, total latency, throughput, and peak VRAM",
+      "Precision sweep analyzing memory and compute trade-offs across FP32, FP16, and BF16",
+      "Batch-scaling analysis quantifying throughput gains vs memory growth",
+      "Disaggregated prompt-length vs generation-length profiling to pinpoint decoding bottlenecks",
+      "Empirical evaluation of torch.compile() performance on GPU workloads with automated CSV reports",
+    ],
+    techStack: ["PyTorch", "CUDA", "Hugging Face Transformers", "Pandas", "Matplotlib", "Seaborn"],
+    githubUrl: "https://github.com/Snigdha-Gayathri/LLM-Inference-Optimization",
+  },
+
+  // ── 5. Deep Learning Performance Profiler v2 ─────────────────────────────
+  {
+    id: "dl-profiler",
+    title: "Deep Learning Performance Profiler v2",
+    tagline: "Automated GPU Profiler & Bottleneck Detection Engine for Transformer Models",
+    category: "GPU Systems × PyTorch Profiling",
+    statusBadge: "Performance Profiler",
+    description: "A GPU inference profiling and bottleneck diagnostic harness for transformer language models (TinyLlama-1.1B, Qwen2.5-1.5B) integrating PyTorch Profiler, operator-level CUDA analysis, automated bottleneck ranking, and remediation recommendations.",
+    problem: "Identifying why a deep learning model is running slowly on a GPU requires navigating complex CUDA kernel traces, memory fragmentation, and operator overheads without clear prescriptive guidance.",
+    implementation: "Built a self-contained profiling harness integrating PyTorch Profiler with CUDA synchronization. Profiles operator-level CUDA/CPU execution time, computes KV-cache memory footprints, classifies workloads as memory-bound or compute-bound, and applies an automated heuristics engine that ranks bottlenecks (GPU under-utilization, kernel launch overhead, small-batch inefficiency) with actionable remediation advice (FlashAttention, compilation, quantization, continuous batching) in self-contained HTML reports.",
+    keyHighlights: [
+      "PyTorch Profiler integration capturing operator-level CUDA/CPU timings and memory allocation",
+      "Memory-bound vs compute-bound classification with KV-cache memory pressure estimation",
+      "Automated bottleneck detection heuristics ranking GPU under-utilization and sync overhead",
+      "Concrete optimization suggestions: torch.compile, FlashAttention, quantization, and batching",
+      "Exports self-contained diagnostic HTML reports, radar charts, heatmaps, and CSV results",
+    ],
+    techStack: ["PyTorch Profiler", "CUDA", "Hugging Face Transformers", "Accelerate", "Seaborn", "Pandas"],
+    githubUrl: "https://github.com/Snigdha-Gayathri/Deep-Learning-Performance-Profiler-v2",
+  },
+
+  // ── 6. DPO Playground ────────────────────────────────────────────────────
+  {
+    id: "dpo-playground",
+    title: "DPO Playground",
+    tagline: "Interactive Platform for Direct Preference Optimization (DPO) Exploration",
+    category: "LLM Alignment × Interactive Systems",
+    statusBadge: "Live Deployed",
+    description: "An interactive platform for exploring and understanding Direct Preference Optimization (DPO), the modern alignment technique that replaces complex RLHF pipelines. Enables users to experiment with preference datasets, compare chosen versus rejected responses, visualize the optimization process, and gain intuition for how preference-based fine-tuning aligns models with human preferences.",
+    problem: "Understanding LLM alignment via RLHF or DPO is difficult without hands-on experimentation with paired preference data and loss dynamics.",
+    implementation: "Developed a full-stack educational interactive web platform allowing users to inspect preference pairs, analyze chosen vs. rejected token probability distributions, and explore DPO loss mechanics through an intuitive interface.",
+    keyHighlights: [
+      "Interactive DPO workflow visualization and loss curve intuition",
+      "Preference pair creation, inspection, and chosen vs rejected comparison",
+      "Educational playground demystifying alignment without complex reinforcement learning infrastructure",
+      "Modern responsive web application with hands-on experimentation UI",
+    ],
+    techStack: ["React", "TypeScript", "Python", "Tailwind CSS", "LLM Alignment"],
+    demoUrl: "https://dpo-playground.onrender.com",
+    githubUrl: "https://github.com/Snigdha-Gayathri/DPO-Playground",
+  },
+
+  // ── 7. LLM Quest ─────────────────────────────────────────────────────────
+  {
+    id: "llm-quest",
+    title: "LLM Quest",
+    tagline: "Gamified Interactive Learning Platform for Mastering the LLM Engineering Stack",
+    category: "AI Systems Education × Web Platform",
+    statusBadge: "Live Deployed",
+    description: "A gamified, browser-based learning platform designed to help aspiring AI engineers master the complete LLM engineering stack through interactive challenges and interview-style assessments across transformers, RAG, vector databases, fine-tuning, inference optimization, and multi-agent systems.",
+    problem: "Learning modern LLM engineering concepts from passive documentation leaves engineers unprepared for practical systems design and technical interview evaluations.",
+    implementation: "Engineered a quiz and assessment application featuring progressively difficult questions, immediate answer validation, categorized engineering tracks, and performance tracking across the full AI lifecycle.",
+    keyHighlights: [
+      "Interactive quiz and challenge engine with instant technical evaluation",
+      "Comprehensive curriculum covering Transformers, RAG, Fine-Tuning, Agents, and MLOps",
+      "Progress tracking, mastery scores, and interview-oriented concept reinforcement",
+      "Fast, responsive single-page web application with modern dark-mode aesthetic",
+    ],
+    techStack: ["TypeScript", "React", "Vite", "Tailwind CSS", "Educational Engineering"],
+    demoUrl: "https://llm-quest.onrender.com/",
+    githubUrl: "https://github.com/Snigdha-Gayathri/LLM-Quest",
+  },
 ]
 
 // ═══════════════════════════════════════════════════════════════════════════
-// COMPACT PROJECTS (remaining ML projects)
+// COMPACT PROJECTS (More Projects)
 // ═══════════════════════════════════════════════════════════════════════════
 
 const compactProjects: CompactProject[] = [
@@ -589,13 +718,13 @@ const MetricsRow = ({ metrics }: { metrics: Metric[] }) => (
   </div>
 )
 
-// ── Project Showcase (full-width landing page style) ──────────────────────
+// ── Showcase Project Card (full-width deep dive) ──────────────────────────
 const ProjectShowcase = ({ project }: { project: ShowcaseProject }) => {
   return (
-    <div className="project-showcase" id={`project-${project.id}`}>
+    <div className="project-showcase project-anchor-target" id={`project-${project.id}`}>
       <div className="container mx-auto max-w-5xl px-6">
 
-        {/* ── Hero ─────────────────────────────────────────────────────── */}
+        {/* ── Hero ── */}
         <div className="project-hero">
           <div className="project-hero-visual">
             <div className="relative z-10">
@@ -626,14 +755,14 @@ const ProjectShowcase = ({ project }: { project: ShowcaseProject }) => {
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-3">
                 {project.demoUrl && (
-                  <Button size="sm" variant="default" className="gap-2 text-sm px-5 py-2.5 rounded-xl" asChild>
+                  <Button size="sm" variant="default" className="gap-2 text-sm px-5 py-2.5 rounded-xl shadow-md" asChild>
                     <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="w-4 h-4" /> Live Demo
                     </a>
                   </Button>
                 )}
                 {project.githubLinks.map((link) => (
-                  <Button key={link.url} size="sm" variant="outline" className="gap-2 text-sm px-5 py-2.5 rounded-xl" asChild>
+                  <Button key={link.url} size="sm" variant="outline" className="gap-2 text-sm px-5 py-2.5 rounded-xl bg-background/80 hover:bg-background" asChild>
                     <a href={link.url} target="_blank" rel="noopener noreferrer">
                       <Github className="w-4 h-4" /> {link.label}
                     </a>
@@ -644,7 +773,7 @@ const ProjectShowcase = ({ project }: { project: ShowcaseProject }) => {
           </div>
         </div>
 
-        {/* ── Description ──────────────────────────────────────────────── */}
+        {/* ── Description ── */}
         <div className="py-8 slide-up">
           <p className="text-base text-muted-foreground leading-relaxed max-w-4xl">
             {project.description}
@@ -746,57 +875,100 @@ const ProjectShowcase = ({ project }: { project: ShowcaseProject }) => {
   )
 }
 
-// ── Passion Project Showcase ──────────────────────────────────────────────
-const PassionProjectShowcase = ({ project }: { project: PassionProject }) => (
-  <div className="project-showcase">
-    <div className="container mx-auto max-w-5xl px-6">
-      <div className="project-hero">
-        <div className="project-hero-visual">
-          <div className="relative z-10">
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <span className="status-badge status-badge--completed">
-                <span className="status-badge-dot" />
-                Live Deployed
-              </span>
-              <span className="text-[10px] font-bold text-primary uppercase tracking-wider">
-                Passion Project
-              </span>
-            </div>
+// ── Rich Passion Project Card ─────────────────────────────────────────────
+const PassionProjectCard = ({ project }: { project: PassionProjectDetail }) => (
+  <div
+    id={`project-${project.id}`}
+    className="passion-project-card project-anchor-target mb-8 slide-up"
+  >
+    {/* Header row: status badge + category */}
+    <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+      <div className="flex items-center gap-2.5">
+        <span className="status-badge status-badge--completed">
+          <span className="status-badge-dot" />
+          {project.statusBadge}
+        </span>
+        <span className="text-[11px] font-bold text-primary uppercase tracking-wider">
+          {project.category}
+        </span>
+      </div>
+    </div>
 
-            <h3 className="font-poppins font-extrabold text-3xl md:text-4xl text-foreground mb-3 slide-up">
-              {project.title}
-            </h3>
-            
-            <p className="text-base text-muted-foreground leading-relaxed max-w-4xl mb-6 slide-up">
-              {project.description}
-            </p>
+    {/* Title & Tagline */}
+    <h3 className="font-poppins font-extrabold text-2xl md:text-3xl text-foreground mb-2">
+      {project.title}
+    </h3>
+    <p className="text-sm md:text-base text-primary/90 font-medium mb-4">
+      {project.tagline}
+    </p>
 
-            <div className="flex flex-wrap gap-3">
-              <Button size="sm" variant="default" className="gap-2 text-sm px-5 py-2.5 rounded-xl" asChild>
-                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="w-4 h-4" /> Live Demo
-                </a>
-              </Button>
-            </div>
+    {/* Description */}
+    <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+      {project.description}
+    </p>
+
+    {/* Problem & Implementation Grid */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6 p-4 rounded-xl bg-muted/30 border border-border/30">
+      <div>
+        <h5 className="font-poppins font-semibold text-xs text-foreground uppercase tracking-wider mb-1.5 flex items-center gap-1.5 text-primary">
+          <Target className="w-3.5 h-3.5" /> Problem Addressed
+        </h5>
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          {project.problem}
+        </p>
+      </div>
+      <div>
+        <h5 className="font-poppins font-semibold text-xs text-foreground uppercase tracking-wider mb-1.5 flex items-center gap-1.5 text-primary">
+          <Cpu className="w-3.5 h-3.5" /> Implementation Approach
+        </h5>
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          {project.implementation}
+        </p>
+      </div>
+    </div>
+
+    {/* Key Highlights */}
+    <div className="mb-6">
+      <h5 className="font-poppins font-semibold text-xs text-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
+        <Sparkles className="w-3.5 h-3.5 text-primary" /> Key Highlights & Concepts
+      </h5>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+        {project.keyHighlights.map((highlight, idx) => (
+          <div key={idx} className="flex items-start gap-2 text-xs text-muted-foreground">
+            <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+            <span>{highlight}</span>
           </div>
-        </div>
+        ))}
       </div>
+    </div>
 
-      <div className="py-8 border-t border-border/20">
-        <h4 className="font-poppins font-bold text-lg text-foreground mb-6 flex items-center gap-2 slide-up">
-          <Sparkles className="w-5 h-5 text-primary" /> Key Highlights
-        </h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {project.highlights.map((highlight, i) => (
-            <div key={i} className={`feature-card slide-up stagger-${Math.min(i + 1, 6)}`}>
-              <div className="feature-card-icon">
-                <CheckCircle2 className="w-4 h-4 text-primary" />
-              </div>
-              <p className="text-xs text-muted-foreground leading-relaxed font-semibold">{highlight}</p>
-            </div>
-          ))}
-        </div>
+    {/* Tech Stack Badges */}
+    <div className="mb-6">
+      <div className="flex flex-wrap gap-1.5">
+        {project.techStack.map((tech) => (
+          <span key={tech} className="tech-badge text-[11px] py-0.5 px-2">
+            {tech}
+          </span>
+        ))}
       </div>
+    </div>
+
+    {/* Action Buttons */}
+    <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-border/20">
+      {project.demoUrl && (
+        <Button size="sm" variant="default" className="gap-2 text-xs px-4 py-2 rounded-xl shadow-md" asChild>
+          <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+            <ExternalLink className="w-3.5 h-3.5" /> Live Demo
+          </a>
+        </Button>
+      )}
+      {project.githubUrl && (
+        <Button size="sm" variant="outline" className="gap-2 text-xs px-4 py-2 rounded-xl bg-background/80 hover:bg-background" asChild>
+          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+            <Github className="w-3.5 h-3.5" /> Repository
+          </a>
+        </Button>
+      )}
     </div>
   </div>
 )
@@ -842,6 +1014,26 @@ const ProjectsSection = () => {
     return () => observer.disconnect()
   }, [])
 
+  const scrollToProject = (projectId: string) => {
+    const element = document.getElementById(projectId)
+    if (element) {
+      const offset = 90
+      const bodyRect = document.body.getBoundingClientRect().top
+      const elementRect = element.getBoundingClientRect().top
+      const elementPosition = elementRect - bodyRect
+      const offsetPosition = elementPosition - offset
+      window.scrollTo({ top: Math.max(0, offsetPosition), behavior: "smooth" })
+
+      // Visual flash highlight
+      element.classList.remove("highlight-target")
+      void element.offsetWidth // trigger reflow
+      element.classList.add("highlight-target")
+      setTimeout(() => {
+        element.classList.remove("highlight-target")
+      }, 2000)
+    }
+  }
+
   return (
     <section id="projects" className="py-24 px-6 relative">
       <div className="container mx-auto max-w-6xl">
@@ -858,14 +1050,14 @@ const ProjectsSection = () => {
           </h2>
           <div className="w-16 h-1 bg-primary mx-auto rounded-full mb-6" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Deep dives into AI systems I've architected — from quantum computing to multi-agent orchestration.
+            Deep dives into AI systems I've architected — from agentic RAG and quantum computing to GPU inference optimization and workflow automation.
           </p>
         </div>
 
         {/* ══════════════════════════════════════════════════════════════════
-            CURRENTLY WORKING ON — ForgeML
+            1. CURRENTLY WORKING ON — ForgeML
             ══════════════════════════════════════════════════════════════════ */}
-        <div className="mb-8">
+        <div id="projects-currently-building" className="project-anchor-target mb-10">
           <div className="text-center mb-2 slide-up">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-wider">
               <Wrench className="w-3 h-3" /> Currently Building
@@ -877,18 +1069,33 @@ const ProjectsSection = () => {
         <div className="section-divider" />
 
         {/* ══════════════════════════════════════════════════════════════════
-            I BUILT THESE — 4 Showcase Projects
+            2. I BUILT THESE — 4 Showcase Projects with Quick Navigation Chips
             ══════════════════════════════════════════════════════════════════ */}
-        <div className="text-center mb-2 slide-up">
+        <div id="projects-built-these" className="project-anchor-target text-center mb-4 slide-up">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary uppercase tracking-wider mb-4">
-            <CheckCircle2 className="w-3 h-3" /> Completed Projects
+            <CheckCircle2 className="w-3 h-3" /> Completed Systems
           </div>
           <h3 className="font-poppins font-extrabold text-3xl md:text-4xl text-foreground mb-2">
             I Built These
           </h3>
-          <p className="text-base text-muted-foreground max-w-xl mx-auto">
-            Production-grade AI systems spanning agentic architectures, quantum computing, RAG, and knowledge engineering.
+          <p className="text-base text-muted-foreground max-w-xl mx-auto mb-4">
+            Production-grade AI systems spanning agentic architectures, quantum computing, hybrid RAG, and knowledge engineering.
           </p>
+
+          {/* Quick-navigation chips for I Built These */}
+          <div className="project-chips-container">
+            {showcaseProjects.map((p) => (
+              <button
+                key={p.id}
+                onClick={() => scrollToProject(`project-${p.id}`)}
+                className="project-chip"
+                aria-label={`Jump to ${p.title}`}
+              >
+                <span className="project-chip-dot" />
+                <span>{p.title}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {showcaseProjects.map((project) => (
@@ -898,30 +1105,47 @@ const ProjectsSection = () => {
         <div className="section-divider" />
 
         {/* ══════════════════════════════════════════════════════════════════
-            PASSION PROJECTS
+            3. PASSION PROJECTS — 7 Projects with Quick Navigation Chips
             ══════════════════════════════════════════════════════════════════ */}
-        <div className="text-center mb-2 slide-up">
+        <div id="projects-passion" className="project-anchor-target text-center mb-4 slide-up">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-xs font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-4">
-            <Brain className="w-3 h-3" /> Creative Experiments
+            <Brain className="w-3 h-3" /> Creative Experiments & Research
           </div>
           <h3 className="font-poppins font-extrabold text-3xl md:text-4xl text-foreground mb-2">
             Passion Projects
           </h3>
-          <p className="text-base text-muted-foreground max-w-xl mx-auto">
-            Interactive playgrounds and gamified platforms built to make alignment and AI concepts accessible.
+          <p className="text-base text-muted-foreground max-w-xl mx-auto mb-4">
+            Targeted automation tools, empirical systems research, inference performance labs, and interactive alignment platforms.
           </p>
+
+          {/* Quick-navigation chips for Passion Projects */}
+          <div className="project-chips-container">
+            {passionProjects.map((p) => (
+              <button
+                key={p.id}
+                onClick={() => scrollToProject(`project-${p.id}`)}
+                className="project-chip"
+                aria-label={`Jump to ${p.title}`}
+              >
+                <span className="project-chip-dot" />
+                <span>{p.title}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
-        {passionProjects.map((project) => (
-          <PassionProjectShowcase key={project.title} project={project} />
-        ))}
+        <div className="max-w-5xl mx-auto">
+          {passionProjects.map((project) => (
+            <PassionProjectCard key={project.id} project={project} />
+          ))}
+        </div>
 
         <div className="section-divider" />
 
         {/* ══════════════════════════════════════════════════════════════════
-            OTHER PROJECTS — Compact Grid
+            4. MORE PROJECTS — Compact Grid
             ══════════════════════════════════════════════════════════════════ */}
-        <div className="mb-12">
+        <div id="projects-more" className="project-anchor-target mb-12">
           <div className="text-center mb-10 slide-up">
             <h3 className="font-poppins font-bold text-2xl text-foreground mb-2">
               More Projects
